@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { UserCheck, AlertCircle, CheckCircle2, MapPin, Sparkles, Send, ShieldCheck, GraduationCap, Building2, ArrowRight } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { EVENT_DETAILS, TRACKS_DATA } from '../data/eventData';
-import { LegoGoogleBrickBar, LegoStudRow, LegoStud } from '../components/LegoElements';
+import { LegoGoogleBrickBar, LegoStudRow, LegoStud, LegoRobotGraphic } from '../components/LegoElements';
 
 export default function Registration({ 
   registeredCount, 
@@ -194,8 +194,8 @@ export default function Registration({
       // Trigger Confetti Celebration
       try {
         confetti({
-          particleCount: 110,
-          spread: 75,
+          particleCount: 120,
+          spread: 80,
           origin: { y: 0.6 }
         });
       } catch (err) {
@@ -217,34 +217,35 @@ export default function Registration({
   };
 
   return (
-    <section id="register" className="relative py-24 sm:py-32 bg-[#0b0e14] border-t-2 border-[#1c2333] lego-baseplate-pattern">
+    <section id="register" className="relative py-24 sm:py-32 bg-[#F5EBD2] text-[#252525] border-t-4 border-[#E8DCC4] lego-baseplate-sand">
       
-      {/* Background ambient lighting */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[650px] h-[400px] bg-gradient-to-r from-blue-600/15 via-emerald-600/10 to-amber-500/10 blur-[150px] rounded-full pointer-events-none" />
-
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header */}
+        {/* Section Header with LEGO Robot 3 */}
         <div className="text-center mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold bg-[#141924] text-[#ffd500] border border-[#2b3548] border-b-2 border-b-black mb-4 shadow-sm">
-            <UserCheck className="w-3.5 h-3.5 text-[#ffd500]" />
+          <div className="flex justify-center mb-4">
+            <LegoRobotGraphic pose="celebrating" size={80} />
+          </div>
+
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-black bg-white text-[#E53935] border-2 border-[#E53935] mb-4 shadow-sm">
+            <UserCheck className="w-4 h-4 text-[#E53935]" />
             <span>CONFIRM IN-PERSON ATTENDANCE • OFFLINE DELEGATE PASS</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-extrabold font-display tracking-tight text-white mb-4">
+          <h2 className="text-3xl sm:text-5xl font-black font-display tracking-tight text-[#252525] mb-4">
             Your Next Developer Connection Starts Here.
           </h2>
 
-          <p className="text-base sm:text-lg text-slate-300 font-sans max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-slate-700 font-sans max-w-2xl mx-auto">
             150 seats. One incredible day. Open to both MMMUT students and outside university builders.
           </p>
 
-          <div className="mt-6 inline-flex flex-wrap items-center justify-center gap-2 px-4 py-2 rounded-xl bg-[#151b29] border border-[#2b3548] border-b-2 border-b-black text-xs font-mono text-slate-200 font-semibold shadow-sm">
+          <div className="mt-6 inline-flex flex-wrap items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white border-2 border-[#E8DCC4] text-xs font-mono text-[#252525] font-bold shadow-md">
             <span>November 28, 2026</span>
             <span>•</span>
             <span>MMMUT Campus, Gorakhpur</span>
             <span>•</span>
-            <span className="font-bold text-[#ffd500]">Total Combined Cap: 150 Seats</span>
+            <span className="font-black text-[#E53935]">Total Combined Cap: 150 Seats</span>
           </div>
         </div>
 
@@ -254,10 +255,10 @@ export default function Registration({
           {/* Card 1: MMMUT Students */}
           <div 
             onClick={() => { setCategory('MMMUT Student'); setDuplicateWarning(''); }}
-            className={`cursor-pointer rounded-3xl p-6 sm:p-8 transition-all duration-300 relative flex flex-col justify-between overflow-hidden shadow-2xl ${
+            className={`cursor-pointer rounded-3xl p-6 sm:p-8 transition-all duration-300 relative flex flex-col justify-between overflow-hidden shadow-xl border-4 ${
               category === 'MMMUT Student'
-                ? 'bg-[#111522] border-2 border-[#0055bf] border-b-4 border-b-[#003373] ring-2 ring-[#0055bf]/40'
-                : 'bg-[#111520] border-2 border-[#2b3548] border-b-4 border-b-[#070910] hover:border-[#0055bf]/40'
+                ? 'bg-white border-[#006CB7] border-b-8 border-b-[#004A80] ring-4 ring-[#006CB7]/20 scale-[1.02]'
+                : 'bg-white/90 border-[#E8DCC4] border-b-6 border-b-[#D5C7AB] hover:border-[#006CB7]/60'
             }`}
           >
             {/* Top Studs */}
@@ -266,31 +267,31 @@ export default function Registration({
             </div>
 
             {category === 'MMMUT Student' && (
-              <span className="absolute -top-3 left-6 px-3 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-[#0055bf] text-white shadow-md border-b border-[#003373]">
+              <span className="absolute -top-3.5 left-6 px-3 py-1 rounded-full text-[10px] font-mono font-black uppercase tracking-wider bg-[#006CB7] text-white shadow-md border border-[#004A80]">
                 Active Selection
               </span>
             )}
 
             <div className="pt-2">
-              <div className="w-12 h-12 rounded-2xl bg-[#0055bf]/15 text-[#3b8bff] border border-[#0055bf]/30 flex items-center justify-center mb-5 shadow-sm">
+              <div className="w-12 h-12 rounded-2xl bg-[#006CB7]/15 text-[#006CB7] border-2 border-[#006CB7]/30 flex items-center justify-center mb-5 shadow-sm">
                 <GraduationCap className="w-6 h-6" />
               </div>
 
-              <h3 className="text-xl sm:text-2xl font-bold font-display text-white mb-2">
+              <h3 className="text-xl sm:text-2xl font-black font-display text-[#252525] mb-2">
                 MMMUT Student Registration
               </h3>
 
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans mb-4">
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans mb-4">
                 For currently enrolled undergraduate, postgraduate, and MCA students of <strong>Madan Mohan Malaviya University of Technology, Gorakhpur</strong>.
               </p>
 
-              <div className="space-y-1.5 text-xs font-mono text-slate-300 mb-6 font-semibold">
+              <div className="space-y-1.5 text-xs font-mono text-slate-700 mb-6 font-bold">
                 <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[#0055bf]" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#006CB7]" />
                   <span>Campus ID / Roll Number validation</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[#0055bf]" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#006CB7]" />
                   <span>Free delegate kit & high-tea access</span>
                 </div>
               </div>
@@ -299,10 +300,10 @@ export default function Registration({
             <button
               type="button"
               onClick={() => { setCategory('MMMUT Student'); setDuplicateWarning(''); }}
-              className={`w-full py-3 px-4 rounded-xl font-display font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 ${
+              className={`w-full py-3 px-4 rounded-xl font-display font-black text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 ${
                 category === 'MMMUT Student'
                   ? 'lego-btn-blue text-white shadow-lg'
-                  : 'bg-[#151b29] text-slate-300 border border-[#2b3548] border-b-2 border-b-black hover:bg-[#1f283d]'
+                  : 'bg-[#FFF8E7] text-[#252525] border-2 border-[#E8DCC4] hover:bg-white'
               }`}
             >
               <span>{category === 'MMMUT Student' ? 'Editing MMMUT Application' : 'Register as MMMUT Student'}</span>
@@ -313,10 +314,10 @@ export default function Registration({
           {/* Card 2: Outside College Students */}
           <div 
             onClick={() => { setCategory('Outside College Student'); setDuplicateWarning(''); }}
-            className={`cursor-pointer rounded-3xl p-6 sm:p-8 transition-all duration-300 relative flex flex-col justify-between overflow-hidden shadow-2xl ${
+            className={`cursor-pointer rounded-3xl p-6 sm:p-8 transition-all duration-300 relative flex flex-col justify-between overflow-hidden shadow-xl border-4 ${
               category === 'Outside College Student'
-                ? 'bg-[#11171f] border-2 border-[#00852b] border-b-4 border-b-[#004d19] ring-2 ring-[#00852b]/40'
-                : 'bg-[#111520] border-2 border-[#2b3548] border-b-4 border-b-[#070910] hover:border-[#00852b]/40'
+                ? 'bg-white border-[#00852B] border-b-8 border-b-[#00551B] ring-4 ring-[#00852B]/20 scale-[1.02]'
+                : 'bg-white/90 border-[#E8DCC4] border-b-6 border-b-[#D5C7AB] hover:border-[#00852B]/60'
             }`}
           >
             {/* Top Studs */}
@@ -325,31 +326,31 @@ export default function Registration({
             </div>
 
             {category === 'Outside College Student' && (
-              <span className="absolute -top-3 left-6 px-3 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-[#00852b] text-white shadow-md border-b border-[#004d19]">
+              <span className="absolute -top-3.5 left-6 px-3 py-1 rounded-full text-[10px] font-mono font-black uppercase tracking-wider bg-[#00852B] text-white shadow-md border border-[#00551B]">
                 Active Selection
               </span>
             )}
 
             <div className="pt-2">
-              <div className="w-12 h-12 rounded-2xl bg-[#00852b]/15 text-[#22c55e] border border-[#00852b]/30 flex items-center justify-center mb-5 shadow-sm">
+              <div className="w-12 h-12 rounded-2xl bg-[#00852B]/15 text-[#00852B] border-2 border-[#00852B]/30 flex items-center justify-center mb-5 shadow-sm">
                 <Building2 className="w-6 h-6" />
               </div>
 
-              <h3 className="text-xl sm:text-2xl font-bold font-display text-white mb-2">
+              <h3 className="text-xl sm:text-2xl font-black font-display text-[#252525] mb-2">
                 Outside College Student Registration
               </h3>
 
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans mb-4">
+              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans mb-4">
                 Warmly welcoming developers, builders, and competitive coders from <strong>other colleges, universities, and technical institutes</strong>.
               </p>
 
-              <div className="space-y-1.5 text-xs font-mono text-slate-300 mb-6 font-semibold">
+              <div className="space-y-1.5 text-xs font-mono text-slate-700 mb-6 font-bold">
                 <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[#00852b]" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#00852B]" />
                   <span>Open to all external colleges & universities</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[#00852b]" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#00852B]" />
                   <span>Full delegate swag & networking perks included</span>
                 </div>
               </div>
@@ -358,10 +359,10 @@ export default function Registration({
             <button
               type="button"
               onClick={() => { setCategory('Outside College Student'); setDuplicateWarning(''); }}
-              className={`w-full py-3 px-4 rounded-xl font-display font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 ${
+              className={`w-full py-3 px-4 rounded-xl font-display font-black text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 ${
                 category === 'Outside College Student'
                   ? 'lego-btn-green text-white shadow-lg'
-                  : 'bg-[#151b29] text-slate-300 border border-[#2b3548] border-b-2 border-b-black hover:bg-[#1f283d]'
+                  : 'bg-[#FFF8E7] text-[#252525] border-2 border-[#E8DCC4] hover:bg-white'
               }`}
             >
               <span>{category === 'Outside College Student' ? 'Editing Outside Application' : 'Register as Outside Student'}</span>
@@ -372,7 +373,9 @@ export default function Registration({
         </div>
 
         {/* UNIFIED REGISTRATION FORM CONTAINER styled as LEGO Baseplate Module */}
-        <div className="relative rounded-3xl bg-[#111520] border-2 border-[#2b3548] border-b-4 border-b-[#070910] p-6 sm:p-10 shadow-2xl overflow-hidden">
+        <div className={`relative rounded-3xl bg-white border-4 p-6 sm:p-10 shadow-2xl overflow-hidden transition-all duration-300 ${
+          category === 'MMMUT Student' ? 'border-[#006CB7] border-b-8 border-b-[#004A80]' : 'border-[#00852B] border-b-8 border-b-[#00551B]'
+        }`}>
           
           {/* Top 4-Color LEGO Brick Interlocking Bar */}
           <div className="absolute top-0 inset-x-0">
@@ -380,39 +383,39 @@ export default function Registration({
           </div>
 
           {/* Active Category Indicator Banner */}
-          <div className="flex items-center justify-between mb-8 pb-4 border-b border-white/10 pt-3">
+          <div className="flex items-center justify-between mb-8 pb-4 border-b-2 border-[#E8DCC4] pt-3">
             <div className="flex items-center gap-2.5">
-              <span className={`w-3 h-3 rounded-full ${category === 'MMMUT Student' ? 'bg-[#0055bf]' : 'bg-[#00852b]'} shadow-sm`} />
-              <span className="font-display font-bold text-white text-base sm:text-lg">
-                Registration Category: <span className={category === 'MMMUT Student' ? 'text-[#3b8bff]' : 'text-[#22c55e]'}>{category}</span>
+              <span className={`w-3.5 h-3.5 rounded-full ${category === 'MMMUT Student' ? 'bg-[#006CB7]' : 'bg-[#00852B]'} shadow-sm`} />
+              <span className="font-display font-black text-[#252525] text-base sm:text-lg">
+                Registration Category: <span className={category === 'MMMUT Student' ? 'text-[#006CB7]' : 'text-[#00852B]'}>{category}</span>
               </span>
             </div>
-            <span className="text-xs font-mono text-slate-400 font-semibold hidden sm:inline">
+            <span className="text-xs font-mono text-slate-500 font-bold hidden sm:inline">
               Step 2: Fill Details & Verify
             </span>
           </div>
 
           {/* Demonstration Notice Box */}
-          <div className="mb-8 p-4 rounded-2xl bg-cyan-950/40 border border-cyan-800/40 text-cyan-300 text-xs flex items-start gap-3">
-            <Sparkles className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
+          <div className="mb-8 p-4 rounded-2xl bg-[#FFF8E7] border-2 border-[#FFD500] text-slate-800 text-xs flex items-start gap-3 shadow-sm">
+            <Sparkles className="w-5 h-5 text-[#FF8C00] shrink-0 mt-0.5" />
             <div>
-              <span className="font-semibold text-cyan-200">Demonstration Mode:</span> Submissions are stored locally in browser <strong>LocalStorage</strong> and verified instantly with client validation. Your official DevSync '26 In-Person Pass will be generated with your selected category.
+              <span className="font-bold text-[#252525]">Demonstration Mode:</span> Submissions are stored locally in browser <strong>LocalStorage</strong> and verified instantly with client validation. Your official DevSync '26 In-Person Pass will be generated with your selected category.
             </div>
           </div>
 
           {/* Duplicate or Capacity Warning */}
           {duplicateWarning && (
-            <div className="mb-6 p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-sm flex items-start gap-3">
-              <AlertCircle className="w-5 h-5 text-rose-400 shrink-0 mt-0.5" />
-              <span>{duplicateWarning}</span>
+            <div className="mb-6 p-4 rounded-xl bg-red-50 border-2 border-[#E53935] text-[#E53935] text-sm flex items-start gap-3">
+              <AlertCircle className="w-5 h-5 text-[#E53935] shrink-0 mt-0.5" />
+              <span className="font-bold">{duplicateWarning}</span>
             </div>
           )}
 
           {alreadyRegisteredAttendee && !submitSuccess && (
-            <div className="mb-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-sm flex items-center justify-between">
+            <div className="mb-6 p-4 rounded-xl bg-emerald-50 border-2 border-[#00852B] text-[#00852B] text-sm flex items-center justify-between">
               <div>
-                <span className="font-semibold">Notice:</span> You already have a confirmed seat reserved (
-                <span className="font-mono">{alreadyRegisteredAttendee.seatNumber}</span> - {alreadyRegisteredAttendee.category || 'Delegate'}). Submitting again will add another registration demo record.
+                <span className="font-black">Notice:</span> You already have a confirmed seat reserved (
+                <span className="font-mono font-black">{alreadyRegisteredAttendee.seatNumber}</span> - {alreadyRegisteredAttendee.category || 'Delegate'}). Submitting again will add another registration demo record.
               </div>
             </div>
           )}
@@ -421,8 +424,8 @@ export default function Registration({
             
             {/* Field 1: Full Name */}
             <div>
-              <label htmlFor="fullName" className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
-                Full Name <span className="text-rose-400">*</span>
+              <label htmlFor="fullName" className="block text-xs font-mono uppercase tracking-wider text-slate-700 font-black mb-2">
+                Full Name <span className="text-[#E53935]">*</span>
               </label>
               <input
                 id="fullName"
@@ -430,12 +433,12 @@ export default function Registration({
                 value={formData.fullName}
                 onChange={(e) => handleChange('fullName', e.target.value)}
                 placeholder="e.g. Priyanshu Sharma"
-                className={`w-full px-4 py-3 rounded-xl bg-[#090d16] border text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-colors ${
-                  errors.fullName ? 'border-rose-500' : 'border-white/10 hover:border-white/20'
+                className={`w-full px-4 py-3 rounded-xl bg-[#FFF8E7] border-2 text-[#252525] placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#006CB7] focus:bg-white transition-colors ${
+                  errors.fullName ? 'border-[#E53935]' : 'border-[#E8DCC4] hover:border-slate-400'
                 }`}
               />
               {errors.fullName && (
-                <p className="mt-1.5 text-xs text-rose-400 font-medium">{errors.fullName}</p>
+                <p className="mt-1.5 text-xs text-[#E53935] font-bold">{errors.fullName}</p>
               )}
             </div>
 
@@ -447,8 +450,8 @@ export default function Registration({
                   
                   {/* MMMUT Roll Number */}
                   <div>
-                    <label htmlFor="mmmutRollNumber" className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
-                      MMMUT Roll Number <span className="text-rose-400">*</span>
+                    <label htmlFor="mmmutRollNumber" className="block text-xs font-mono uppercase tracking-wider text-slate-700 font-black mb-2">
+                      MMMUT Roll Number <span className="text-[#E53935]">*</span>
                     </label>
                     <input
                       id="mmmutRollNumber"
@@ -456,28 +459,28 @@ export default function Registration({
                       value={formData.mmmutRollNumber}
                       onChange={(e) => handleChange('mmmutRollNumber', e.target.value)}
                       placeholder="e.g. 2023021045"
-                      className={`w-full px-4 py-3 rounded-xl bg-[#090d16] border font-mono text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-colors ${
-                        errors.mmmutRollNumber ? 'border-rose-500' : 'border-white/10 hover:border-white/20'
+                      className={`w-full px-4 py-3 rounded-xl bg-[#FFF8E7] border-2 font-mono text-[#252525] placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#006CB7] focus:bg-white transition-colors ${
+                        errors.mmmutRollNumber ? 'border-[#E53935]' : 'border-[#E8DCC4] hover:border-slate-400'
                       }`}
                     />
                     {errors.mmmutRollNumber && (
-                      <p className="mt-1.5 text-xs text-rose-400 font-medium">{errors.mmmutRollNumber}</p>
+                      <p className="mt-1.5 text-xs text-[#E53935] font-bold">{errors.mmmutRollNumber}</p>
                     )}
                   </div>
 
                   {/* Year of Study */}
                   <div>
-                    <label htmlFor="yearOfStudy" className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
-                      Year of Study <span className="text-rose-400">*</span>
+                    <label htmlFor="yearOfStudy" className="block text-xs font-mono uppercase tracking-wider text-slate-700 font-black mb-2">
+                      Year of Study <span className="text-[#E53935]">*</span>
                     </label>
                     <select
                       id="yearOfStudy"
                       value={formData.yearOfStudy}
                       onChange={(e) => handleChange('yearOfStudy', e.target.value)}
-                      className="w-full px-4 py-3 rounded-xl bg-[#090d16] border border-white/10 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                      className="w-full px-4 py-3 rounded-xl bg-[#FFF8E7] border-2 border-[#E8DCC4] text-[#252525] text-sm focus:outline-none focus:ring-2 focus:ring-[#006CB7] font-semibold"
                     >
                       {yearOptions.map(y => (
-                        <option key={y} value={y} className="bg-[#090d16] text-white">{y}</option>
+                        <option key={y} value={y} className="bg-white text-[#252525]">{y}</option>
                       ))}
                     </select>
                   </div>
@@ -486,17 +489,17 @@ export default function Registration({
 
                 {/* MMMUT Branch */}
                 <div>
-                  <label htmlFor="branch" className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
-                    Department / Branch <span className="text-rose-400">*</span>
+                  <label htmlFor="branch" className="block text-xs font-mono uppercase tracking-wider text-slate-700 font-black mb-2">
+                    Department / Branch <span className="text-[#E53935]">*</span>
                   </label>
                   <select
                     id="branch"
                     value={formData.branch}
                     onChange={(e) => handleChange('branch', e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl bg-[#090d16] border border-white/10 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                    className="w-full px-4 py-3 rounded-xl bg-[#FFF8E7] border-2 border-[#E8DCC4] text-[#252525] text-sm focus:outline-none focus:ring-2 focus:ring-[#006CB7] font-semibold"
                   >
                     {mmmutBranches.map(b => (
-                      <option key={b} value={b} className="bg-[#090d16] text-white">{b}</option>
+                      <option key={b} value={b} className="bg-white text-[#252525]">{b}</option>
                     ))}
                   </select>
                 </div>
@@ -506,8 +509,8 @@ export default function Registration({
               <div className="space-y-6 animate-in fade-in duration-200">
                 {/* College / University Name */}
                 <div>
-                  <label htmlFor="collegeName" className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
-                    College / University Name <span className="text-rose-400">*</span>
+                  <label htmlFor="collegeName" className="block text-xs font-mono uppercase tracking-wider text-slate-700 font-black mb-2">
+                    College / University Name <span className="text-[#E53935]">*</span>
                   </label>
                   <input
                     id="collegeName"
@@ -515,20 +518,20 @@ export default function Registration({
                     value={formData.collegeName}
                     onChange={(e) => handleChange('collegeName', e.target.value)}
                     placeholder="e.g. Indian Institute of Technology, Kanpur / NIT Allahabad / IET Lucknow"
-                    className={`w-full px-4 py-3 rounded-xl bg-[#090d16] border text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/50 transition-colors ${
-                      errors.collegeName ? 'border-rose-500' : 'border-white/10 hover:border-white/20'
+                    className={`w-full px-4 py-3 rounded-xl bg-[#FFF8E7] border-2 text-[#252525] placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#00852B] focus:bg-white transition-colors ${
+                      errors.collegeName ? 'border-[#E53935]' : 'border-[#E8DCC4] hover:border-slate-400'
                     }`}
                   />
                   {errors.collegeName && (
-                    <p className="mt-1.5 text-xs text-rose-400 font-medium">{errors.collegeName}</p>
+                    <p className="mt-1.5 text-xs text-[#E53935] font-bold">{errors.collegeName}</p>
                   )}
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   {/* University Roll Number / Student ID */}
                   <div>
-                    <label htmlFor="universityRollNumber" className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
-                      University Roll Number / Student ID <span className="text-rose-400">*</span>
+                    <label htmlFor="universityRollNumber" className="block text-xs font-mono uppercase tracking-wider text-slate-700 font-black mb-2">
+                      University Roll Number / Student ID <span className="text-[#E53935]">*</span>
                     </label>
                     <input
                       id="universityRollNumber"
@@ -536,28 +539,28 @@ export default function Registration({
                       value={formData.universityRollNumber}
                       onChange={(e) => handleChange('universityRollNumber', e.target.value)}
                       placeholder="e.g. 2200520100089"
-                      className={`w-full px-4 py-3 rounded-xl bg-[#090d16] border font-mono text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/50 transition-colors ${
-                        errors.universityRollNumber ? 'border-rose-500' : 'border-white/10 hover:border-white/20'
+                      className={`w-full px-4 py-3 rounded-xl bg-[#FFF8E7] border-2 font-mono text-[#252525] placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#00852B] focus:bg-white transition-colors ${
+                        errors.universityRollNumber ? 'border-[#E53935]' : 'border-[#E8DCC4] hover:border-slate-400'
                       }`}
                     />
                     {errors.universityRollNumber && (
-                      <p className="mt-1.5 text-xs text-rose-400 font-medium">{errors.universityRollNumber}</p>
+                      <p className="mt-1.5 text-xs text-[#E53935] font-bold">{errors.universityRollNumber}</p>
                     )}
                   </div>
 
                   {/* Outside Year of Study */}
                   <div>
-                    <label htmlFor="outsideYearOfStudy" className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
-                      Year of Study <span className="text-rose-400">*</span>
+                    <label htmlFor="outsideYearOfStudy" className="block text-xs font-mono uppercase tracking-wider text-slate-700 font-black mb-2">
+                      Year of Study <span className="text-[#E53935]">*</span>
                     </label>
                     <select
                       id="outsideYearOfStudy"
                       value={formData.outsideYearOfStudy}
                       onChange={(e) => handleChange('outsideYearOfStudy', e.target.value)}
-                      className="w-full px-4 py-3 rounded-xl bg-[#090d16] border border-white/10 text-white text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
+                      className="w-full px-4 py-3 rounded-xl bg-[#FFF8E7] border-2 border-[#E8DCC4] text-[#252525] text-sm focus:outline-none focus:ring-2 focus:ring-[#00852B] font-semibold"
                     >
                       {yearOptions.map(y => (
-                        <option key={y} value={y} className="bg-[#090d16] text-white">{y}</option>
+                        <option key={y} value={y} className="bg-white text-[#252525]">{y}</option>
                       ))}
                     </select>
                   </div>
@@ -565,8 +568,8 @@ export default function Registration({
 
                 {/* Outside Branch */}
                 <div>
-                  <label htmlFor="outsideBranch" className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
-                    Branch / Department <span className="text-rose-400">*</span>
+                  <label htmlFor="outsideBranch" className="block text-xs font-mono uppercase tracking-wider text-slate-700 font-black mb-2">
+                    Branch / Department <span className="text-[#E53935]">*</span>
                   </label>
                   <input
                     id="outsideBranch"
@@ -574,12 +577,12 @@ export default function Registration({
                     value={formData.outsideBranch}
                     onChange={(e) => handleChange('outsideBranch', e.target.value)}
                     placeholder="e.g. Computer Science / Electronics / Data Science"
-                    className={`w-full px-4 py-3 rounded-xl bg-[#090d16] border text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/50 transition-colors ${
-                      errors.outsideBranch ? 'border-rose-500' : 'border-white/10 hover:border-white/20'
+                    className={`w-full px-4 py-3 rounded-xl bg-[#FFF8E7] border-2 text-[#252525] placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#00852B] focus:bg-white transition-colors ${
+                      errors.outsideBranch ? 'border-[#E53935]' : 'border-[#E8DCC4] hover:border-slate-400'
                     }`}
                   />
                   {errors.outsideBranch && (
-                    <p className="mt-1.5 text-xs text-rose-400 font-medium">{errors.outsideBranch}</p>
+                    <p className="mt-1.5 text-xs text-[#E53935] font-bold">{errors.outsideBranch}</p>
                   )}
                 </div>
               </div>
@@ -589,8 +592,8 @@ export default function Registration({
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {/* Email Address */}
               <div>
-                <label htmlFor="email" className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
-                  Email Address <span className="text-rose-400">*</span>
+                <label htmlFor="email" className="block text-xs font-mono uppercase tracking-wider text-slate-700 font-black mb-2">
+                  Email Address <span className="text-[#E53935]">*</span>
                 </label>
                 <input
                   id="email"
@@ -598,19 +601,19 @@ export default function Registration({
                   value={formData.email}
                   onChange={(e) => handleChange('email', e.target.value)}
                   placeholder="e.g. coder@example.com"
-                  className={`w-full px-4 py-3 rounded-xl bg-[#090d16] border text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-colors ${
-                    errors.email ? 'border-rose-500' : 'border-white/10 hover:border-white/20'
+                  className={`w-full px-4 py-3 rounded-xl bg-[#FFF8E7] border-2 text-[#252525] placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#006CB7] focus:bg-white transition-colors ${
+                    errors.email ? 'border-[#E53935]' : 'border-[#E8DCC4] hover:border-slate-400'
                   }`}
                 />
                 {errors.email && (
-                  <p className="mt-1.5 text-xs text-rose-400 font-medium">{errors.email}</p>
+                  <p className="mt-1.5 text-xs text-[#E53935] font-bold">{errors.email}</p>
                 )}
               </div>
 
               {/* Phone Number */}
               <div>
-                <label htmlFor="phone" className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
-                  Phone Number (WhatsApp / Calling) <span className="text-rose-400">*</span>
+                <label htmlFor="phone" className="block text-xs font-mono uppercase tracking-wider text-slate-700 font-black mb-2">
+                  Phone Number (WhatsApp / Calling) <span className="text-[#E53935]">*</span>
                 </label>
                 <input
                   id="phone"
@@ -618,19 +621,19 @@ export default function Registration({
                   value={formData.phone}
                   onChange={(e) => handleChange('phone', e.target.value)}
                   placeholder="e.g. 9876543210"
-                  className={`w-full px-4 py-3 rounded-xl bg-[#090d16] border font-mono text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-colors ${
-                    errors.phone ? 'border-rose-500' : 'border-white/10 hover:border-white/20'
+                  className={`w-full px-4 py-3 rounded-xl bg-[#FFF8E7] border-2 font-mono text-[#252525] placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#006CB7] focus:bg-white transition-colors ${
+                    errors.phone ? 'border-[#E53935]' : 'border-[#E8DCC4] hover:border-slate-400'
                   }`}
                 />
                 {errors.phone && (
-                  <p className="mt-1.5 text-xs text-rose-400 font-medium">{errors.phone}</p>
+                  <p className="mt-1.5 text-xs text-[#E53935] font-bold">{errors.phone}</p>
                 )}
               </div>
             </div>
 
             {/* Field: GitHub or Portfolio URL (Optional) */}
             <div>
-              <label htmlFor="portfolioUrl" className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
+              <label htmlFor="portfolioUrl" className="block text-xs font-mono uppercase tracking-wider text-slate-700 font-black mb-2">
                 GitHub / Portfolio URL <span className="text-slate-500 font-normal">(Optional)</span>
               </label>
               <input
@@ -639,28 +642,28 @@ export default function Registration({
                 value={formData.portfolioUrl}
                 onChange={(e) => handleChange('portfolioUrl', e.target.value)}
                 placeholder="https://github.com/yourhandle or https://portfolio.dev"
-                className={`w-full px-4 py-3 rounded-xl bg-[#090d16] border font-mono text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-colors ${
-                  errors.portfolioUrl ? 'border-rose-500' : 'border-white/10 hover:border-white/20'
+                className={`w-full px-4 py-3 rounded-xl bg-[#FFF8E7] border-2 font-mono text-[#252525] placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#006CB7] focus:bg-white transition-colors ${
+                  errors.portfolioUrl ? 'border-[#E53935]' : 'border-[#E8DCC4] hover:border-slate-400'
                 }`}
               />
               {errors.portfolioUrl && (
-                <p className="mt-1.5 text-xs text-rose-400 font-medium">{errors.portfolioUrl}</p>
+                <p className="mt-1.5 text-xs text-[#E53935] font-bold">{errors.portfolioUrl}</p>
               )}
             </div>
 
             {/* Field: Food Preference */}
             <div>
-              <label className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
-                Food Preference (High-Tea & Lunch) <span className="text-rose-400">*</span>
+              <label className="block text-xs font-mono uppercase tracking-wider text-slate-700 font-black mb-2">
+                Food Preference (High-Tea & Lunch) <span className="text-[#E53935]">*</span>
               </label>
               <div className="grid grid-cols-2 gap-4">
                 {['Vegetarian', 'Jain'].map((option) => (
                   <label
                     key={option}
-                    className={`flex items-center gap-3 p-3.5 rounded-xl border cursor-pointer transition-all ${
+                    className={`flex items-center gap-3 p-3.5 rounded-xl border-2 cursor-pointer transition-all ${
                       formData.foodPreference === option
-                        ? 'bg-blue-600/15 border-blue-500/50 text-white'
-                        : 'bg-[#090d16] border-white/10 text-slate-300 hover:border-white/20'
+                        ? 'bg-[#006CB7]/15 border-[#006CB7] text-[#006CB7] font-bold'
+                        : 'bg-[#FFF8E7] border-[#E8DCC4] text-slate-700 hover:border-slate-400'
                     }`}
                   >
                     <input
@@ -669,9 +672,9 @@ export default function Registration({
                       value={option}
                       checked={formData.foodPreference === option}
                       onChange={() => handleChange('foodPreference', option)}
-                      className="w-4 h-4 text-blue-600 focus:ring-blue-500 bg-[#090d16] border-white/20"
+                      className="w-4 h-4 text-[#006CB7] focus:ring-[#006CB7]"
                     />
-                    <span className="text-sm font-medium">{option}</span>
+                    <span className="text-sm font-bold">{option}</span>
                   </label>
                 ))}
               </div>
@@ -679,17 +682,17 @@ export default function Registration({
 
             {/* Field: Preferred Technical Track */}
             <div>
-              <label htmlFor="track" className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
-                Preferred Technical Track <span className="text-rose-400">*</span>
+              <label htmlFor="track" className="block text-xs font-mono uppercase tracking-wider text-slate-700 font-black mb-2">
+                Preferred Technical Track <span className="text-[#E53935]">*</span>
               </label>
               <select
                 id="track"
                 value={formData.track}
                 onChange={(e) => handleChange('track', e.target.value)}
-                className="w-full px-4 py-3 rounded-xl bg-[#090d16] border border-white/10 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                className="w-full px-4 py-3 rounded-xl bg-[#FFF8E7] border-2 border-[#E8DCC4] text-[#252525] text-sm focus:outline-none focus:ring-2 focus:ring-[#006CB7] font-semibold"
               >
                 {TRACKS_DATA.map((t) => (
-                  <option key={t.id} value={t.title} className="bg-[#090d16] text-white">
+                  <option key={t.id} value={t.title} className="bg-white text-[#252525]">
                     {t.number}: {t.title}
                   </option>
                 ))}
@@ -703,14 +706,14 @@ export default function Registration({
                   type="checkbox"
                   checked={formData.inPersonConsent}
                   onChange={(e) => handleChange('inPersonConsent', e.target.checked)}
-                  className="mt-1 w-4 h-4 rounded text-blue-600 focus:ring-blue-500 bg-[#090d16] border-white/20"
+                  className="mt-1 w-5 h-5 rounded text-[#006CB7] focus:ring-[#006CB7] border-2 border-[#E8DCC4]"
                 />
-                <span className="text-xs sm:text-sm text-slate-300 group-hover:text-slate-200 leading-normal">
+                <span className="text-xs sm:text-sm text-slate-700 leading-normal font-medium">
                   I confirm that I will attend in-person on campus on November 28, 2026 at the Seminar Hall Complex, Madan Mohan Malaviya University of Technology (MMMUT), Gorakhpur. I understand this event does not offer virtual streaming or remote attendance.
                 </span>
               </label>
               {errors.inPersonConsent && (
-                <p className="mt-1.5 text-xs text-rose-400 font-medium">{errors.inPersonConsent}</p>
+                <p className="mt-1.5 text-xs text-[#E53935] font-bold">{errors.inPersonConsent}</p>
               )}
             </div>
 
@@ -719,7 +722,7 @@ export default function Registration({
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl font-display font-extrabold uppercase tracking-wider text-white shadow-xl transition-all duration-200 disabled:opacity-60 text-base ${
+                className={`w-full flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl font-display font-black uppercase tracking-wider text-white shadow-xl transition-all duration-200 disabled:opacity-60 text-base ${
                   category === 'MMMUT Student'
                     ? 'lego-btn-blue'
                     : 'lego-btn-green'
@@ -729,7 +732,7 @@ export default function Registration({
                   <span>Generating {category} Pass...</span>
                 ) : (
                   <>
-                    <Send className="w-4 h-4" />
+                    <Send className="w-5 h-5" />
                     <span>Submit {category} Registration (Free)</span>
                   </>
                 )}

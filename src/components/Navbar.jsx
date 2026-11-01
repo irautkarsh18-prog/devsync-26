@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, ArrowRight, Sparkles, MapPin, ExternalLink } from 'lucide-react';
-import { GDG_COLORS } from '../data/eventData';
+import { Menu, X, ArrowRight, Sparkles } from 'lucide-react';
 
 export default function Navbar({ onOpenPass, registeredUser }) {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -76,19 +75,18 @@ export default function Navbar({ onOpenPass, registeredUser }) {
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-[#0b0e14]/95 backdrop-blur-md border-b-2 border-[#1c2333] shadow-2xl py-2.5' 
-          : 'bg-transparent py-4'
+          ? 'bg-[#FFF8E7]/95 backdrop-blur-md border-b-4 border-[#E8DCC4] shadow-md py-2.5' 
+          : 'bg-[#FFF8E7]/80 backdrop-blur-sm py-4 border-b border-[#E8DCC4]/50'
       }`}
     >
       {/* Top 4-Color LEGO Brick Interlocking Stripe */}
-      {isScrolled && (
-        <div className="absolute top-0 inset-x-0 h-1.5 flex">
-          <div className="flex-1 bg-[#0055bf]" />
-          <div className="flex-1 bg-[#e3000b]" />
-          <div className="flex-1 bg-[#ffd500]" />
-          <div className="flex-1 bg-[#00852b]" />
-        </div>
-      )}
+      <div className="absolute top-0 inset-x-0 h-1.5 flex">
+        <div className="flex-1 bg-[#006CB7]" />
+        <div className="flex-1 bg-[#E53935]" />
+        <div className="flex-1 bg-[#FFD500]" />
+        <div className="flex-1 bg-[#00852B]" />
+      </div>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           
@@ -100,45 +98,45 @@ export default function Navbar({ onOpenPass, registeredUser }) {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }
             }}
-            className="group flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 rounded-xl p-1 transition-transform"
+            className="group flex items-center gap-3 focus:outline-none rounded-xl p-1 transition-transform"
             aria-label="DevSync '26 Homepage by GDG MMMUT"
           >
             {/* Custom 3D LEGO-style Stacked Brick Logo */}
-            <div className="relative w-10 h-10 flex items-center justify-center rounded-xl bg-[#0e131d] border-2 border-[#2b3548] p-1 shadow-[0_4px_0_#070a10] group-hover:translate-y-[-1px] group-hover:shadow-[0_5px_0_#070a10] transition-all duration-200">
+            <div className="relative w-10 h-10 flex items-center justify-center rounded-xl bg-white border-2 border-[#E8DCC4] p-1 shadow-[0_3px_0_#D5C7AB] group-hover:translate-y-[-1px] transition-all duration-200">
               <div className="grid grid-cols-2 gap-1 w-full h-full p-0.5">
                 {/* 4 Colored LEGO Studs in Logo */}
-                <div className="rounded-full bg-gradient-to-br from-[#3b8bff] to-[#0055bf] shadow-[inset_0_1px_1px_rgba(255,255,255,0.7)] flex items-center justify-center">
-                  <div className="w-1 h-1 rounded-full bg-white/40" />
-                </div>
-                <div className="rounded-full bg-gradient-to-br from-[#ff5a62] to-[#e3000b] shadow-[inset_0_1px_1px_rgba(255,255,255,0.7)] flex items-center justify-center">
-                  <div className="w-1 h-1 rounded-full bg-white/40" />
-                </div>
-                <div className="rounded-full bg-gradient-to-br from-[#ffe566] to-[#ffd500] shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)] flex items-center justify-center">
+                <div className="rounded-full bg-[#006CB7] shadow-[inset_0_1px_1px_rgba(255,255,255,0.7)] flex items-center justify-center">
                   <div className="w-1 h-1 rounded-full bg-white/50" />
                 </div>
-                <div className="rounded-full bg-gradient-to-br from-[#22c55e] to-[#00852b] shadow-[inset_0_1px_1px_rgba(255,255,255,0.7)] flex items-center justify-center">
-                  <div className="w-1 h-1 rounded-full bg-white/40" />
+                <div className="rounded-full bg-[#E53935] shadow-[inset_0_1px_1px_rgba(255,255,255,0.7)] flex items-center justify-center">
+                  <div className="w-1 h-1 rounded-full bg-white/50" />
+                </div>
+                <div className="rounded-full bg-[#FFD500] shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)] flex items-center justify-center">
+                  <div className="w-1 h-1 rounded-full bg-white/60" />
+                </div>
+                <div className="rounded-full bg-[#00852B] shadow-[inset_0_1px_1px_rgba(255,255,255,0.7)] flex items-center justify-center">
+                  <div className="w-1 h-1 rounded-full bg-white/50" />
                 </div>
               </div>
             </div>
 
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-display font-extrabold text-xl tracking-tight text-white group-hover:text-[#ffd500] transition-colors">
-                  DevSync <span className="text-[#ffd500] text-lg font-mono tracking-normal">'26</span>
+                <span className="font-display font-black text-xl tracking-tight text-[#252525] group-hover:text-[#006CB7] transition-colors">
+                  DevSync <span className="text-[#E53935] text-lg font-mono tracking-normal">'26</span>
                 </span>
-                <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-mono font-bold bg-[#e3000b] text-white border-b-2 border-[#990007] shadow-sm">
+                <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-mono font-black bg-[#E53935] text-white shadow-sm">
                   GDG MMMUT
                 </span>
               </div>
-              <p className="text-[11px] font-medium text-slate-400 tracking-wide font-sans flex items-center gap-1.5">
+              <p className="text-[11px] font-bold text-slate-600 tracking-wide font-sans flex items-center gap-1.5">
                 <span>Google Developer Groups MMMUT</span>
               </p>
             </div>
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden xl:flex items-center gap-1 bg-[#10141e]/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 shadow-inner">
+          <nav className="hidden xl:flex items-center gap-1 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-full border-2 border-[#E8DCC4] shadow-sm">
             {navLinks.map((link) => {
               const isActive = !isAboutPage && activeSection === link.id;
               return (
@@ -146,14 +144,14 @@ export default function Navbar({ onOpenPass, registeredUser }) {
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link)}
-                  className={`relative px-3.5 py-1.5 text-sm font-medium rounded-full transition-all duration-200 flex items-center gap-1.5 ${
+                  className={`relative px-3.5 py-1.5 text-xs font-bold font-mono uppercase tracking-wider rounded-full transition-all duration-200 flex items-center gap-1.5 ${
                     isActive 
-                      ? 'text-white bg-white/15 shadow-sm font-semibold' 
-                      : 'text-slate-300 hover:text-white hover:bg-white/5'
+                      ? 'text-[#006CB7] bg-[#F5EBD2] shadow-sm font-black' 
+                      : 'text-slate-700 hover:text-[#006CB7] hover:bg-[#FFF8E7]'
                   }`}
                 >
                   {isActive && (
-                    <span className="w-2 h-2 rounded-full bg-[#ffd500] shadow-[0_1px_2px_rgba(0,0,0,0.6)] shrink-0" />
+                    <span className="w-2 h-2 rounded-full bg-[#FFD500] border border-[#D4AF37] shrink-0" />
                   )}
                   <span>{link.name}</span>
                 </a>
@@ -163,13 +161,13 @@ export default function Navbar({ onOpenPass, registeredUser }) {
             {/* Dedicated "About GDG MMMUT" Page Link */}
             <Link
               to="/about-gdg"
-              className={`relative px-3.5 py-1.5 text-sm font-semibold rounded-full transition-all duration-200 flex items-center gap-1.5 ${
+              className={`relative px-3.5 py-1.5 text-xs font-black font-mono uppercase tracking-wider rounded-full transition-all duration-200 flex items-center gap-1.5 ${
                 isAboutPage
-                  ? 'text-white bg-gradient-to-r from-blue-600/30 via-emerald-600/30 to-amber-600/30 border border-blue-500/40 text-blue-300'
-                  : 'text-cyan-300 hover:text-white hover:bg-white/5'
+                  ? 'text-white bg-[#006CB7] shadow-sm'
+                  : 'text-[#006CB7] hover:bg-[#F5EBD2]'
               }`}
             >
-              <span className="flex h-1.5 w-1.5 rounded-full bg-[#4285F4]" />
+              <span className="flex h-1.5 w-1.5 rounded-full bg-[#E53935]" />
               <span>About GDG MMMUT</span>
             </Link>
           </nav>
@@ -180,7 +178,7 @@ export default function Navbar({ onOpenPass, registeredUser }) {
             {registeredUser && (
               <button
                 onClick={onOpenPass}
-                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-[#00852b] text-white border-b-2 border-[#004d19] hover:brightness-110 active:translate-y-0.5 transition-all shadow-md"
+                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-black bg-[#00852B] text-white border-b-4 border-[#00551B] hover:brightness-110 active:translate-y-0.5 transition-all shadow-md"
                 title="View your confirmed ticket pass"
               >
                 <Sparkles className="w-3.5 h-3.5" />
@@ -191,7 +189,7 @@ export default function Navbar({ onOpenPass, registeredUser }) {
             <a
               href="/#register"
               onClick={(e) => handleNavClick(e, { href: '/#register', id: 'register' })}
-              className="lego-btn-red inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-display font-bold text-white uppercase tracking-wider"
+              className="lego-btn-red inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-display font-black text-white uppercase tracking-wider shadow-md"
             >
               <span>Reserve Seat</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
@@ -203,7 +201,7 @@ export default function Navbar({ onOpenPass, registeredUser }) {
             {registeredUser && (
               <button
                 onClick={onOpenPass}
-                className="p-2 rounded-lg bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-semibold"
+                className="p-2 rounded-lg bg-[#00852B] text-white font-black text-xs shadow-sm"
                 aria-label="View Pass"
               >
                 Pass
@@ -212,7 +210,7 @@ export default function Navbar({ onOpenPass, registeredUser }) {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl bg-white/5 border border-white/10 text-slate-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+              className="p-2 rounded-xl bg-white border-2 border-[#E8DCC4] text-[#252525] hover:bg-[#F5EBD2] focus:outline-none"
               aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -224,12 +222,12 @@ export default function Navbar({ onOpenPass, registeredUser }) {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="xl:hidden fixed inset-x-0 top-[65px] bg-[#090b10]/95 backdrop-blur-2xl border-b border-white/10 shadow-2xl transition-all duration-300 animate-in fade-in slide-in-from-top-4 max-h-[85vh] overflow-y-auto">
+        <div className="xl:hidden fixed inset-x-0 top-[65px] bg-[#FFF8E7]/98 backdrop-blur-xl border-b-4 border-[#E8DCC4] shadow-2xl transition-all duration-300 animate-in fade-in slide-in-from-top-4 max-h-[85vh] overflow-y-auto">
           <div className="max-w-7xl mx-auto px-5 py-6 space-y-4">
             
             {/* Organiser Banner */}
-            <div className="flex items-center gap-2.5 p-3 rounded-xl bg-gradient-to-r from-blue-950/40 via-surface-lighter to-slate-900 border border-blue-500/30 text-xs text-blue-200">
-              <span className="flex h-2 w-2 rounded-full bg-[#4285F4]" />
+            <div className="flex items-center gap-2.5 p-3 rounded-xl bg-white border-2 border-[#006CB7] text-xs text-[#006CB7] font-bold">
+              <span className="flex h-2.5 w-2.5 rounded-full bg-[#E53935]" />
               <span><strong>Organised by GDG MMMUT</strong> • MMMUT Gorakhpur</span>
             </div>
 
@@ -239,10 +237,10 @@ export default function Navbar({ onOpenPass, registeredUser }) {
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link)}
-                  className={`flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
+                  className={`flex items-center justify-between px-4 py-3 rounded-xl text-xs font-mono font-bold uppercase tracking-wider transition-colors ${
                     !isAboutPage && activeSection === link.id
-                      ? 'bg-blue-600/20 text-blue-400 border border-blue-500/30'
-                      : 'bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white'
+                      ? 'bg-[#006CB7] text-white'
+                      : 'bg-white text-slate-700 border-2 border-[#E8DCC4] hover:bg-[#F5EBD2]'
                   }`}
                 >
                   <span>{link.name}</span>
@@ -255,14 +253,14 @@ export default function Navbar({ onOpenPass, registeredUser }) {
             <Link
               to="/about-gdg"
               onClick={() => setMobileMenuOpen(false)}
-              className={`flex items-center justify-between p-3.5 rounded-xl border font-semibold text-sm transition-colors ${
+              className={`flex items-center justify-between p-3.5 rounded-xl border-2 font-black text-xs font-mono uppercase tracking-wider transition-colors ${
                 isAboutPage
-                  ? 'bg-blue-600/30 text-white border-blue-500'
-                  : 'bg-white/5 border-white/10 text-cyan-300 hover:bg-white/10'
+                  ? 'bg-[#006CB7] text-white border-[#006CB7]'
+                  : 'bg-white border-[#E8DCC4] text-[#006CB7] hover:bg-[#F5EBD2]'
               }`}
             >
               <div className="flex items-center gap-2">
-                <span className="flex h-2 w-2 rounded-full bg-[#4285F4]" />
+                <span className="flex h-2 w-2 rounded-full bg-[#E53935]" />
                 <span>About GDG MMMUT</span>
               </div>
               <ArrowRight className="w-4 h-4" />
@@ -272,7 +270,7 @@ export default function Navbar({ onOpenPass, registeredUser }) {
               <a
                 href="/#register"
                 onClick={(e) => handleNavClick(e, { href: '/#register', id: 'register' })}
-                className="lego-btn-red w-full flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl font-display font-bold text-white uppercase tracking-wider"
+                className="lego-btn-red w-full flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl font-display font-black text-white uppercase tracking-wider"
               >
                 <span>Reserve In-Person Seat (Free)</span>
                 <ArrowRight className="w-4 h-4" />

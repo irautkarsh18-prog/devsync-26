@@ -1,15 +1,11 @@
 import React from 'react';
-import { ArrowRight, Sparkles, MapPin, Calendar, Users, Ticket } from 'lucide-react';
-import { EVENT_DETAILS } from '../data/eventData';
+import { ArrowRight, Sparkles, MapPin, Calendar, Users } from 'lucide-react';
 import { LegoGoogleBrickBar, LegoStud, FloatingLegoBrick } from '../components/LegoElements';
 
 export default function CTA({ onRegisterClick }) {
   return (
-    <section className="relative py-24 sm:py-32 bg-[#08090d] lego-baseplate-pattern border-t-4 border-white/10 overflow-hidden">
+    <section className="relative py-24 sm:py-32 bg-[#FFF8E7] text-[#252525] lego-baseplate-pattern border-t-4 border-[#E8DCC4] overflow-hidden">
       
-      {/* Background glow orb */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-gradient-to-r from-lego-blue/20 via-lego-red/20 to-lego-yellow/20 blur-[150px] rounded-full pointer-events-none" />
-
       {/* Floating LEGO Bricks decorative */}
       <FloatingLegoBrick color="blue" size={38} className="top-12 left-[10%] hidden md:block" rotation={18} />
       <FloatingLegoBrick color="yellow" size={32} className="bottom-12 right-[8%] hidden md:block" rotation={-22} />
@@ -17,7 +13,7 @@ export default function CTA({ onRegisterClick }) {
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        <div className="relative rounded-3xl bg-gradient-to-b from-[#131726] via-[#10131e] to-[#0a0d16] border-2 border-white/15 border-b-6 border-b-black/80 p-8 sm:p-14 text-center shadow-2xl overflow-hidden">
+        <div className="relative rounded-3xl bg-white border-4 border-[#E53935] border-b-8 border-b-[#B71C1C] p-8 sm:p-14 text-center shadow-2xl overflow-hidden">
           
           {/* Top interlocking LEGO brick stripe */}
           <div className="absolute top-0 inset-x-0">
@@ -25,35 +21,35 @@ export default function CTA({ onRegisterClick }) {
           </div>
 
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold bg-[#1b2030] text-amber-300 border border-white/10 shadow-md mb-6 mt-4">
-            <LegoStud color="yellow" size="sm" />
-            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-black bg-[#FFF8E7] text-[#E53935] border-2 border-[#E53935] shadow-sm mb-6 mt-4">
+            <LegoStud color="yellow" size="xs" />
+            <Sparkles className="w-4 h-4 text-[#FF8C00]" />
             <span>FINAL SEAT RESERVATION WINDOW</span>
           </div>
 
           {/* Heading */}
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold font-display tracking-tight text-white mb-6 leading-tight">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black font-display tracking-tight text-[#252525] mb-6 leading-tight">
             Don't Just Scroll Through Innovation. <br className="hidden sm:inline" />
-            <span className="gradient-text">Be Part of It.</span>
+            <span className="text-[#006CB7]">Be Part of It.</span>
           </h2>
 
           {/* Description */}
-          <p className="max-w-2xl mx-auto text-base sm:text-lg text-slate-300 font-sans mb-10 leading-relaxed">
+          <p className="max-w-2xl mx-auto text-base sm:text-lg text-slate-700 font-sans mb-10 leading-relaxed font-medium">
             Meet the builders. Exchange ideas. Discover what's next. See you at DevSync '26.
           </p>
 
           {/* Key Reminders styled as LEGO tactile plates */}
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-xs sm:text-sm font-mono text-slate-300 mb-10">
-            <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#0b0e17] border border-blue-500/30 border-b-2 border-b-blue-900/60 shadow-sm">
-              <Calendar className="w-4 h-4 text-lego-blue" />
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-xs sm:text-sm font-mono text-[#252525] mb-10 font-bold">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#FFF8E7] border-2 border-[#006CB7] shadow-sm">
+              <Calendar className="w-4 h-4 text-[#006CB7]" />
               <span>November 28, 2026</span>
             </div>
-            <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#0b0e17] border border-amber-500/30 border-b-2 border-b-amber-900/60 shadow-sm">
-              <MapPin className="w-4 h-4 text-lego-yellow" />
+            <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#FFF8E7] border-2 border-[#FFD500] shadow-sm">
+              <MapPin className="w-4 h-4 text-[#A06C00]" />
               <span>100% In-Person Venue</span>
             </div>
-            <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#0b0e17] border border-emerald-500/30 border-b-2 border-b-emerald-900/60 shadow-sm">
-              <Users className="w-4 h-4 text-lego-green" />
+            <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#FFF8E7] border-2 border-[#00852B] shadow-sm">
+              <Users className="w-4 h-4 text-[#00852B]" />
               <span>Capped at 150 Seats</span>
             </div>
           </div>
@@ -63,7 +59,7 @@ export default function CTA({ onRegisterClick }) {
             <a
               href="#register"
               onClick={onRegisterClick}
-              className="lego-btn lego-btn-red inline-flex items-center gap-3 px-9 py-4 font-display font-extrabold text-white text-base sm:text-lg shadow-2xl"
+              className="lego-btn lego-btn-red inline-flex items-center gap-3 px-9 py-4 font-display font-black text-white text-base sm:text-lg shadow-2xl"
             >
               <span>Reserve Your Seat</span>
               <ArrowRight className="w-5 h-5" />

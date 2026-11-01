@@ -1,15 +1,40 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { X, Sparkles, MapPin, Calendar, Users, ArrowRight } from 'lucide-react';
-import { LegoGoogleBrickBar, LegoStud, LegoStudRow } from './LegoElements';
+import { LegoGoogleBrickBar, LegoRobotGraphic, LegoBrickGraphic, LegoStud } from './LegoElements';
 
 export default function WelcomeModal({ isOpen, onClose, onRegisterClick }) {
+  // Prevent background scrolling while open & handle Escape key
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-200">
-      
-      <div className="relative w-full max-w-lg bg-[#0e121e] border-2 border-white/20 border-b-6 border-b-black/80 rounded-3xl p-6 sm:p-8 shadow-2xl text-slate-100 overflow-hidden">
-        
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200"
+      onClick={onClose}
+    >
+      <div 
+        className="relative w-full max-w-lg bg-[#FFF8E7] border-4 border-[#FFD500] border-b-8 border-b-[#C6A700] rounded-3xl p-6 sm:p-8 shadow-2xl text-[#252525] overflow-hidden"
+        onClick={(e) => e.stopPropagation()}
+      >
         {/* Top 4-Color Interlocking LEGO Brick Stripe */}
         <div className="absolute top-0 inset-x-0">
           <LegoGoogleBrickBar />
@@ -18,73 +43,70 @@ export default function WelcomeModal({ isOpen, onClose, onRegisterClick }) {
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-xl bg-white/10 hover:bg-white/20 text-slate-300 hover:text-white transition-colors border border-white/10"
+          className="absolute top-5 right-5 p-2 rounded-xl bg-[#F5EBD2] hover:bg-[#E8DCC4] text-[#252525] transition-colors border-2 border-[#D8CCA8] shadow-sm"
           aria-label="Close welcome modal"
         >
-          <X className="w-5 h-5" />
+          <X className="w-5 h-5 stroke-[2.5]" />
         </button>
 
-        {/* Stud Header */}
-        <div className="mt-4 mb-4 flex items-center justify-between">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-bold bg-[#151a28] text-amber-300 border border-white/10">
-            <LegoStud color="yellow" size="sm" />
-            <span>WELCOME BUILDER</span>
+        {/* Top Decorative Header with Small LEGO Robot */}
+        <div className="mt-4 mb-4 flex items-center justify-between border-b-2 border-[#E8DCC4] pb-4">
+          <div className="flex items-center gap-3">
+            <LegoRobotGraphic pose="waving" size={64} />
+            <div>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold bg-[#FFD500] text-[#252525] border border-[#C6A700] shadow-sm">
+                <Sparkles className="w-3.5 h-3.5 text-[#E53935]" />
+                <span>WELCOME!</span>
+              </div>
+              <div className="text-xs font-mono text-[#006CB7] font-bold mt-1">
+                Organised by GDG MMMUT
+              </div>
+            </div>
           </div>
-          <LegoStudRow count={4} color="blue" size="sm" />
+          
+          <div className="hidden sm:block">
+            <LegoBrickGraphic color="red" width={48} height={36} />
+          </div>
         </div>
 
-        {/* Content */}
+        {/* Exact Content Required */}
         <div className="space-y-4">
-          <h2 className="text-2xl sm:text-3xl font-extrabold font-display text-white tracking-tight leading-tight">
-            Welcome to DevSync <span className="text-lego-blue font-mono">'26</span>!
+          <h2 className="text-3xl sm:text-4xl font-extrabold font-display text-[#252525] tracking-tight">
+            Welcome to DevSync <span className="text-[#006CB7] font-mono">'26</span>!
           </h2>
 
-          <div className="text-xs font-mono text-emerald-400 font-bold flex items-center gap-1.5">
-            <span>Organised by Google Developer Groups MMMUT</span>
-          </div>
-
-          <p className="text-sm text-slate-300 font-sans leading-relaxed">
-            Join us for an exclusive 100% in-person developer conference featuring live tech talks, interactive code-alongs, and hands-on networking.
+          <p className="text-base sm:text-lg font-sans font-semibold text-[#252525] leading-relaxed">
+            Build connections. Explore technology. Create something amazing!
           </p>
 
-          {/* Quick Key Highlights */}
-          <div className="grid grid-cols-2 gap-2.5 pt-2 text-xs font-mono text-slate-300">
-            <div className="flex items-center gap-2 p-2.5 rounded-xl bg-[#131726] border border-blue-500/20 border-b-2 border-b-blue-900/60">
-              <Calendar className="w-4 h-4 text-lego-blue shrink-0" />
-              <span>Nov 28, 2026</span>
+          <p className="text-sm font-sans text-slate-700 leading-relaxed bg-[#F5EBD2] p-3.5 rounded-xl border border-[#E8DCC4]">
+            An exclusive in-person developer conference at <strong>Madan Mohan Malaviya University of Technology, Gorakhpur</strong> on <strong>November 28, 2026</strong>.
+          </p>
+
+          {/* Quick Pillars */}
+          <div className="grid grid-cols-2 gap-2 text-xs font-mono font-bold text-slate-700">
+            <div className="flex items-center gap-2 p-2 rounded-lg bg-white border border-[#E8DCC4]">
+              <LegoStud color="blue" size="xs" />
+              <span>100% In-Person Venue</span>
             </div>
-            <div className="flex items-center gap-2 p-2.5 rounded-xl bg-[#131726] border border-amber-500/20 border-b-2 border-b-amber-900/60">
-              <MapPin className="w-4 h-4 text-lego-yellow shrink-0" />
-              <span>MMMUT Gorakhpur</span>
-            </div>
-            <div className="flex items-center gap-2 p-2.5 rounded-xl bg-[#131726] border border-emerald-500/20 border-b-2 border-b-emerald-900/60">
-              <Users className="w-4 h-4 text-lego-green shrink-0" />
+            <div className="flex items-center gap-2 p-2 rounded-lg bg-white border border-[#E8DCC4]">
+              <LegoStud color="green" size="xs" />
               <span>Capped at 150 Seats</span>
-            </div>
-            <div className="flex items-center gap-2 p-2.5 rounded-xl bg-[#131726] border border-red-500/20 border-b-2 border-b-red-900/60">
-              <Sparkles className="w-4 h-4 text-lego-red shrink-0" />
-              <span>100% Free Entry</span>
             </div>
           </div>
         </div>
 
-        {/* Buttons */}
-        <div className="mt-7 flex items-center justify-end gap-3 pt-4 border-t border-white/10">
-          <button
-            onClick={onClose}
-            className="lego-btn lego-btn-dark px-4 py-2.5 text-xs font-bold text-slate-200 uppercase tracking-wider"
-          >
-            Explore Event
-          </button>
+        {/* Stud-Inspired LET'S BUILD! Button */}
+        <div className="mt-6 pt-4 border-t-2 border-[#E8DCC4] flex items-center justify-end gap-3">
           <button
             onClick={() => {
               onClose();
               if (onRegisterClick) onRegisterClick();
             }}
-            className="lego-btn lego-btn-red px-5 py-2.5 text-xs font-bold text-white uppercase tracking-wider flex items-center gap-2 shadow-lg"
+            className="lego-btn lego-btn-red w-full sm:w-auto px-8 py-3.5 text-sm font-display font-extrabold text-white uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg"
           >
-            <span>Reserve Seat</span>
-            <ArrowRight className="w-4 h-4" />
+            <span>LET'S BUILD!</span>
+            <ArrowRight className="w-4 h-4 stroke-[2.5]" />
           </button>
         </div>
 
@@ -92,4 +114,3 @@ export default function WelcomeModal({ isOpen, onClose, onRegisterClick }) {
     </div>
   );
 }
-

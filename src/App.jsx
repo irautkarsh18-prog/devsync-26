@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import TicketModal from './components/TicketModal';
 import WelcomeModal from './components/WelcomeModal';
+import RegistrationThankYouModal from './components/RegistrationThankYouModal';
 import LoadingScreen from './components/LoadingScreen';
 import BackToTop from './components/BackToTop';
 import Hero from './sections/Hero';
@@ -51,7 +52,7 @@ function HomePage({
   scrollToSchedule
 }) {
   return (
-    <div className="relative min-h-screen bg-[#08090d] text-slate-100 font-sans selection:bg-lego-blue/30 selection:text-white lego-baseplate-pattern">
+    <div className="relative min-h-screen bg-[#FFF8E7] text-[#252525] font-sans selection:bg-[#FFD500]/40 selection:text-[#252525] lego-baseplate-pattern">
       {/* Sticky Navigation */}
       <Navbar 
         onOpenPass={() => setIsPassModalOpen(true)} 
@@ -114,6 +115,7 @@ function HomePage({
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [isWelcomeModalOpen, setIsWelcomeModalOpen] = useState(false);
+  const [isThankYouModalOpen, setIsThankYouModalOpen] = useState(false);
   const [registeredAttendee, setRegisteredAttendee] = useState(null);
   const [registeredCount, setRegisteredCount] = useState(EVENT_DETAILS.initialRegistered);
   const [selectedTrackPref, setSelectedTrackPref] = useState(null);
@@ -131,18 +133,22 @@ export default function App() {
       if (allRegs.length > 0) {
         setRegisteredCount(Math.min(EVENT_DETAILS.capacity, EVENT_DETAILS.initialRegistered + allRegs.length));
       }
-
-      const hasWelcomed = sessionStorage.getItem('devsync_26_welcomed');
-      if (!hasWelcomed && !savedTicket) {
-        const timer = setTimeout(() => {
-          setIsWelcomeModalOpen(true);
-        }, 1200);
-        return () => clearTimeout(timer);
-      }
     } catch (e) {
       console.warn('LocalStorage access warning:', e);
     }
   }, []);
+
+  const handleLoadingFinish = () => {
+    setIsLoading(false);
+    try {
+      const hasWelcomed = sessionStorage.getItem('devsync_26_welcomed');
+      if (!hasWelcomed && !registeredAttendee) {
+        setIsWelcomeModalOpen(true);
+      }
+    } catch (e) {
+      setIsWelcomeModalOpen(true);
+    }
+  };
 
   const handleCloseWelcome = () => {
     setIsWelcomeModalOpen(false);
@@ -154,7 +160,7 @@ export default function App() {
   const handleRegisterSuccess = (newAttendee) => {
     setRegisteredAttendee(newAttendee);
     setRegisteredCount(prev => Math.min(EVENT_DETAILS.capacity, prev + 1));
-    setIsPassModalOpen(true);
+    setIsThankYouModalOpen(true);
   };
 
   const handleSelectTrack = (trackTitle) => {
@@ -232,7 +238,7 @@ export default function App() {
 
       {/* Initial LEGO Brick Loading Screen */}
       {isLoading && (
-        <LoadingScreen onFinish={() => setIsLoading(false)} />
+        <LoadingScreen onFinish={handleLoadingFinish} />
       )}
 
       {/* Global Welcome Modal */}
@@ -246,6 +252,17 @@ export default function App() {
             const top = el.getBoundingClientRect().top + window.scrollY - 80;
             window.scrollTo({ top, behavior: 'smooth' });
           }
+        }}
+      />
+
+      {/* Actual Registration Thank-You Popup */}
+      <RegistrationThankYouModal
+        isOpen={isThankYouModalOpen}
+        onClose={() => setIsThankYouModalOpen(false)}
+        attendee={registeredAttendee}
+        onViewPass={() => {
+          setIsThankYouModalOpen(false);
+          setIsPassModalOpen(true);
         }}
       />
 

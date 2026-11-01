@@ -96,11 +96,11 @@ export default function CountdownTimer() {
     <div className="w-full max-w-2xl mx-auto">
       {/* Sub-header info badge */}
       <div className="flex items-center justify-between mb-3 px-2">
-        <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-slate-300 font-bold">
-          <Clock className="w-3.5 h-3.5 text-[#ffd500] animate-pulse" />
+        <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#252525] font-bold">
+          <Clock className="w-3.5 h-3.5 text-[#E53935] animate-pulse" />
           <span>Registration Window Closes</span>
         </div>
-        <div className="text-[11px] font-mono font-bold text-white bg-[#0e1424] px-2.5 py-1 rounded-md border border-white/10 border-b-2 border-b-black shadow-sm">
+        <div className="text-[11px] font-mono font-bold text-[#252525] bg-white px-2.5 py-1 rounded-md border-2 border-[#E8DCC4] border-b-2 border-b-[#D5C7AB] shadow-sm">
           Nov 27, 2026 • 11:59 PM IST
         </div>
       </div>

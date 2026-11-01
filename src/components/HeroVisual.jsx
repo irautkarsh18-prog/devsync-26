@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Terminal, Code, Cpu, Wifi, Sparkles, CheckCircle2, Play, Circle, Layers } from 'lucide-react';
-import { LegoStud, LegoGoogleBrickBar, FloatingLegoBrick, LegoMinifigDeveloperGraphic } from './LegoElements';
+import { LegoStud, LegoGoogleBrickBar, FloatingLegoBrick, LegoRobotGraphic } from './LegoElements';
 
 export default function HeroVisual() {
   const [activeTab, setActiveTab] = useState('config');
@@ -36,13 +36,13 @@ export default function HeroVisual() {
       </div>
 
       {/* LEGO Workstation Terminal / Code Editor Window */}
-      <div className="relative rounded-2xl bg-[#0b0e16] border-2 border-[#2b3548] border-b-4 border-b-[#07090f] shadow-2xl overflow-hidden backdrop-blur-xl">
+      <div className="relative rounded-2xl bg-white border-2 border-[#E8DCC4] border-b-6 border-b-[#D5C7AB] shadow-2xl overflow-hidden">
         
         {/* Top 4-Color LEGO Brick Interlocking Header */}
         <LegoGoogleBrickBar />
 
         {/* Window Titlebar */}
-        <div className="flex items-center justify-between px-4 py-3 bg-[#0e1424] border-b border-white/10">
+        <div className="flex items-center justify-between px-4 py-3 bg-[#F5EBD2] border-b-2 border-[#E8DCC4]">
           <div className="flex items-center gap-2">
             {/* Realistic 3D LEGO Window Studs */}
             <div className="flex items-center gap-1.5">
@@ -50,14 +50,14 @@ export default function HeroVisual() {
               <LegoStud color="yellow" size="xs" />
               <LegoStud color="green" size="xs" />
             </div>
-            <span className="ml-2 text-xs font-mono text-slate-300 flex items-center gap-1.5 font-bold">
-              <Terminal className="w-3.5 h-3.5 text-[#3b8bff]" />
+            <span className="ml-2 text-xs font-mono text-[#252525] flex items-center gap-1.5 font-bold">
+              <Terminal className="w-3.5 h-3.5 text-[#006CB7]" />
               devsync-core-workspace
             </span>
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[10px] font-mono font-bold bg-[#00852b] text-white border-b-2 border-[#004d19] shadow-sm">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[10px] font-mono font-bold bg-[#00852B] text-white border-b-2 border-[#00581C] shadow-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
               100% OFFLINE MESH
             </span>
@@ -65,7 +65,7 @@ export default function HeroVisual() {
         </div>
 
         {/* Tab Bar styled like LEGO Building Plates */}
-        <div className="flex items-center justify-between px-3 pt-2 bg-[#0c101c] border-b border-white/5">
+        <div className="flex items-center justify-between px-3 pt-2 bg-[#F5EBD2] border-b border-[#E8DCC4]">
           <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
             {tabs.map((tab) => (
               <button
@@ -73,8 +73,8 @@ export default function HeroVisual() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center gap-2 px-3 py-1.5 text-xs font-mono rounded-t-lg transition-all border-t-2 ${
                   activeTab === tab.id
-                    ? 'bg-[#090d16] text-[#ffd500] border-t-[#ffd500] border-x border-white/10 font-bold shadow-md'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-white/5 border-t-transparent'
+                    ? 'bg-[#1A202C] text-[#FFD500] border-t-[#FFD500] border-x border-[#1A202C] font-bold shadow-md'
+                    : 'text-slate-600 hover:text-[#252525] hover:bg-[#E8DCC4] border-t-transparent'
                 }`}
               >
                 <Code className="w-3.5 h-3.5" />
@@ -96,7 +96,7 @@ export default function HeroVisual() {
         </div>
 
         {/* Code Content Area */}
-        <div className="p-4 sm:p-5 font-mono text-xs sm:text-sm leading-relaxed overflow-x-auto text-slate-300 bg-[#090d16]">
+        <div className="p-4 sm:p-5 font-mono text-xs sm:text-sm leading-relaxed overflow-x-auto text-slate-100 bg-[#1A202C]">
           {activeTab === 'config' && (
             <div className="space-y-1">
               <p><span className="text-violet-400">export const</span> <span className="text-blue-400">DevSyncConference</span> = {'{'}</p>
@@ -148,10 +148,10 @@ export default function HeroVisual() {
         </div>
 
         {/* Terminal Status Footer */}
-        <div className="flex items-center justify-between px-4 py-2.5 bg-[#0e1424] border-t border-white/10 text-[11px] font-mono text-slate-400">
+        <div className="flex items-center justify-between px-4 py-2.5 bg-[#F5EBD2] border-t-2 border-[#E8DCC4] text-[11px] font-mono text-slate-700 font-bold">
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-blue-400"></span>
-            <span className="truncate max-w-[280px] sm:max-w-md text-slate-300">{compileOutput}</span>
+            <span className="w-2 h-2 rounded-full bg-[#006CB7]"></span>
+            <span className="truncate max-w-[280px] sm:max-w-md text-slate-800">{compileOutput}</span>
           </div>
           <div className="hidden sm:flex items-center gap-3 text-slate-500">
             <span>UTF-8</span>
@@ -163,25 +163,25 @@ export default function HeroVisual() {
       </div>
 
       {/* Floating Decorative LEGO Brick Badges */}
-      <div className="hidden sm:flex items-center gap-3 absolute -bottom-5 -left-4 px-4 py-2.5 rounded-xl bg-[#121626] border-2 border-blue-500/40 border-b-4 border-b-blue-900/80 shadow-2xl z-20">
+      <div className="hidden sm:flex items-center gap-3 absolute -bottom-5 -left-4 px-4 py-2.5 rounded-xl bg-white border-2 border-[#E8DCC4] border-b-4 border-b-[#006CB7] shadow-lg z-20">
         <LegoStud color="blue" size="sm" />
-        <div className="w-7 h-7 rounded-lg bg-blue-500/20 border border-blue-500/30 flex items-center justify-center text-blue-400">
+        <div className="w-7 h-7 rounded-lg bg-blue-100 border border-blue-300 flex items-center justify-center text-[#006CB7]">
           <Cpu className="w-4 h-4" />
         </div>
         <div>
-          <div className="text-xs font-bold font-display text-white">MMMUT Gorakhpur</div>
-          <div className="text-[10px] font-mono text-slate-400">Seminar Hall Complex</div>
+          <div className="text-xs font-bold font-display text-[#252525]">MMMUT Gorakhpur</div>
+          <div className="text-[10px] font-mono text-slate-600">Seminar Hall Complex</div>
         </div>
       </div>
 
-      <div className="hidden sm:flex items-center gap-3 absolute -top-4 -right-4 px-4 py-2.5 rounded-xl bg-[#121626] border-2 border-emerald-500/40 border-b-4 border-b-emerald-900/80 shadow-2xl z-20">
+      <div className="hidden sm:flex items-center gap-3 absolute -top-4 -right-4 px-4 py-2.5 rounded-xl bg-white border-2 border-[#E8DCC4] border-b-4 border-b-[#00852B] shadow-lg z-20">
         <LegoStud color="green" size="sm" />
-        <div className="w-7 h-7 rounded-lg bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+        <div className="w-7 h-7 rounded-lg bg-green-100 border border-green-300 flex items-center justify-center text-[#00852B]">
           <CheckCircle2 className="w-4 h-4" />
         </div>
         <div>
-          <div className="text-xs font-bold font-display text-white">100% In-Person</div>
-          <div className="text-[10px] font-mono text-slate-400">Zero Virtual Streaming</div>
+          <div className="text-xs font-bold font-display text-[#252525]">100% In-Person</div>
+          <div className="text-[10px] font-mono text-slate-600">Zero Virtual Streaming</div>
         </div>
       </div>
 
@@ -190,7 +190,7 @@ export default function HeroVisual() {
         className="hidden lg:block absolute -bottom-8 -right-8 z-30 transition-transform duration-300 hover:scale-110 hover:-rotate-3"
         title="DevSync '26 LEGO Developer Mascot"
       >
-        <LegoMinifigDeveloperGraphic width={78} height={98} />
+        <LegoRobotGraphic pose="coding" size={82} />
       </div>
     </div>
   );

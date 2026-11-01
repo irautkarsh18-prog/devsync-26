@@ -1,50 +1,50 @@
 import React from 'react';
-import { Trophy, Award, Gift, Sparkles, Check, CheckCircle2 } from 'lucide-react';
+import { Trophy, Award, Gift, Sparkles, Check } from 'lucide-react';
 import { PRIZES_DATA } from '../data/eventData';
 import { LegoStudRow, LegoTrophyGraphic } from '../components/LegoElements';
 
 export default function Prizes() {
   const prizeBrickStyles = [
     {
-      cardClass: 'border-[#ffd500] border-b-4 border-b-[#a38200] shadow-[0_10px_30px_rgba(255,213,0,0.2)]',
+      cardClass: 'border-[#FFD500] border-b-8 border-b-[#D4AF37] shadow-[0_8px_24px_rgba(255,213,0,0.25)]',
       studColor: 'yellow',
-      iconBox: 'bg-[#ffd500]/15 text-[#ffd500] border-[#ffd500]/30',
-      badgeClass: 'bg-[#ffd500] text-black border-b border-[#a38200]',
+      iconBox: 'bg-[#FFD500]/20 text-[#A06C00] border-[#FFD500]',
+      badgeClass: 'bg-[#FFD500] text-[#252525] border border-[#D4AF37]',
+      accentBg: 'bg-[#FFFBEA]',
     },
     {
-      cardClass: 'border-[#0055bf] border-b-4 border-b-[#003373] shadow-[0_10px_30px_rgba(0,85,191,0.2)]',
+      cardClass: 'border-[#006CB7] border-b-8 border-b-[#004A80] shadow-[0_8px_24px_rgba(0,108,183,0.25)]',
       studColor: 'blue',
-      iconBox: 'bg-[#0055bf]/15 text-[#3b8bff] border-[#0055bf]/30',
-      badgeClass: 'bg-[#0055bf] text-white border-b border-[#003373]',
+      iconBox: 'bg-[#006CB7]/15 text-[#006CB7] border-[#006CB7]',
+      badgeClass: 'bg-[#006CB7] text-white border border-[#004A80]',
+      accentBg: 'bg-[#F0F7FF]',
     },
     {
-      cardClass: 'border-[#00852b] border-b-4 border-b-[#004d19] shadow-[0_10px_30px_rgba(0,133,43,0.2)]',
+      cardClass: 'border-[#00852B] border-b-8 border-b-[#00551B] shadow-[0_8px_24px_rgba(0,133,43,0.25)]',
       studColor: 'green',
-      iconBox: 'bg-[#00852b]/15 text-[#22c55e] border-[#00852b]/30',
-      badgeClass: 'bg-[#00852b] text-white border-b border-[#004d19]',
+      iconBox: 'bg-[#00852B]/15 text-[#00852B] border-[#00852B]',
+      badgeClass: 'bg-[#00852B] text-white border border-[#00551B]',
+      accentBg: 'bg-[#F2FBF5]',
     },
   ];
 
   return (
-    <section id="prizes" className="relative py-24 sm:py-32 bg-[#0b0e14] border-t-2 border-[#1c2333] lego-baseplate-pattern">
+    <section id="prizes" className="relative py-24 sm:py-32 bg-[#FFF8E7] text-[#252525] border-t-4 border-[#E8DCC4] lego-baseplate-pattern">
       
-      {/* Background radial glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-gradient-to-r from-yellow-500/10 via-red-500/10 to-blue-500/10 blur-[130px] rounded-full pointer-events-none" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-16 sm:mb-20">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold bg-[#141924] text-[#ffd500] border border-[#2b3548] border-b-2 border-b-black mb-4 shadow-sm">
-            <Trophy className="w-3.5 h-3.5 text-[#ffd500]" />
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-black bg-white text-[#E53935] border-2 border-[#E53935] mb-4 shadow-sm">
+            <Trophy className="w-4 h-4 text-[#FFD500]" />
             <span>RECOGNITION & PARTICIPATION MERIT</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-extrabold font-display tracking-tight text-white mb-6">
+          <h2 className="text-3xl sm:text-5xl font-black font-display tracking-tight text-[#252525] mb-6">
             Good Ideas Deserve Great Rewards.
           </h2>
 
-          <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-sans">
+          <p className="text-base sm:text-lg text-slate-700 leading-relaxed font-sans">
             From premier developer hardware and custom trophies to curated attendee kits, excellence and participation are recognized at DevSync '26.
           </p>
         </div>
@@ -57,7 +57,7 @@ export default function Prizes() {
             return (
               <div
                 key={prize.id}
-                className={`relative rounded-3xl bg-[#111520] p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 shadow-2xl overflow-hidden ${style.cardClass}`}
+                className={`relative rounded-3xl bg-white p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 shadow-xl overflow-hidden border-4 ${style.cardClass}`}
               >
                 {/* Top Studs Row */}
                 <div className="absolute top-2 left-6">
@@ -66,7 +66,7 @@ export default function Prizes() {
 
                 {/* Highlight Ribbon for top two */}
                 {prize.highlight && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-[11px] font-mono font-extrabold uppercase tracking-wider bg-gradient-to-r from-[#ffd500] to-[#ff7e14] text-slate-950 shadow-md border border-[#ffe566]">
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-[11px] font-mono font-black uppercase tracking-wider bg-gradient-to-r from-[#FFD500] to-[#FF8C00] text-[#252525] shadow-md border-2 border-[#D4AF37]">
                     ★ {prize.badge}
                   </div>
                 )}
@@ -74,33 +74,33 @@ export default function Prizes() {
                 <div className="pt-3">
                   {/* Header */}
                   <div className="flex items-center justify-between mb-6">
-                    <div className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400">
+                    <div className="text-xs font-mono font-black uppercase tracking-wider text-slate-500">
                       {prize.category}
                     </div>
-                    <div className={`p-2.5 rounded-2xl border flex items-center justify-center ${style.iconBox}`}>
-                      {idx === 0 ? <LegoTrophyGraphic width={36} height={36} /> : idx === 1 ? <Award className="w-6 h-6" /> : <Gift className="w-6 h-6" />}
+                    <div className={`p-2.5 rounded-2xl border-2 flex items-center justify-center ${style.iconBox}`}>
+                      {idx === 0 ? <LegoTrophyGraphic width={36} height={36} /> : idx === 1 ? <Award className="w-6 h-6 text-[#006CB7]" /> : <Gift className="w-6 h-6 text-[#00852B]" />}
                     </div>
                   </div>
 
-                  <h3 className="text-xl sm:text-2xl font-bold font-display text-white mb-3 group-hover:text-[#ffd500] transition-colors">
+                  <h3 className="text-xl sm:text-2xl font-black font-display text-[#252525] mb-3">
                     {prize.title}
                   </h3>
 
-                  <p className="text-sm text-slate-300 mb-8 leading-relaxed font-sans">
+                  <p className="text-sm text-slate-600 mb-8 leading-relaxed font-sans">
                     {prize.description}
                   </p>
 
                   {/* Reward Items List */}
                   <div className="space-y-3 mb-8">
-                    <div className="text-xs font-mono uppercase tracking-wider text-slate-400 font-bold mb-2">
+                    <div className="text-xs font-mono uppercase tracking-wider text-slate-500 font-bold mb-2">
                       Reward Package:
                     </div>
                     {prize.rewards.map((reward) => (
                       <div key={reward} className="flex items-start gap-3">
-                        <div className="w-5 h-5 rounded-full bg-[#0055bf]/25 text-[#3b8bff] flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
+                        <div className="w-5 h-5 rounded-full bg-[#00852B]/15 text-[#00852B] flex items-center justify-center shrink-0 mt-0.5 shadow-sm border border-[#00852B]/30">
                           <Check className="w-3.5 h-3.5 stroke-[3]" />
                         </div>
-                        <span className="text-sm font-semibold text-slate-200">
+                        <span className="text-sm font-bold text-[#252525]">
                           {reward}
                         </span>
                       </div>
@@ -109,9 +109,9 @@ export default function Prizes() {
                 </div>
 
                 {/* Card Footer */}
-                <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-slate-400 font-semibold">
+                <div className="pt-4 border-t-2 border-[#E8DCC4] flex items-center justify-between text-xs font-mono text-slate-600 font-bold">
                   <span>Awarded In-Person</span>
-                  <span className="text-[#ffd500] font-bold">Nov 28, 2026</span>
+                  <span className="text-[#006CB7] font-black">Nov 28, 2026</span>
                 </div>
 
               </div>
@@ -123,4 +123,3 @@ export default function Prizes() {
     </section>
   );
 }
-
