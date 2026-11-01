@@ -14,6 +14,7 @@ import Sponsors from './sections/Sponsors';
 import Venue from './sections/Venue';
 import Registration from './sections/Registration';
 import FAQ from './sections/FAQ';
+import ContactConnect from './sections/ContactConnect';
 import CTA from './sections/CTA';
 import AboutGDG from './pages/AboutGDG';
 import { EVENT_DETAILS } from './data/eventData';
@@ -90,6 +91,9 @@ function HomePage({
 
         {/* New Interactive FAQ Accordion */}
         <FAQ />
+
+        {/* Dedicated Contact & Connect Section */}
+        <ContactConnect />
 
         <CTA 
           onRegisterClick={scrollToRegister}

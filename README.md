@@ -1,8 +1,9 @@
 # DevSync '26 — Premium Developer Conference Website
 
 > **Tagline:** In-Person Tech Talks, Live Demos & Campus Networking.  
+> **Organiser:** GDG MMMUT (Google Developer Groups MMMUT)  
 > **Date:** November 28, 2026  
-> **Venue:** Seminar Hall Complex / Multi-Purpose Hall, Campus  
+> **Venue:** Seminar Hall Complex, Madan Mohan Malaviya University of Technology (MMMUT), Gorakhpur, UP  
 > **Format:** 100% OFFLINE / IN-PERSON (Strictly no virtual attendance)  
 > **Capacity:** Limited to 150 Seats (Free Entry)  
 
@@ -95,6 +96,17 @@
 - Confetti celebration burst upon successful confirmation.
 - Generates a printable **DevSync '26 Delegate Pass** with holographic sheen, custom seat ID (`#DS-0119`), barcode, and QR code placeholder.
 - Back-to-top floating progress button.
+
+### 10. Dedicated Contact & Connect Section
+- **Heading:** *"Contact & Connect"*
+- **Official Contact Email:** `gmail-projectdevsync@gmail.com` (`mailto:` clickable link)
+- **Official Instagram Handle:** `@devsync2026` ([devsync2026](https://www.instagram.com/devsync2026/))
+- **LinkedIn Profiles:**
+  - LinkedIn Profile 1: [upasna-882a223ab](https://www.linkedin.com/in/upasna-882a223ab)
+  - LinkedIn Profile 2: [ira-utkarsh-83760a367](https://www.linkedin.com/in/ira-utkarsh-83760a367)
+- **GitHub Profiles:**
+  - GitHub Profile 1: [upasnaikm](https://github.com/upasnaikm)
+  - GitHub Profile 2: [irautakarsh18-prog](https://github.com/irautakarsh18-prog)
 
 ---
 

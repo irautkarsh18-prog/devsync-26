@@ -349,6 +349,42 @@ export const FAQ_DATA = [
   },
   {
     q: "How can I contact the organisers?",
-    a: "You can reach out to the GDG MMMUT organising team at contact@gdgmmmut.example.com or visit our campus community hub at MMMUT Gorakhpur. (Contact details are provisional community placeholders)."
+    a: "You can contact the DevSync '26 organising team through gmail-projectdevsync@gmail.com or connect with us through our official social media profiles.",
+    contactEmail: "gmail-projectdevsync@gmail.com",
+    hasSocialLinks: true
   }
 ];
+
+export const OFFICIAL_CONTACT = {
+  email: "gmail-projectdevsync@gmail.com",
+  emailMailto: "mailto:gmail-projectdevsync@gmail.com",
+  instagram: {
+    handle: "@devsync2026",
+    label: "Follow us on Instagram",
+    url: "https://www.instagram.com/devsync2026/"
+  },
+  linkedin: [
+    {
+      label: "LinkedIn Profile 1",
+      name: "Upasna",
+      url: "https://www.linkedin.com/in/upasna-882a223ab"
+    },
+    {
+      label: "LinkedIn Profile 2",
+      name: "Ira Utkarsh",
+      url: "https://www.linkedin.com/in/ira-utkarsh-83760a367"
+    }
+  ],
+  github: [
+    {
+      label: "GitHub Profile 1",
+      handle: "upasnaikm",
+      url: "https://github.com/upasnaikm"
+    },
+    {
+      label: "GitHub Profile 2",
+      handle: "irautakarsh18-prog",
+      url: "https://github.com/irautakarsh18-prog"
+    }
+  ]
+};

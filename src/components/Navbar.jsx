@@ -17,7 +17,7 @@ export default function Navbar({ onOpenPass, registeredUser }) {
       setIsScrolled(window.scrollY > 20);
 
       if (!isAboutPage) {
-        const sections = ['hero', 'about', 'organiser', 'tracks', 'schedule', 'prizes', 'sponsors', 'venue', 'register', 'faq'];
+        const sections = ['hero', 'about', 'organiser', 'tracks', 'schedule', 'prizes', 'sponsors', 'venue', 'register', 'faq', 'contact'];
         const scrollPos = window.scrollY + 140;
 
         for (const section of sections) {
@@ -45,6 +45,7 @@ export default function Navbar({ onOpenPass, registeredUser }) {
     { name: 'Schedule', href: '/#schedule', id: 'schedule', isHash: true },
     { name: 'Registration', href: '/#register', id: 'register', isHash: true },
     { name: 'FAQ', href: '/#faq', id: 'faq', isHash: true },
+    { name: 'Contact', href: '/#contact', id: 'contact', isHash: true },
   ];
 
   const handleNavClick = (e, link) => {
