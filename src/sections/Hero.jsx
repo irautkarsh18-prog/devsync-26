@@ -1,6 +1,6 @@
 import React from 'react';
-import { Calendar, Users, MapPin, Ticket, ArrowRight, Sparkles, Terminal, ShieldCheck } from 'lucide-react';
-import { EVENT_DETAILS } from '../data/eventData';
+import { Calendar, Users, MapPin, Ticket, ArrowRight, Sparkles, Terminal, ShieldCheck, Heart } from 'lucide-react';
+import { EVENT_DETAILS, GDG_COLORS } from '../data/eventData';
 import CountdownTimer from '../components/CountdownTimer';
 import HeroVisual from '../components/HeroVisual';
 
@@ -23,13 +23,23 @@ export default function Hero({ registeredCount, onRegisterClick, onScheduleClick
         }}
       />
 
-      {/* Decorative gradient orbs */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-gradient-to-r from-blue-600/15 via-violet-600/15 to-cyan-500/15 blur-[120px] rounded-full pointer-events-none -z-10" />
+      {/* Decorative gradient orbs with subtle Google accents */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[320px] bg-gradient-to-r from-blue-600/15 via-emerald-600/10 to-amber-500/10 blur-[130px] rounded-full pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
         
         {/* Top Badges Row */}
         <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-6 animate-in fade-in slide-in-from-bottom-3 duration-500">
+          
+          {/* ORGANISED BY GDG MMMUT BADGE */}
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold bg-white/10 text-white border border-white/20 shadow-lg shadow-blue-950/40">
+            <span className="flex h-2 w-2 rounded-full bg-[#4285F4]" />
+            <span className="flex h-2 w-2 rounded-full bg-[#EA4335]" />
+            <span className="flex h-2 w-2 rounded-full bg-[#FBBC05]" />
+            <span className="flex h-2 w-2 rounded-full bg-[#34A853]" />
+            <span>ORGANISED BY GDG MMMUT</span>
+          </div>
+
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium bg-blue-500/10 text-blue-300 border border-blue-500/25">
             <Calendar className="w-3.5 h-3.5 text-blue-400" />
             <span>NOVEMBER 28, 2026</span>
@@ -59,7 +69,7 @@ export default function Hero({ registeredCount, onRegisterClick, onScheduleClick
             
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-slate-300">
               <Sparkles className="w-3.5 h-3.5 text-blue-400" />
-              <span>Campus Developer Community Summit</span>
+              <span>Madan Mohan Malaviya University of Technology, Gorakhpur</span>
             </div>
 
             <h1 className="text-4xl sm:text-6xl xl:text-7xl font-extrabold font-display tracking-tight text-white leading-[1.08]">
@@ -92,26 +102,26 @@ export default function Hero({ registeredCount, onRegisterClick, onScheduleClick
               </a>
             </div>
 
-            {/* In-Person Venue & Seat Availability Gauge */}
+            {/* In-Person Venue & Combined Seat Availability Gauge */}
             <div className="pt-4 max-w-md mx-auto lg:mx-0 p-3.5 rounded-xl bg-surface-lighter/50 border border-white/5 backdrop-blur-sm space-y-2">
               <div className="flex items-center justify-between text-xs">
-                <span className="font-mono text-slate-400 flex items-center gap-1.5">
-                  <MapPin className="w-3.5 h-3.5 text-blue-400" />
-                  Seminar Hall Complex, Campus
+                <span className="font-mono text-slate-400 flex items-center gap-1.5 truncate">
+                  <MapPin className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                  <span className="truncate">MMMUT Campus, Gorakhpur</span>
                 </span>
-                <span className="font-mono font-bold text-cyan-300">
+                <span className="font-mono font-bold text-cyan-300 shrink-0">
                   {seatsRemaining} Seats Left
                 </span>
               </div>
               <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
                 <div 
-                  className="h-full bg-gradient-to-r from-blue-500 to-cyan-400 transition-all duration-500 rounded-full"
+                  className="h-full bg-gradient-to-r from-blue-500 via-emerald-400 to-cyan-400 transition-all duration-500 rounded-full"
                   style={{ width: `${percentClaimed}%` }}
                 />
               </div>
               <div className="flex justify-between text-[11px] font-mono text-slate-500">
                 <span>{registeredCount} / {EVENT_DETAILS.capacity} Claimed</span>
-                <span>Strict Physical Cap</span>
+                <span>Combined MMMUT + Outside Cap</span>
               </div>
             </div>
 
@@ -133,4 +143,3 @@ export default function Hero({ registeredCount, onRegisterClick, onScheduleClick
     </section>
   );
 }
-

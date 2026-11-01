@@ -1,18 +1,116 @@
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import TicketModal from './components/TicketModal';
 import BackToTop from './components/BackToTop';
 import Hero from './sections/Hero';
 import About from './sections/About';
+import Organiser from './sections/Organiser';
 import Tracks from './sections/Tracks';
 import Schedule from './sections/Schedule';
 import Prizes from './sections/Prizes';
 import Sponsors from './sections/Sponsors';
 import Venue from './sections/Venue';
 import Registration from './sections/Registration';
+import FAQ from './sections/FAQ';
 import CTA from './sections/CTA';
+import AboutGDG from './pages/AboutGDG';
 import { EVENT_DETAILS } from './data/eventData';
+
+// Scroll restoration component for router
+function ScrollToTop() {
+  const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    if (!hash) {
+      window.scrollTo(0, 0);
+    } else {
+      const id = hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [pathname, hash]);
+
+  return null;
+}
+
+function HomePage({
+  registeredAttendee,
+  registeredCount,
+  selectedTrackPref,
+  handleSelectTrack,
+  handleRegisterSuccess,
+  setIsPassModalOpen,
+  scrollToRegister,
+  scrollToSchedule
+}) {
+  return (
+    <div className="relative min-h-screen bg-[#090b10] text-slate-100 font-sans selection:bg-blue-600/30 selection:text-white">
+      {/* Sticky Navigation */}
+      <Navbar 
+        onOpenPass={() => setIsPassModalOpen(true)} 
+        registeredUser={registeredAttendee}
+      />
+
+      {/* Main Content Sections */}
+      <main id="main-content">
+        <Hero 
+          registeredCount={registeredCount}
+          onRegisterClick={scrollToRegister}
+          onScheduleClick={scrollToSchedule}
+        />
+
+        <About />
+
+        {/* Dedicated Organiser Section */}
+        <Organiser />
+
+        <Tracks 
+          onSelectTrack={handleSelectTrack}
+        />
+
+        <Schedule />
+
+        <Prizes />
+
+        <Sponsors />
+
+        <Venue />
+
+        {/* Upgraded Dual-Category Registration */}
+        <Registration 
+          registeredCount={registeredCount}
+          onSuccessRegister={handleRegisterSuccess}
+          selectedTrackPref={selectedTrackPref}
+          alreadyRegisteredAttendee={registeredAttendee}
+        />
+
+        {/* New Interactive FAQ Accordion */}
+        <FAQ />
+
+        <CTA 
+          onRegisterClick={scrollToRegister}
+        />
+      </main>
+
+      {/* Footer */}
+      <Footer />
+
+      {/* Ticket Pass Modal */}
+      <TicketModal 
+        isOpen={false} // controlled from App wrapper
+        onClose={() => {}}
+        attendee={registeredAttendee}
+      />
+
+      {/* Back to top smooth button */}
+      <BackToTop />
+    </div>
+  );
+}
 
 export default function App() {
   const [registeredAttendee, setRegisteredAttendee] = useState(null);
@@ -30,7 +128,6 @@ export default function App() {
 
       const allRegs = JSON.parse(localStorage.getItem('devsync_26_registrations') || '[]');
       if (allRegs.length > 0) {
-        // Base initial count + new browser registrations
         setRegisteredCount(Math.min(EVENT_DETAILS.capacity, EVENT_DETAILS.initialRegistered + allRegs.length));
       }
     } catch (e) {
@@ -72,62 +169,57 @@ export default function App() {
   };
 
   return (
-    <div className="relative min-h-screen bg-[#090b10] text-slate-100 font-sans selection:bg-blue-600/30 selection:text-white">
+    <BrowserRouter>
+      <ScrollToTop />
       
-      {/* Sticky Navigation */}
-      <Navbar 
-        onOpenPass={() => setIsPassModalOpen(true)} 
-        registeredUser={registeredAttendee}
-      />
-
-      {/* Main Content Sections */}
-      <main id="main-content">
-        <Hero 
-          registeredCount={registeredCount}
-          onRegisterClick={scrollToRegister}
-          onScheduleClick={scrollToSchedule}
+      <Routes>
+        {/* Homepage Route */}
+        <Route 
+          path="/" 
+          element={
+            <HomePage 
+              registeredAttendee={registeredAttendee}
+              registeredCount={registeredCount}
+              selectedTrackPref={selectedTrackPref}
+              handleSelectTrack={handleSelectTrack}
+              handleRegisterSuccess={handleRegisterSuccess}
+              setIsPassModalOpen={setIsPassModalOpen}
+              scrollToRegister={scrollToRegister}
+              scrollToSchedule={scrollToSchedule}
+            />
+          } 
         />
 
-        <About />
-
-        <Tracks 
-          onSelectTrack={handleSelectTrack}
+        {/* Dedicated About GDG MMMUT Page */}
+        <Route 
+          path="/about-gdg" 
+          element={<AboutGDG />} 
         />
 
-        <Schedule />
-
-        <Prizes />
-
-        <Sponsors />
-
-        <Venue />
-
-        <Registration 
-          registeredCount={registeredCount}
-          onSuccessRegister={handleRegisterSuccess}
-          selectedTrackPref={selectedTrackPref}
-          alreadyRegisteredAttendee={registeredAttendee}
+        {/* Catch-all redirect to Home */}
+        <Route 
+          path="*" 
+          element={
+            <HomePage 
+              registeredAttendee={registeredAttendee}
+              registeredCount={registeredCount}
+              selectedTrackPref={selectedTrackPref}
+              handleSelectTrack={handleSelectTrack}
+              handleRegisterSuccess={handleRegisterSuccess}
+              setIsPassModalOpen={setIsPassModalOpen}
+              scrollToRegister={scrollToRegister}
+              scrollToSchedule={scrollToSchedule}
+            />
+          } 
         />
+      </Routes>
 
-        <CTA 
-          onRegisterClick={scrollToRegister}
-        />
-      </main>
-
-      {/* Footer */}
-      <Footer />
-
-      {/* Ticket Pass Modal */}
+      {/* Global Ticket Pass Modal */}
       <TicketModal 
         isOpen={isPassModalOpen}
         onClose={() => setIsPassModalOpen(false)}
         attendee={registeredAttendee}
       />
-
-      {/* Back to top smooth button */}
-      <BackToTop />
-
-    </div>
+    </BrowserRouter>
   );
 }
-

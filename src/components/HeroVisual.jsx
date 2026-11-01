@@ -14,10 +14,10 @@ export default function HeroVisual() {
 
   const handleRunCompile = () => {
     setIsCompiling(true);
-    setCompileOutput('Connecting campus nodes... [150/150 nodes indexed]');
+    setCompileOutput('Connecting campus nodes... [GDG MMMUT Mesh Online]');
     setTimeout(() => {
       setIsCompiling(false);
-      setCompileOutput('✨ DevSync 2026 Engine Online: Physical Seminar Hall Complex Ready.');
+      setCompileOutput('✨ DevSync 2026 Engine Online: MMMUT Seminar Hall Complex Ready.');
     }, 1100);
   };
 
@@ -87,10 +87,12 @@ export default function HeroVisual() {
             <div className="space-y-1">
               <p><span className="text-violet-400">export const</span> <span className="text-blue-400">DevSyncConference</span> = {'{'}</p>
               <p className="pl-4"><span className="text-slate-400">edition:</span> <span className="text-emerald-400">"DevSync '26"</span>,</p>
+              <p className="pl-4"><span className="text-slate-400">organiser:</span> <span className="text-cyan-300">"GDG MMMUT"</span>,</p>
+              <p className="pl-4"><span className="text-slate-400">institution:</span> <span className="text-amber-300">"MMMUT Gorakhpur, UP"</span>,</p>
               <p className="pl-4"><span className="text-slate-400">date:</span> <span className="text-emerald-400">"November 28, 2026"</span>,</p>
-              <p className="pl-4"><span className="text-slate-400">venue:</span> <span className="text-amber-300">"Seminar Hall Complex, Campus"</span>,</p>
+              <p className="pl-4"><span className="text-slate-400">venue:</span> <span className="text-amber-200">"Seminar Hall Complex, Campus"</span>,</p>
               <p className="pl-4"><span className="text-slate-400">format:</span> <span className="text-cyan-400">"100% IN-PERSON"</span> <span className="text-slate-500">// Zero Virtual Attendance</span>,</p>
-              <p className="pl-4"><span className="text-slate-400">capacityLimit:</span> <span className="text-purple-400">150</span>,</p>
+              <p className="pl-4"><span className="text-slate-400">capacityLimit:</span> <span className="text-purple-400">150</span> <span className="text-slate-500">// Combined</span>,</p>
               <p className="pl-4"><span className="text-slate-400">admission:</span> <span className="text-blue-400">"Free"</span>,</p>
               <p className="pl-4"><span className="text-slate-400">tracks:</span> [</p>
               <p className="pl-8 text-slate-300"><span className="text-amber-200">"01_Frontend_Architecture"</span>,</p>
@@ -152,7 +154,7 @@ export default function HeroVisual() {
           <Cpu className="w-4 h-4" />
         </div>
         <div>
-          <div className="text-xs font-semibold text-white">Physical Venue</div>
+          <div className="text-xs font-semibold text-white">MMMUT Gorakhpur</div>
           <div className="text-[10px] text-slate-400">Seminar Hall Complex</div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { UserCheck, AlertCircle, CheckCircle2, MapPin, Sparkles, Send, ShieldCheck, HelpCircle } from 'lucide-react';
+import { UserCheck, AlertCircle, CheckCircle2, MapPin, Sparkles, Send, ShieldCheck, GraduationCap, Building2, ArrowRight } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { EVENT_DETAILS, TRACKS_DATA } from '../data/eventData';
 
@@ -9,10 +9,23 @@ export default function Registration({
   selectedTrackPref, 
   alreadyRegisteredAttendee 
 }) {
+  // Category can be 'MMMUT Student' or 'Outside College Student'
+  const [category, setCategory] = useState('MMMUT Student');
+
   const [formData, setFormData] = useState({
     fullName: '',
-    rollNumber: '',
-    branchYear: 'CSE / 3rd Year',
+    // MMMUT specific
+    mmmutRollNumber: '',
+    branch: 'Computer Science & Engineering (CSE)',
+    yearOfStudy: '3rd Year',
+    // Outside specific
+    collegeName: '',
+    universityRollNumber: '',
+    outsideBranch: '',
+    outsideYearOfStudy: '3rd Year',
+    // Common
+    email: '',
+    phone: '',
     portfolioUrl: '',
     foodPreference: 'Vegetarian',
     track: selectedTrackPref || TRACKS_DATA[0].title,
@@ -31,16 +44,24 @@ export default function Registration({
     }
   }, [selectedTrackPref]);
 
-  const branches = [
-    'CSE / 1st Year',
-    'CSE / 2nd Year',
-    'CSE / 3rd Year',
-    'CSE / 4th Year',
-    'IT / 2nd Year',
-    'IT / 3rd Year',
-    'ECE / 3rd Year',
-    'Other Engineering Branch',
-    'Alumni / Postgraduate'
+  const mmmutBranches = [
+    'Computer Science & Engineering (CSE)',
+    'Information Technology (IT)',
+    'Electronics & Communication (ECE)',
+    'Electrical Engineering (EE)',
+    'Mechanical Engineering (ME)',
+    'Civil Engineering (CE)',
+    'Chemical Engineering (CH)',
+    'Master of Computer Applications (MCA)',
+    'M.Tech / Postgraduate'
+  ];
+
+  const yearOptions = [
+    '1st Year',
+    '2nd Year',
+    '3rd Year',
+    '4th Year',
+    'Postgraduate / MCA'
   ];
 
   const validate = () => {
@@ -50,24 +71,58 @@ export default function Registration({
       newErrors.fullName = 'Please enter your full name (at least 2 characters).';
     }
 
-    if (!formData.rollNumber.trim() || formData.rollNumber.trim().length < 3) {
-      newErrors.rollNumber = 'Please provide a valid college roll / student ID number.';
+    if (category === 'MMMUT Student') {
+      if (!formData.mmmutRollNumber.trim() || formData.mmmutRollNumber.trim().length < 4) {
+        newErrors.mmmutRollNumber = 'Please enter your valid MMMUT Roll Number (e.g. 2023021045).';
+      }
+      if (!formData.branch) {
+        newErrors.branch = 'Please select your branch.';
+      }
+      if (!formData.yearOfStudy) {
+        newErrors.yearOfStudy = 'Please select your year of study.';
+      }
+    } else {
+      // Outside College Student
+      if (!formData.collegeName.trim() || formData.collegeName.trim().length < 3) {
+        newErrors.collegeName = 'Please enter your complete College / University name.';
+      }
+      if (!formData.universityRollNumber.trim()) {
+        newErrors.universityRollNumber = 'Please provide your University Roll Number or Student ID.';
+      }
+      if (!formData.outsideBranch.trim()) {
+        newErrors.outsideBranch = 'Please enter your branch / department.';
+      }
+      if (!formData.outsideYearOfStudy) {
+        newErrors.outsideYearOfStudy = 'Please select your year of study.';
+      }
     }
 
-    if (!formData.branchYear) {
-      newErrors.branchYear = 'Please select your branch and academic year.';
+    // Email validation
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email address is required.';
+    } else if (!emailPattern.test(formData.email.trim())) {
+      newErrors.email = 'Please enter a valid email address (e.g. name@example.com).';
     }
 
-    // URL validation
-    const urlPattern = /^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)$/i;
-    if (!formData.portfolioUrl.trim()) {
-      newErrors.portfolioUrl = 'GitHub or Portfolio profile URL is required.';
-    } else if (!urlPattern.test(formData.portfolioUrl.trim())) {
-      newErrors.portfolioUrl = 'Please enter a valid URL (e.g. https://github.com/yourhandle).';
+    // Phone validation
+    const phonePattern = /^[0-9+() -]{10,15}$/;
+    if (!formData.phone.trim()) {
+      newErrors.phone = 'Phone number is required for event check-in coordination.';
+    } else if (!phonePattern.test(formData.phone.trim().replace(/\s+/g, ''))) {
+      newErrors.phone = 'Please provide a valid 10-digit mobile number.';
+    }
+
+    // Optional Portfolio / GitHub URL validation (if provided)
+    if (formData.portfolioUrl.trim()) {
+      const urlPattern = /^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)$/i;
+      if (!urlPattern.test(formData.portfolioUrl.trim())) {
+        newErrors.portfolioUrl = 'Please enter a valid URL (e.g. https://github.com/yourhandle).';
+      }
     }
 
     if (!formData.foodPreference) {
-      newErrors.foodPreference = 'Please select a food preference for refreshments.';
+      newErrors.foodPreference = 'Please select a food preference for high-tea and refreshments.';
     }
 
     if (!formData.track) {
@@ -75,7 +130,7 @@ export default function Registration({
     }
 
     if (!formData.inPersonConsent) {
-      newErrors.inPersonConsent = 'You must confirm in-person attendance on campus.';
+      newErrors.inPersonConsent = 'You must confirm in-person attendance at the MMMUT Gorakhpur campus.';
     }
 
     setErrors(newErrors);
@@ -90,32 +145,39 @@ export default function Registration({
       return;
     }
 
-    // Capacity check
+    // Total Combined Capacity check across both categories
     if (registeredCount >= EVENT_DETAILS.capacity) {
-      setDuplicateWarning('Registration is currently full! The 150 offline seat limit has been reached.');
+      setDuplicateWarning('Registration is currently full! The 150 combined offline seat capacity has been reached.');
       return;
     }
 
     // Duplicate check in localStorage
     const stored = JSON.parse(localStorage.getItem('devsync_26_registrations') || '[]');
-    const isDuplicate = stored.some(
-      (reg) => 
-        reg.rollNumber.trim().toLowerCase() === formData.rollNumber.trim().toLowerCase() ||
-        reg.portfolioUrl.trim().toLowerCase() === formData.portfolioUrl.trim().toLowerCase()
-    );
+    const identifier = category === 'MMMUT Student' ? formData.mmmutRollNumber.trim().toLowerCase() : formData.universityRollNumber.trim().toLowerCase();
+    const userEmail = formData.email.trim().toLowerCase();
+
+    const isDuplicate = stored.some((reg) => {
+      const regId = (reg.mmmutRollNumber || reg.universityRollNumber || reg.rollNumber || '').toLowerCase();
+      const regMail = (reg.email || '').toLowerCase();
+      return (identifier && regId === identifier) || (userEmail && regMail === userEmail);
+    });
 
     if (isDuplicate) {
-      setDuplicateWarning('A registration with this Roll Number or Portfolio URL has already been recorded.');
+      setDuplicateWarning(`A registration with this Roll Number (${identifier.toUpperCase()}) or Email (${userEmail}) is already recorded in the system.`);
       return;
     }
 
     setIsSubmitting(true);
 
-    // Simulate clean local processing with high fidelity
+    // Simulate clean local processing with unified submission workflow
     setTimeout(() => {
       const seatNumber = `#DS-${String(registeredCount + 1).padStart(4, '0')}`;
       const newRecord = {
         ...formData,
+        category, // "MMMUT Student" or "Outside College Student"
+        rollNumber: category === 'MMMUT Student' ? formData.mmmutRollNumber : formData.universityRollNumber,
+        branchYear: category === 'MMMUT Student' ? `${formData.branch} • ${formData.yearOfStudy}` : `${formData.outsideBranch} (${formData.collegeName}) • ${formData.outsideYearOfStudy}`,
+        institution: category === 'MMMUT Student' ? 'MMMUT Gorakhpur' : formData.collegeName,
         id: 'reg_' + Date.now(),
         seatNumber,
         registeredAt: new Date().toISOString()
@@ -128,11 +190,11 @@ export default function Registration({
       setIsSubmitting(false);
       setSubmitSuccess(true);
 
-      // Trigger Confetti Celebration!
+      // Trigger Confetti Celebration
       try {
         confetti({
-          particleCount: 100,
-          spread: 70,
+          particleCount: 110,
+          spread: 75,
           origin: { y: 0.6 }
         });
       } catch (err) {
@@ -157,15 +219,15 @@ export default function Registration({
     <section id="register" className="relative py-24 sm:py-32 bg-[#090b10] border-t border-white/5">
       
       {/* Background ambient lighting */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-gradient-to-r from-blue-600/15 via-violet-600/15 to-cyan-500/15 blur-[140px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[650px] h-[400px] bg-gradient-to-r from-blue-600/15 via-emerald-600/10 to-amber-500/10 blur-[150px] rounded-full pointer-events-none" />
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-blue-500/10 text-blue-300 border border-blue-500/20 mb-4">
             <UserCheck className="w-3.5 h-3.5 text-blue-400" />
-            <span>CONFIRM ATTENDANCE • OFFLINE ACCESS</span>
+            <span>CONFIRM IN-PERSON ATTENDANCE • OFFLINE DELEGATE PASS</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-extrabold font-display tracking-tight text-white mb-4">
@@ -173,23 +235,152 @@ export default function Registration({
           </h2>
 
           <p className="text-base sm:text-lg text-slate-300 font-sans max-w-2xl mx-auto">
-            150 seats. One incredible day. Reserve your place at DevSync '26.
+            150 seats. One incredible day. Open to both MMMUT students and outside university builders.
           </p>
 
-          {/* Banner */}
-          <div className="mt-6 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-500/10 border border-blue-500/20 text-xs font-mono text-blue-300">
-            <span>November 28, 2026 | In-Person Only | Limited to 150 Seats.</span>
+          <div className="mt-6 inline-flex flex-wrap items-center justify-center gap-2 px-4 py-2 rounded-xl bg-blue-500/10 border border-blue-500/20 text-xs font-mono text-blue-300">
+            <span>November 28, 2026</span>
+            <span>•</span>
+            <span>MMMUT Campus, Gorakhpur</span>
+            <span>•</span>
+            <span className="font-semibold text-cyan-300">Total Combined Cap: 150 Seats</span>
           </div>
         </div>
 
-        {/* Form Container */}
-        <div className="relative rounded-3xl bg-surface-lighter/80 border border-white/10 p-6 sm:p-10 shadow-2xl backdrop-blur-xl">
+        {/* TWO SEPARATE REGISTRATION CARDS (Equal Visual Importance) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
           
+          {/* Card 1: MMMUT Students */}
+          <div 
+            onClick={() => { setCategory('MMMUT Student'); setDuplicateWarning(''); }}
+            className={`cursor-pointer rounded-3xl p-6 sm:p-8 border transition-all duration-300 relative flex flex-col justify-between ${
+              category === 'MMMUT Student'
+                ? 'bg-gradient-to-b from-blue-950/50 via-surface-lighter to-surface border-blue-500 shadow-2xl shadow-blue-950/40 ring-2 ring-blue-500/30'
+                : 'bg-surface-lighter/50 border-white/10 hover:border-white/20 hover:bg-surface-lighter/70'
+            }`}
+          >
+            {category === 'MMMUT Student' && (
+              <span className="absolute -top-3 left-6 px-3 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-blue-600 text-white shadow-md">
+                Active Selection
+              </span>
+            )}
+
+            <div>
+              <div className="w-12 h-12 rounded-2xl bg-blue-500/15 text-blue-400 border border-blue-500/20 flex items-center justify-center mb-5">
+                <GraduationCap className="w-6 h-6" />
+              </div>
+
+              <h3 className="text-xl sm:text-2xl font-bold font-display text-white mb-2">
+                MMMUT Student Registration
+              </h3>
+
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans mb-4">
+                For currently enrolled undergraduate, postgraduate, and MCA students of <strong>Madan Mohan Malaviya University of Technology, Gorakhpur</strong>.
+              </p>
+
+              <div className="space-y-1.5 text-xs font-mono text-slate-400 mb-6">
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                  <span>Campus ID / Roll Number validation</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                  <span>Free delegate kit & high-tea access</span>
+                </div>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => { setCategory('MMMUT Student'); setDuplicateWarning(''); }}
+              className={`w-full py-3 px-4 rounded-xl font-display font-semibold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 ${
+                category === 'MMMUT Student'
+                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30'
+                  : 'bg-white/5 text-slate-300 hover:bg-white/10'
+              }`}
+            >
+              <span>{category === 'MMMUT Student' ? 'Editing MMMUT Application' : 'Register as MMMUT Student'}</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
+
+          {/* Card 2: Outside College Students */}
+          <div 
+            onClick={() => { setCategory('Outside College Student'); setDuplicateWarning(''); }}
+            className={`cursor-pointer rounded-3xl p-6 sm:p-8 border transition-all duration-300 relative flex flex-col justify-between ${
+              category === 'Outside College Student'
+                ? 'bg-gradient-to-b from-emerald-950/40 via-surface-lighter to-surface border-emerald-500 shadow-2xl shadow-emerald-950/40 ring-2 ring-emerald-500/30'
+                : 'bg-surface-lighter/50 border-white/10 hover:border-white/20 hover:bg-surface-lighter/70'
+            }`}
+          >
+            {category === 'Outside College Student' && (
+              <span className="absolute -top-3 left-6 px-3 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-emerald-600 text-white shadow-md">
+                Active Selection
+              </span>
+            )}
+
+            <div>
+              <div className="w-12 h-12 rounded-2xl bg-emerald-500/15 text-emerald-400 border border-emerald-500/20 flex items-center justify-center mb-5">
+                <Building2 className="w-6 h-6" />
+              </div>
+
+              <h3 className="text-xl sm:text-2xl font-bold font-display text-white mb-2">
+                Outside College Student Registration
+              </h3>
+
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed font-sans mb-4">
+                Warmly welcoming developers, builders, and competitive coders from <strong>other colleges, universities, and technical institutes</strong>.
+              </p>
+
+              <div className="space-y-1.5 text-xs font-mono text-slate-400 mb-6">
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                  <span>Open to all external colleges & universities</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                  <span>Full delegate swag & networking perks included</span>
+                </div>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => { setCategory('Outside College Student'); setDuplicateWarning(''); }}
+              className={`w-full py-3 px-4 rounded-xl font-display font-semibold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 ${
+                category === 'Outside College Student'
+                  ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-600/30'
+                  : 'bg-white/5 text-slate-300 hover:bg-white/10'
+              }`}
+            >
+              <span>{category === 'Outside College Student' ? 'Editing Outside Application' : 'Register as Outside Student'}</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
+
+        </div>
+
+        {/* UNIFIED REGISTRATION FORM CONTAINER */}
+        <div className="relative rounded-3xl bg-surface-lighter/85 border border-white/10 p-6 sm:p-10 shadow-2xl backdrop-blur-xl">
+          
+          {/* Active Category Indicator Banner */}
+          <div className="flex items-center justify-between mb-8 pb-4 border-b border-white/10">
+            <div className="flex items-center gap-2.5">
+              <span className={`w-3 h-3 rounded-full ${category === 'MMMUT Student' ? 'bg-blue-400' : 'bg-emerald-400'}`} />
+              <span className="font-display font-bold text-white text-base sm:text-lg">
+                Registration Category: <span className={category === 'MMMUT Student' ? 'text-blue-400' : 'text-emerald-400'}>{category}</span>
+              </span>
+            </div>
+            <span className="text-xs font-mono text-slate-400 hidden sm:inline">
+              Step 2: Fill Details & Verify
+            </span>
+          </div>
+
           {/* Demonstration Notice Box */}
           <div className="mb-8 p-4 rounded-2xl bg-cyan-950/40 border border-cyan-800/40 text-cyan-300 text-xs flex items-start gap-3">
             <Sparkles className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
             <div>
-              <span className="font-semibold text-cyan-200">Demonstration Mode:</span> This form simulates actual registration using client-side <strong>LocalStorage</strong> and client validation. No external server requests are made. Your digital pass will be generated locally.
+              <span className="font-semibold text-cyan-200">Demonstration Mode:</span> Submissions are stored locally in browser <strong>LocalStorage</strong> and verified instantly with client validation. Your official DevSync '26 In-Person Pass will be generated with your selected category.
             </div>
           </div>
 
@@ -205,7 +396,7 @@ export default function Registration({
             <div className="mb-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-sm flex items-center justify-between">
               <div>
                 <span className="font-semibold">Notice:</span> You already have a confirmed seat reserved (
-                <span className="font-mono">{alreadyRegisteredAttendee.seatNumber}</span>). Submitting again will add another registration demo record.
+                <span className="font-mono">{alreadyRegisteredAttendee.seatNumber}</span> - {alreadyRegisteredAttendee.category || 'Delegate'}). Submitting again will add another registration demo record.
               </div>
             </div>
           )}
@@ -222,100 +413,226 @@ export default function Registration({
                 type="text"
                 value={formData.fullName}
                 onChange={(e) => handleChange('fullName', e.target.value)}
-                placeholder="e.g. Alex Rivera"
+                placeholder="e.g. Priyanshu Sharma"
                 className={`w-full px-4 py-3 rounded-xl bg-[#090d16] border text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-colors ${
                   errors.fullName ? 'border-rose-500' : 'border-white/10 hover:border-white/20'
                 }`}
-                aria-invalid={errors.fullName ? 'true' : 'false'}
-                aria-describedby={errors.fullName ? 'fullName-error' : undefined}
               />
               {errors.fullName && (
-                <p id="fullName-error" className="mt-1.5 text-xs text-rose-400 font-medium">
-                  {errors.fullName}
-                </p>
+                <p className="mt-1.5 text-xs text-rose-400 font-medium">{errors.fullName}</p>
               )}
             </div>
 
-            {/* Field 2 & 3: Roll Number + Branch/Year */}
+            {/* CATEGORY SPECIFIC FIELDS */}
+            {category === 'MMMUT Student' ? (
+              /* MMMUT STUDENT FIELDS */
+              <div className="space-y-6 animate-in fade-in duration-200">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  
+                  {/* MMMUT Roll Number */}
+                  <div>
+                    <label htmlFor="mmmutRollNumber" className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
+                      MMMUT Roll Number <span className="text-rose-400">*</span>
+                    </label>
+                    <input
+                      id="mmmutRollNumber"
+                      type="text"
+                      value={formData.mmmutRollNumber}
+                      onChange={(e) => handleChange('mmmutRollNumber', e.target.value)}
+                      placeholder="e.g. 2023021045"
+                      className={`w-full px-4 py-3 rounded-xl bg-[#090d16] border font-mono text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-colors ${
+                        errors.mmmutRollNumber ? 'border-rose-500' : 'border-white/10 hover:border-white/20'
+                      }`}
+                    />
+                    {errors.mmmutRollNumber && (
+                      <p className="mt-1.5 text-xs text-rose-400 font-medium">{errors.mmmutRollNumber}</p>
+                    )}
+                  </div>
+
+                  {/* Year of Study */}
+                  <div>
+                    <label htmlFor="yearOfStudy" className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
+                      Year of Study <span className="text-rose-400">*</span>
+                    </label>
+                    <select
+                      id="yearOfStudy"
+                      value={formData.yearOfStudy}
+                      onChange={(e) => handleChange('yearOfStudy', e.target.value)}
+                      className="w-full px-4 py-3 rounded-xl bg-[#090d16] border border-white/10 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                    >
+                      {yearOptions.map(y => (
+                        <option key={y} value={y} className="bg-[#090d16] text-white">{y}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                </div>
+
+                {/* MMMUT Branch */}
+                <div>
+                  <label htmlFor="branch" className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
+                    Department / Branch <span className="text-rose-400">*</span>
+                  </label>
+                  <select
+                    id="branch"
+                    value={formData.branch}
+                    onChange={(e) => handleChange('branch', e.target.value)}
+                    className="w-full px-4 py-3 rounded-xl bg-[#090d16] border border-white/10 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50"
+                  >
+                    {mmmutBranches.map(b => (
+                      <option key={b} value={b} className="bg-[#090d16] text-white">{b}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            ) : (
+              /* OUTSIDE COLLEGE STUDENT FIELDS */
+              <div className="space-y-6 animate-in fade-in duration-200">
+                {/* College / University Name */}
+                <div>
+                  <label htmlFor="collegeName" className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
+                    College / University Name <span className="text-rose-400">*</span>
+                  </label>
+                  <input
+                    id="collegeName"
+                    type="text"
+                    value={formData.collegeName}
+                    onChange={(e) => handleChange('collegeName', e.target.value)}
+                    placeholder="e.g. Indian Institute of Technology, Kanpur / NIT Allahabad / IET Lucknow"
+                    className={`w-full px-4 py-3 rounded-xl bg-[#090d16] border text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/50 transition-colors ${
+                      errors.collegeName ? 'border-rose-500' : 'border-white/10 hover:border-white/20'
+                    }`}
+                  />
+                  {errors.collegeName && (
+                    <p className="mt-1.5 text-xs text-rose-400 font-medium">{errors.collegeName}</p>
+                  )}
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {/* University Roll Number / Student ID */}
+                  <div>
+                    <label htmlFor="universityRollNumber" className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
+                      University Roll Number / Student ID <span className="text-rose-400">*</span>
+                    </label>
+                    <input
+                      id="universityRollNumber"
+                      type="text"
+                      value={formData.universityRollNumber}
+                      onChange={(e) => handleChange('universityRollNumber', e.target.value)}
+                      placeholder="e.g. 2200520100089"
+                      className={`w-full px-4 py-3 rounded-xl bg-[#090d16] border font-mono text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/50 transition-colors ${
+                        errors.universityRollNumber ? 'border-rose-500' : 'border-white/10 hover:border-white/20'
+                      }`}
+                    />
+                    {errors.universityRollNumber && (
+                      <p className="mt-1.5 text-xs text-rose-400 font-medium">{errors.universityRollNumber}</p>
+                    )}
+                  </div>
+
+                  {/* Outside Year of Study */}
+                  <div>
+                    <label htmlFor="outsideYearOfStudy" className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
+                      Year of Study <span className="text-rose-400">*</span>
+                    </label>
+                    <select
+                      id="outsideYearOfStudy"
+                      value={formData.outsideYearOfStudy}
+                      onChange={(e) => handleChange('outsideYearOfStudy', e.target.value)}
+                      className="w-full px-4 py-3 rounded-xl bg-[#090d16] border border-white/10 text-white text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
+                    >
+                      {yearOptions.map(y => (
+                        <option key={y} value={y} className="bg-[#090d16] text-white">{y}</option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
+                {/* Outside Branch */}
+                <div>
+                  <label htmlFor="outsideBranch" className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
+                    Branch / Department <span className="text-rose-400">*</span>
+                  </label>
+                  <input
+                    id="outsideBranch"
+                    type="text"
+                    value={formData.outsideBranch}
+                    onChange={(e) => handleChange('outsideBranch', e.target.value)}
+                    placeholder="e.g. Computer Science / Electronics / Data Science"
+                    className={`w-full px-4 py-3 rounded-xl bg-[#090d16] border text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/50 transition-colors ${
+                      errors.outsideBranch ? 'border-rose-500' : 'border-white/10 hover:border-white/20'
+                    }`}
+                  />
+                  {errors.outsideBranch && (
+                    <p className="mt-1.5 text-xs text-rose-400 font-medium">{errors.outsideBranch}</p>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* COMMON FIELDS: Email & Phone */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              
-              {/* College Roll Number */}
+              {/* Email Address */}
               <div>
-                <label htmlFor="rollNumber" className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
-                  College Roll Number <span className="text-rose-400">*</span>
+                <label htmlFor="email" className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
+                  Email Address <span className="text-rose-400">*</span>
                 </label>
                 <input
-                  id="rollNumber"
-                  type="text"
-                  value={formData.rollNumber}
-                  onChange={(e) => handleChange('rollNumber', e.target.value)}
-                  placeholder="e.g. 23BCE1042"
-                  className={`w-full px-4 py-3 rounded-xl bg-[#090d16] border font-mono text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-colors ${
-                    errors.rollNumber ? 'border-rose-500' : 'border-white/10 hover:border-white/20'
+                  id="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => handleChange('email', e.target.value)}
+                  placeholder="e.g. coder@example.com"
+                  className={`w-full px-4 py-3 rounded-xl bg-[#090d16] border text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-colors ${
+                    errors.email ? 'border-rose-500' : 'border-white/10 hover:border-white/20'
                   }`}
-                  aria-invalid={errors.rollNumber ? 'true' : 'false'}
-                  aria-describedby={errors.rollNumber ? 'rollNumber-error' : undefined}
                 />
-                {errors.rollNumber && (
-                  <p id="rollNumber-error" className="mt-1.5 text-xs text-rose-400 font-medium">
-                    {errors.rollNumber}
-                  </p>
+                {errors.email && (
+                  <p className="mt-1.5 text-xs text-rose-400 font-medium">{errors.email}</p>
                 )}
               </div>
 
-              {/* Branch / Year */}
+              {/* Phone Number */}
               <div>
-                <label htmlFor="branchYear" className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
-                  Branch / Year <span className="text-rose-400">*</span>
+                <label htmlFor="phone" className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
+                  Phone Number (WhatsApp / Calling) <span className="text-rose-400">*</span>
                 </label>
-                <select
-                  id="branchYear"
-                  value={formData.branchYear}
-                  onChange={(e) => handleChange('branchYear', e.target.value)}
-                  className={`w-full px-4 py-3 rounded-xl bg-[#090d16] border text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-colors ${
-                    errors.branchYear ? 'border-rose-500' : 'border-white/10 hover:border-white/20'
+                <input
+                  id="phone"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) => handleChange('phone', e.target.value)}
+                  placeholder="e.g. 9876543210"
+                  className={`w-full px-4 py-3 rounded-xl bg-[#090d16] border font-mono text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-colors ${
+                    errors.phone ? 'border-rose-500' : 'border-white/10 hover:border-white/20'
                   }`}
-                >
-                  {branches.map((b) => (
-                    <option key={b} value={b} className="bg-[#090d16] text-white">
-                      {b}
-                    </option>
-                  ))}
-                </select>
-                {errors.branchYear && (
-                  <p className="mt-1.5 text-xs text-rose-400 font-medium">
-                    {errors.branchYear}
-                  </p>
+                />
+                {errors.phone && (
+                  <p className="mt-1.5 text-xs text-rose-400 font-medium">{errors.phone}</p>
                 )}
               </div>
-
             </div>
 
-            {/* Field 4: GitHub or Portfolio URL */}
+            {/* Field: GitHub or Portfolio URL (Optional) */}
             <div>
               <label htmlFor="portfolioUrl" className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
-                GitHub or Portfolio URL <span className="text-rose-400">*</span>
+                GitHub / Portfolio URL <span className="text-slate-500 font-normal">(Optional)</span>
               </label>
               <input
                 id="portfolioUrl"
                 type="url"
                 value={formData.portfolioUrl}
                 onChange={(e) => handleChange('portfolioUrl', e.target.value)}
-                placeholder="https://github.com/username or https://portfolio.dev"
+                placeholder="https://github.com/yourhandle or https://portfolio.dev"
                 className={`w-full px-4 py-3 rounded-xl bg-[#090d16] border font-mono text-white placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-colors ${
                   errors.portfolioUrl ? 'border-rose-500' : 'border-white/10 hover:border-white/20'
                 }`}
-                aria-invalid={errors.portfolioUrl ? 'true' : 'false'}
-                aria-describedby={errors.portfolioUrl ? 'portfolioUrl-error' : undefined}
               />
               {errors.portfolioUrl && (
-                <p id="portfolioUrl-error" className="mt-1.5 text-xs text-rose-400 font-medium">
-                  {errors.portfolioUrl}
-                </p>
+                <p className="mt-1.5 text-xs text-rose-400 font-medium">{errors.portfolioUrl}</p>
               )}
             </div>
 
-            {/* Field 5: Food Preference (Radio) */}
+            {/* Field: Food Preference */}
             <div>
               <label className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
                 Food Preference (High-Tea & Lunch) <span className="text-rose-400">*</span>
@@ -342,25 +659,18 @@ export default function Registration({
                   </label>
                 ))}
               </div>
-              {errors.foodPreference && (
-                <p className="mt-1.5 text-xs text-rose-400 font-medium">
-                  {errors.foodPreference}
-                </p>
-              )}
             </div>
 
-            {/* Field 6: Track of Interest */}
+            {/* Field: Preferred Technical Track */}
             <div>
               <label htmlFor="track" className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-2">
-                Track of Interest <span className="text-rose-400">*</span>
+                Preferred Technical Track <span className="text-rose-400">*</span>
               </label>
               <select
                 id="track"
                 value={formData.track}
                 onChange={(e) => handleChange('track', e.target.value)}
-                className={`w-full px-4 py-3 rounded-xl bg-[#090d16] border text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-colors ${
-                  errors.track ? 'border-rose-500' : 'border-white/10 hover:border-white/20'
-                }`}
+                className="w-full px-4 py-3 rounded-xl bg-[#090d16] border border-white/10 text-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/50"
               >
                 {TRACKS_DATA.map((t) => (
                   <option key={t.id} value={t.title} className="bg-[#090d16] text-white">
@@ -368,14 +678,9 @@ export default function Registration({
                   </option>
                 ))}
               </select>
-              {errors.track && (
-                <p className="mt-1.5 text-xs text-rose-400 font-medium">
-                  {errors.track}
-                </p>
-              )}
             </div>
 
-            {/* Field 7: Required Consent Checkbox */}
+            {/* Field: Consent Checkbox */}
             <div className="pt-2">
               <label className="flex items-start gap-3 cursor-pointer group">
                 <input
@@ -385,13 +690,11 @@ export default function Registration({
                   className="mt-1 w-4 h-4 rounded text-blue-600 focus:ring-blue-500 bg-[#090d16] border-white/20"
                 />
                 <span className="text-xs sm:text-sm text-slate-300 group-hover:text-slate-200 leading-normal">
-                  I confirm that I will attend in-person on campus on November 28, 2026 at the Seminar Hall Complex. I understand this event does not offer virtual streaming or remote attendance.
+                  I confirm that I will attend in-person on campus on November 28, 2026 at the Seminar Hall Complex, Madan Mohan Malaviya University of Technology (MMMUT), Gorakhpur. I understand this event does not offer virtual streaming or remote attendance.
                 </span>
               </label>
               {errors.inPersonConsent && (
-                <p className="mt-1.5 text-xs text-rose-400 font-medium">
-                  {errors.inPersonConsent}
-                </p>
+                <p className="mt-1.5 text-xs text-rose-400 font-medium">{errors.inPersonConsent}</p>
               )}
             </div>
 
@@ -400,14 +703,18 @@ export default function Registration({
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl font-display font-semibold text-white bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 shadow-xl shadow-blue-600/30 border border-blue-400/30 transition-all duration-300 disabled:opacity-60 text-base"
+                className={`w-full flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl font-display font-semibold text-white shadow-xl transition-all duration-300 disabled:opacity-60 text-base ${
+                  category === 'MMMUT Student'
+                    ? 'bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 shadow-blue-600/30 border border-blue-400/30'
+                    : 'bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-500 hover:from-emerald-500 hover:to-teal-400 shadow-emerald-600/30 border border-emerald-400/30'
+                }`}
               >
                 {isSubmitting ? (
-                  <span>Generating Delegate Pass...</span>
+                  <span>Generating {category} Pass...</span>
                 ) : (
                   <>
                     <Send className="w-4 h-4" />
-                    <span>Complete In-Person Registration (Free)</span>
+                    <span>Submit {category} Registration (Free)</span>
                   </>
                 )}
               </button>
@@ -421,4 +728,3 @@ export default function Registration({
     </section>
   );
 }
-

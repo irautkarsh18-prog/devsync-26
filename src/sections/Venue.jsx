@@ -145,7 +145,7 @@ export default function Venue() {
 
                 {/* Main Gate waypoint */}
                 <circle cx="40" cy="200" r="8" fill="#10b981" />
-                <text x="40" y="225" fill="#34d399" fontSize="8" fontFamily="monospace" textAnchor="middle">Campus Gate</text>
+                <text x="40" y="225" fill="#34d399" fontSize="8" fontFamily="monospace" textAnchor="middle">MMMUT Gate</text>
 
                 {/* Courtyard Networking Area */}
                 <rect x="130" y="140" width="80" height="50" rx="6" fill="#0f172a" stroke="#8b5cf6" strokeWidth="1" strokeDasharray="2 2" />
