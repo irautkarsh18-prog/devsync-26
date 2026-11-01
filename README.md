@@ -134,6 +134,80 @@ npm run preview
 
 ---
 
+## ☁️ Deploying to Vercel
+
+The project is fully pre-configured for instant deployment on [Vercel](https://vercel.com). The repository includes [`vercel.json`](./vercel.json) which handles Single Page Application (SPA) rewrites (preventing 404 errors on page reload) and establishes immutable edge-caching headers for production assets.
+
+### Option A: Deploy via GitHub (Recommended)
+
+1. **Push your code to GitHub:**
+   ```bash
+   git remote add origin https://github.com/<your-username>/<your-repo-name>.git
+   git branch -M main
+   git push -u origin main
+   ```
+2. **Import into Vercel:**
+   - Go to [vercel.com/new](https://vercel.com/new).
+   - Select your GitHub repository.
+   - Vercel automatically detects **Vite**:
+     - **Framework Preset:** `Vite`
+     - **Build Command:** `npm run build`
+     - **Output Directory:** `dist`
+     - **Install Command:** `npm install`
+   - Click **Deploy**.
+
+---
+
+### Option B: Deploy via Vercel CLI
+
+1. **Install Vercel CLI (or run with npx):**
+   ```bash
+   npx vercel
+   ```
+2. **Follow the prompts:**
+   - Set up and deploy: `Y`
+   - Which scope: Select your personal or team account
+   - Link to existing project: `N`
+   - Project name: `devsync-26`
+   - In which directory is your code located: `./`
+   - Want to modify settings: `N` (auto-detected from `vercel.json`)
+3. **Deploy to production:**
+   ```bash
+   npx vercel --prod
+   ```
+
+---
+
+### ⚙️ Vercel Configuration Details (`vercel.json`)
+
+```json
+{
+  "framework": "vite",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ]
+}
+```
+
+---
+
 ## 🔒 Verification & Compliance Notes
 
 1. **In-Person Only:** The website explicitly states across all sections that DevSync '26 is 100% offline at the physical campus venue with no virtual attendance.
