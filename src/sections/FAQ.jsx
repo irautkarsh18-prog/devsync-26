@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { HelpCircle, ChevronDown, MessageSquare, Mail, ArrowUpRight } from 'lucide-react';
-import { GithubIcon, LinkedinIcon, InstagramIcon } from '../components/SocialIcons';
+import { LinkedinIcon, InstagramIcon } from '../components/SocialIcons';
 import { FAQ_DATA, OFFICIAL_CONTACT } from '../data/eventData';
 import { LegoStud } from '../components/LegoElements';
 
@@ -113,17 +113,6 @@ export default function FAQ() {
                           >
                             <LinkedinIcon className="w-3.5 h-3.5" />
                             <span>LinkedIn</span>
-                            <ArrowUpRight className="w-3 h-3" />
-                          </a>
-
-                          <a
-                            href={OFFICIAL_CONTACT.github[0].url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#00852B]/10 hover:bg-[#00852B]/20 text-[#00852B] border border-[#00852B]/30 text-xs font-mono font-bold transition-colors"
-                          >
-                            <GithubIcon className="w-3.5 h-3.5" />
-                            <span>GitHub</span>
                             <ArrowUpRight className="w-3 h-3" />
                           </a>
 

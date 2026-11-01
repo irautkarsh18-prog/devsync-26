@@ -375,16 +375,5 @@ export const OFFICIAL_CONTACT = {
       url: "https://www.linkedin.com/in/ira-utkarsh-83760a367"
     }
   ],
-  github: [
-    {
-      label: "GitHub Profile 1",
-      handle: "upasnaikm",
-      url: "https://github.com/upasnaikm"
-    },
-    {
-      label: "GitHub Profile 2",
-      handle: "irautakarsh18-prog",
-      url: "https://github.com/irautakarsh18-prog"
-    }
-  ]
+  github: []
 };

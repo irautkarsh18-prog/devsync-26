@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Mail, MapPin, ArrowRight, ArrowUpRight, ShieldAlert } from 'lucide-react';
-import { GithubIcon, LinkedinIcon, InstagramIcon } from './SocialIcons';
+import { LinkedinIcon, InstagramIcon } from './SocialIcons';
 import { OFFICIAL_CONTACT } from '../data/eventData';
 import { LegoGoogleBrickBar, LegoStud } from './LegoElements';
 
@@ -183,31 +183,6 @@ export default function Footer() {
                   >
                     <div className="flex items-center gap-1.5 min-w-0">
                       <LinkedinIcon className="w-3.5 h-3.5 text-[#006CB7] shrink-0" />
-                      <span className="truncate font-bold">{p.label}</span>
-                    </div>
-                    <ArrowUpRight className="w-3 h-3 text-slate-400 shrink-0 ml-1" />
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            {/* GitHub Profiles */}
-            <div className="pt-1 space-y-1.5">
-              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-600 block font-black">
-                GitHub Profiles:
-              </span>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono">
-                {OFFICIAL_CONTACT.github.map((p) => (
-                  <a
-                    key={p.url}
-                    href={p.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-between p-2 rounded-xl bg-white hover:bg-[#00852B]/10 border-2 border-[#00852B]/30 text-slate-800 transition-colors shadow-sm"
-                    title={`View @${p.handle} on GitHub`}
-                  >
-                    <div className="flex items-center gap-1.5 min-w-0">
-                      <GithubIcon className="w-3.5 h-3.5 text-[#00852B] shrink-0" />
                       <span className="truncate font-bold">{p.label}</span>
                     </div>
                     <ArrowUpRight className="w-3 h-3 text-slate-400 shrink-0 ml-1" />

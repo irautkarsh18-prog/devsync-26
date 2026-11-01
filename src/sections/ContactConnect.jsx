@@ -1,6 +1,6 @@
 import React from 'react';
 import { Mail, ArrowUpRight, MessageSquare } from 'lucide-react';
-import { GithubIcon, LinkedinIcon, InstagramIcon } from '../components/SocialIcons';
+import { LinkedinIcon, InstagramIcon } from '../components/SocialIcons';
 import { OFFICIAL_CONTACT } from '../data/eventData';
 import { LegoStudRow, LegoStud } from '../components/LegoElements';
 
@@ -27,8 +27,8 @@ export default function ContactConnect() {
           </p>
         </div>
 
-        {/* 4 Groups Grid - Styled as 4 Interlocking LEGO Bricks (Red, Yellow, Blue, Green) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* 3 Groups Grid - Styled as Interlocking LEGO Bricks (Red, Yellow, Blue) */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           
           {/* GROUP 1: Official Email (Red Brick) */}
           <div className="group rounded-3xl bg-white border-4 border-[#E53935] border-b-8 border-b-[#B71C1C] p-7 flex flex-col justify-between hover:scale-[1.01] transition-all duration-300 shadow-xl relative overflow-hidden">
@@ -173,57 +173,6 @@ export default function ContactConnect() {
                     </div>
                   </div>
                   <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover/link:text-[#006CB7] group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-all shrink-0 ml-2" />
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* GROUP 4: GitHub Profiles (Green Brick) */}
-          <div className="group rounded-3xl bg-white border-4 border-[#00852B] border-b-8 border-b-[#00551B] p-7 flex flex-col justify-between hover:scale-[1.01] transition-all duration-300 shadow-xl relative overflow-hidden">
-            <div className="absolute top-3 right-4 opacity-70 group-hover:opacity-100 transition-opacity">
-              <LegoStudRow count={4} color="green" size="sm" />
-            </div>
-
-            <div>
-              <div className="flex items-center justify-between mb-6">
-                <div className="w-12 h-12 rounded-xl bg-[#00852B]/15 border-2 border-[#00852B] flex items-center justify-center text-[#00852B] group-hover:scale-105 transition-transform shadow-sm">
-                  <GithubIcon className="w-6 h-6" />
-                </div>
-                <span className="text-[10px] font-mono uppercase tracking-wider text-[#00852B] bg-[#00852B]/15 px-2.5 py-1 rounded-md border border-[#00852B]/30 font-black mr-16">
-                  Open Source
-                </span>
-              </div>
-
-              <h3 className="text-xl font-black font-display text-[#252525] mb-2">
-                GitHub Profiles
-              </h3>
-
-              <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-sans mb-6">
-                Explore individual developer contributions, open-source repositories, and code portfolios.
-              </p>
-            </div>
-
-            <div className="pt-4 border-t-2 border-[#E8DCC4] space-y-3">
-              {OFFICIAL_CONTACT.github.map((profile) => (
-                <a
-                  key={profile.url}
-                  href={profile.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-between p-3 rounded-xl bg-[#FFF8E7] border-2 border-[#00852B]/30 border-b-4 border-b-[#00551B] hover:bg-[#00852B]/10 active:translate-y-0.5 transition-all group/git"
-                >
-                  <div className="flex items-center gap-2.5 min-w-0">
-                    <GithubIcon className="w-4 h-4 text-[#00852B] shrink-0" />
-                    <div>
-                      <div className="text-xs sm:text-sm font-black text-[#252525] group-hover/git:text-[#00852B] transition-colors">
-                        {profile.label}
-                      </div>
-                      <div className="text-[11px] font-mono text-slate-500 font-bold truncate">
-                        @{profile.handle}
-                      </div>
-                    </div>
-                  </div>
-                  <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover/git:text-[#00852B] group-hover/git:translate-x-0.5 group-hover/git:-translate-y-0.5 transition-all shrink-0 ml-2" />
                 </a>
               ))}
             </div>

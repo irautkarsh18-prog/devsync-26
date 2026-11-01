@@ -104,9 +104,6 @@
 - **LinkedIn Profiles:**
   - LinkedIn Profile 1: [upasna-882a223ab](https://www.linkedin.com/in/upasna-882a223ab)
   - LinkedIn Profile 2: [ira-utkarsh-83760a367](https://www.linkedin.com/in/ira-utkarsh-83760a367)
-- **GitHub Profiles:**
-  - GitHub Profile 1: [upasnaikm](https://github.com/upasnaikm)
-  - GitHub Profile 2: [irautakarsh18-prog](https://github.com/irautakarsh18-prog)
 
 ---
 
