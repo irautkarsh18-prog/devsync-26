@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Calendar, Clock, MapPin, Coffee, Presentation, Code2, Utensils, Zap, Trophy, Sparkles, Filter } from 'lucide-react';
 import { SCHEDULE_DATA } from '../data/eventData';
-import { LegoStud } from '../components/LegoElements';
+import { LegoStud, LegoCampusGatewayGraphic } from '../components/LegoElements';
 
 export default function Schedule() {
   const [filter, setFilter] = useState('All');
@@ -41,10 +41,15 @@ export default function Schedule() {
             An action-packed offline agenda structured around deep discussions, interactive code-alongs, and hands-on peer review.
           </p>
 
-          {/* Physical Venue Alert Pill */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white border-2 border-[#FFD500] border-b-3 border-b-[#C6A700] text-[#252525] text-xs font-mono font-bold shadow-sm">
-            <MapPin className="w-4 h-4 text-[#E53935] shrink-0" />
-            <span>All sessions conducted in-person at Seminar Hall Complex / Multi-Purpose Hall.</span>
+          {/* Physical Venue Alert Pill with MINIATURE LEGO STRUCTURE 3: Campus Gateway */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white border-2 border-[#FFD500] border-b-3 border-b-[#C6A700] text-[#252525] text-xs font-mono font-bold shadow-sm">
+              <MapPin className="w-4 h-4 text-[#E53935] shrink-0" />
+              <span>All sessions conducted in-person at Seminar Hall Complex / Multi-Purpose Hall.</span>
+            </div>
+            <div className="hidden lg:inline-flex items-center" title="MMMUT Campus Gateway">
+              <LegoCampusGatewayGraphic width={54} height={44} />
+            </div>
           </div>
         </div>
 

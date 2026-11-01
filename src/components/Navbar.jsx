@@ -101,21 +101,21 @@ export default function Navbar({ onOpenPass, registeredUser }) {
             className="group flex items-center gap-3 focus:outline-none rounded-xl p-1 transition-transform"
             aria-label="DevSync '26 Homepage by GDG MMMUT"
           >
-            {/* Custom 3D LEGO-style Stacked Brick Logo */}
-            <div className="relative w-10 h-10 flex items-center justify-center rounded-xl bg-white border-2 border-[#E8DCC4] p-1 shadow-[0_3px_0_#D5C7AB] group-hover:translate-y-[-1px] transition-all duration-200">
-              <div className="grid grid-cols-2 gap-1 w-full h-full p-0.5">
+            {/* Custom 3D LEGO-style Stacked Brick Logo (Enlarged 25%) */}
+            <div className="relative w-12 h-12 flex items-center justify-center rounded-xl bg-white border-2 border-[#E8DCC4] p-1.5 shadow-[0_4px_0_#D5C7AB] group-hover:translate-y-[-1px] transition-all duration-200 shrink-0">
+              <div className="grid grid-cols-2 gap-1.5 w-full h-full p-0.5">
                 {/* 4 Colored LEGO Studs in Logo */}
                 <div className="rounded-full bg-[#006CB7] shadow-[inset_0_1px_1px_rgba(255,255,255,0.7)] flex items-center justify-center">
-                  <div className="w-1 h-1 rounded-full bg-white/50" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-white/60" />
                 </div>
                 <div className="rounded-full bg-[#E53935] shadow-[inset_0_1px_1px_rgba(255,255,255,0.7)] flex items-center justify-center">
-                  <div className="w-1 h-1 rounded-full bg-white/50" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-white/60" />
                 </div>
                 <div className="rounded-full bg-[#FFD500] shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)] flex items-center justify-center">
-                  <div className="w-1 h-1 rounded-full bg-white/60" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-white/70" />
                 </div>
                 <div className="rounded-full bg-[#00852B] shadow-[inset_0_1px_1px_rgba(255,255,255,0.7)] flex items-center justify-center">
-                  <div className="w-1 h-1 rounded-full bg-white/50" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-white/60" />
                 </div>
               </div>
             </div>

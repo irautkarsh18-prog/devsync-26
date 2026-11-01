@@ -142,11 +142,15 @@ export default function App() {
     setIsLoading(false);
     try {
       const hasWelcomed = sessionStorage.getItem('devsync_26_welcomed');
-      if (!hasWelcomed && !registeredAttendee) {
-        setIsWelcomeModalOpen(true);
+      if (!hasWelcomed) {
+        setTimeout(() => {
+          setIsWelcomeModalOpen(true);
+        }, 120);
       }
     } catch (e) {
-      setIsWelcomeModalOpen(true);
+      setTimeout(() => {
+        setIsWelcomeModalOpen(true);
+      }, 120);
     }
   };
 

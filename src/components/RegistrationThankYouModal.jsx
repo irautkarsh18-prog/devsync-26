@@ -130,3 +130,4 @@ export default function RegistrationThankYouModal({ isOpen, onClose, attendee, o
     </div>
   );
 }
+

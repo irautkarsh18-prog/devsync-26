@@ -221,10 +221,10 @@ export default function Registration({
       
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header with LEGO Robot 3 */}
+        {/* Section Header with LEGO Robot 2 (Brick-Built Floating Mascot) */}
         <div className="text-center mb-12 sm:mb-16">
           <div className="flex justify-center mb-4">
-            <LegoRobotGraphic pose="celebrating" size={80} />
+            <LegoRobotGraphic pose="floating" size={76} />
           </div>
 
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-black bg-white text-[#E53935] border-2 border-[#E53935] mb-4 shadow-sm">

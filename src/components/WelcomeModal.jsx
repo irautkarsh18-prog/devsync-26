@@ -28,7 +28,7 @@ export default function WelcomeModal({ isOpen, onClose, onRegisterClick }) {
 
   return (
     <div 
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200"
+      className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200"
       onClick={onClose}
     >
       <div 
@@ -64,8 +64,9 @@ export default function WelcomeModal({ isOpen, onClose, onRegisterClick }) {
             </div>
           </div>
           
-          <div className="hidden sm:block">
-            <LegoBrickGraphic color="red" width={48} height={36} />
+          <div className="hidden sm:flex items-center gap-2">
+            <LegoBrickGraphic color="red" width={40} height={30} />
+            <LegoBrickGraphic color="blue" width={40} height={30} />
           </div>
         </div>
 

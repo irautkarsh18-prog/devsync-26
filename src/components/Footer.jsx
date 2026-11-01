@@ -47,12 +47,20 @@ export default function Footer() {
             
             {/* Logo */}
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-white border-2 border-[#E8DCC4] flex flex-col items-center justify-center p-1 shadow-sm">
-                <div className="grid grid-cols-2 gap-1">
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#006CB7]" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#E53935]" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#FFD500]" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#00852B]" />
+              <div className="w-12 h-12 rounded-xl bg-white border-2 border-[#E8DCC4] flex flex-col items-center justify-center p-1.5 shadow-[0_3px_0_#D5C7AB] shrink-0">
+                <div className="grid grid-cols-2 gap-1.5 w-full h-full p-0.5">
+                  <div className="rounded-full bg-[#006CB7] flex items-center justify-center shadow-inner">
+                    <div className="w-1.5 h-1.5 rounded-full bg-white/60" />
+                  </div>
+                  <div className="rounded-full bg-[#E53935] flex items-center justify-center shadow-inner">
+                    <div className="w-1.5 h-1.5 rounded-full bg-white/60" />
+                  </div>
+                  <div className="rounded-full bg-[#FFD500] flex items-center justify-center shadow-inner">
+                    <div className="w-1.5 h-1.5 rounded-full bg-white/70" />
+                  </div>
+                  <div className="rounded-full bg-[#00852B] flex items-center justify-center shadow-inner">
+                    <div className="w-1.5 h-1.5 rounded-full bg-white/60" />
+                  </div>
                 </div>
               </div>
               <div>

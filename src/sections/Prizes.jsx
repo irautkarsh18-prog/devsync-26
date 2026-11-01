@@ -1,7 +1,7 @@
 import React from 'react';
 import { Trophy, Award, Gift, Sparkles, Check } from 'lucide-react';
 import { PRIZES_DATA } from '../data/eventData';
-import { LegoStudRow, LegoTrophyGraphic } from '../components/LegoElements';
+import { LegoStudRow, LegoTrophyGraphic, LegoBrickStackGraphic } from '../components/LegoElements';
 
 export default function Prizes() {
   const prizeBrickStyles = [
@@ -33,11 +33,17 @@ export default function Prizes() {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header */}
+        {/* Section Header with MINIATURE LEGO STRUCTURE 4: Colorful Brick Stack */}
         <div className="max-w-3xl mx-auto text-center mb-16 sm:mb-20">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-black bg-white text-[#E53935] border-2 border-[#E53935] mb-4 shadow-sm">
-            <Trophy className="w-4 h-4 text-[#FFD500]" />
-            <span>RECOGNITION & PARTICIPATION MERIT</span>
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-mono font-black bg-white text-[#E53935] border-2 border-[#E53935] shadow-sm">
+              <Trophy className="w-4 h-4 text-[#FFD500]" />
+              <span>RECOGNITION & PARTICIPATION MERIT</span>
+            </div>
+            {/* MINIATURE LEGO STRUCTURE 4: Colorful Brick Stack */}
+            <div className="hidden sm:inline-block" title="LEGO Brick Trophy Stack">
+              <LegoBrickStackGraphic width={42} height={36} />
+            </div>
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-black font-display tracking-tight text-[#252525] mb-6">

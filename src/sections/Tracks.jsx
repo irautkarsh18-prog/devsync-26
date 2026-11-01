@@ -1,7 +1,7 @@
 import React from 'react';
 import { Layout, Server, Terminal, ArrowRight, Layers, CheckCircle, Sparkles } from 'lucide-react';
 import { TRACKS_DATA } from '../data/eventData';
-import { LegoStudRow, LegoStud, LegoRobotGraphic } from '../components/LegoElements';
+import { LegoStudRow, LegoStud, LegoRobotGraphic, LegoWorkstationGraphic } from '../components/LegoElements';
 
 export default function Tracks({ onSelectTrack }) {
   const iconMap = {
@@ -39,17 +39,24 @@ export default function Tracks({ onSelectTrack }) {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header with VISIBLE LEGO ROBOT 2 */}
+        {/* Section Header with VISIBLE LEGO ROBOT 2 & Brick Workstation */}
         <div className="max-w-3xl mx-auto text-center mb-16 sm:mb-20 relative">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold bg-white text-[#252525] border-2 border-[#E8DCC4] border-b-2 border-b-[#D5C7AB] mb-4 shadow-sm">
-            <Layers className="w-3.5 h-3.5 text-[#006CB7]" />
-            <span>CURATED TECHNICAL BREAKDOWNS</span>
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-4">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-mono font-bold bg-white text-[#252525] border-2 border-[#E8DCC4] border-b-2 border-b-[#D5C7AB] shadow-sm">
+              <Layers className="w-3.5 h-3.5 text-[#006CB7]" />
+              <span>CURATED TECHNICAL BREAKDOWNS</span>
+            </div>
+            {/* MINIATURE LEGO STRUCTURE 2: Brick Workstation */}
+            <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-xl bg-white border border-[#E8DCC4] shadow-sm">
+              <LegoWorkstationGraphic width={44} height={36} />
+              <span className="text-[11px] font-mono font-bold text-slate-600">Brick Workstation</span>
+            </div>
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-extrabold font-display tracking-tight text-[#252525] mb-6 flex items-center justify-center gap-3">
             <span>Explore Your Technical Playground.</span>
-            {/* VISIBLE LEGO ROBOT 2: Coding Robot */}
-            <span className="hidden sm:inline-block animate-bounce">
+            {/* VISIBLE LEGO ROBOT 2: Coding Robot with Brick Build */}
+            <span className="hidden sm:inline-block">
               <LegoRobotGraphic pose="coding" size={56} />
             </span>
           </h2>

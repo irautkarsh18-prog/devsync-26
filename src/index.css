@@ -197,3 +197,58 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+
+/* Subtle LEGO Animations */
+@keyframes lego-wave {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-18deg);
+  }
+  50% {
+    transform: rotate(8deg);
+  }
+  75% {
+    transform: rotate(-14deg);
+  }
+}
+
+.animate-lego-wave {
+  animation: lego-wave 2.2s ease-in-out infinite;
+  transform-origin: 75% 45%;
+}
+
+@keyframes lego-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(1.5deg);
+  }
+}
+
+.animate-lego-float {
+  animation: lego-float 4s ease-in-out infinite;
+}
+
+@keyframes lego-head-turn {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  40% {
+    transform: rotate(5deg);
+  }
+  60% {
+    transform: rotate(-5deg);
+  }
+  80% {
+    transform: rotate(0deg);
+  }
+}
+
+.animate-lego-head {
+  animation: lego-head-turn 5s ease-in-out infinite;
+  transform-origin: 50% 30%;
+}

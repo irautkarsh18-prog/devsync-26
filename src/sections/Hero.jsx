@@ -3,7 +3,7 @@ import { Calendar, Users, MapPin, Ticket, ArrowRight, Sparkles, Terminal, Shield
 import { EVENT_DETAILS, GDG_COLORS } from '../data/eventData';
 import CountdownTimer from '../components/CountdownTimer';
 import HeroVisual from '../components/HeroVisual';
-import { FloatingLegoBrick, LegoStud, LegoRobotGraphic, LegoCampusBuildingGraphic } from '../components/LegoElements';
+import { FloatingLegoBrick, LegoStud, LegoRobotGraphic, LegoCampusBuildingGraphic, LegoRocketGraphic } from '../components/LegoElements';
 
 export default function Hero({ registeredCount, onRegisterClick, onScheduleClick }) {
   const seatsRemaining = Math.max(0, EVENT_DETAILS.capacity - registeredCount);
@@ -71,14 +71,14 @@ export default function Hero({ registeredCount, onRegisterClick, onScheduleClick
           {/* Left / Top Text Column */}
           <div className="lg:col-span-7 text-center lg:text-left space-y-6">
             
-            {/* 3D LEGO-Style DevSync '26 Title Badge with Visible LEGO Robot Mascot 1 */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4">
+            {/* 3D LEGO-Style DevSync '26 Title Badge with Visible LEGO Robot Mascot 1 & Rocket */}
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3.5">
               <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-2xl bg-white border-2 border-[#E8DCC4] border-b-4 border-b-[#D5C7AB] shadow-md">
                 <div className="flex items-center gap-1.5">
                   <LegoStud color="blue" size="sm" />
                   <LegoStud color="red" size="sm" />
                 </div>
-                <span className="font-display font-extrabold text-xl sm:text-2xl text-[#252525] tracking-tight">
+                <span className="font-display font-black text-2xl sm:text-3xl text-[#252525] tracking-tight">
                   DevSync <span className="text-[#006CB7] font-mono">'26</span>
                 </span>
                 <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-slate-500 border-l border-slate-300 pl-2.5 hidden sm:inline">
@@ -90,10 +90,15 @@ export default function Hero({ registeredCount, onRegisterClick, onScheduleClick
                 </div>
               </div>
 
-              {/* VISIBLE LEGO ROBOT 1: Hero Waving Robot Mascot */}
-              <div className="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-2xl bg-[#FFF59D] border-2 border-[#FFD500] border-b-4 border-b-[#C6A700] shadow-sm animate-bounce">
-                <LegoRobotGraphic pose="waving" size={44} />
-                <span className="text-xs font-mono font-bold text-[#252525]">Hi, Builder!</span>
+              {/* VISIBLE LEGO ROBOT 1: Brick-Built Waving Robot Mascot */}
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-2xl bg-[#FFF59D] border-2 border-[#FFD500] border-b-4 border-b-[#C6A700] shadow-sm">
+                <LegoRobotGraphic pose="waving" size={48} />
+                <span className="text-xs font-mono font-black text-[#252525]">Hi, Builder!</span>
+              </div>
+
+              {/* MINIATURE LEGO STRUCTURE 1: Retro Space Rocket */}
+              <div className="hidden lg:inline-flex items-center" title="LEGO Space Exploration">
+                <LegoRocketGraphic width={44} height={60} className="animate-lego-float" />
               </div>
             </div>
 
@@ -102,7 +107,8 @@ export default function Hero({ registeredCount, onRegisterClick, onScheduleClick
               <span>Madan Mohan Malaviya University of Technology, Gorakhpur</span>
             </div>
 
-            <h1 className="text-4xl sm:text-6xl xl:text-7xl font-extrabold font-display tracking-tight text-[#252525] leading-[1.08]">
+            {/* Reduced 10-15% in size for perfect visual hierarchy */}
+            <h1 className="text-3xl sm:text-5xl xl:text-6xl font-extrabold font-display tracking-tight text-[#252525] leading-[1.12]">
               Where Developers <br className="hidden sm:inline" />
               <span className="gradient-text">Connect, Create</span> & <br className="hidden sm:inline" />
               <span className="gradient-text-blue">Collaborate.</span>
