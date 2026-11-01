@@ -1,7 +1,7 @@
 import React from 'react';
 import { Trophy, Award, Gift, Sparkles, Check, CheckCircle2 } from 'lucide-react';
 import { PRIZES_DATA } from '../data/eventData';
-import { LegoStudRow } from '../components/LegoElements';
+import { LegoStudRow, LegoTrophyGraphic } from '../components/LegoElements';
 
 export default function Prizes() {
   const prizeBrickStyles = [
@@ -77,8 +77,8 @@ export default function Prizes() {
                     <div className="text-xs font-mono font-bold uppercase tracking-wider text-slate-400">
                       {prize.category}
                     </div>
-                    <div className={`p-3 rounded-2xl border ${style.iconBox}`}>
-                      {idx === 0 ? <Trophy className="w-6 h-6" /> : idx === 1 ? <Award className="w-6 h-6" /> : <Gift className="w-6 h-6" />}
+                    <div className={`p-2.5 rounded-2xl border flex items-center justify-center ${style.iconBox}`}>
+                      {idx === 0 ? <LegoTrophyGraphic width={36} height={36} /> : idx === 1 ? <Award className="w-6 h-6" /> : <Gift className="w-6 h-6" />}
                     </div>
                   </div>
 

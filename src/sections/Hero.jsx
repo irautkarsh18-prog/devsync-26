@@ -71,6 +71,26 @@ export default function Hero({ registeredCount, onRegisterClick, onScheduleClick
           {/* Left / Top Text Column */}
           <div className="lg:col-span-7 text-center lg:text-left space-y-6">
             
+            {/* 3D LEGO-Style DevSync '26 Title Badge */}
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3">
+              <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-2xl bg-[#111626] border-2 border-white/20 border-b-4 border-b-black/80 shadow-2xl">
+                <div className="flex items-center gap-1.5">
+                  <LegoStud color="blue" size="sm" />
+                  <LegoStud color="red" size="sm" />
+                </div>
+                <span className="font-display font-extrabold text-lg sm:text-xl text-white tracking-tight">
+                  DevSync <span className="text-lego-yellow font-mono">'26</span>
+                </span>
+                <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400 border-l border-white/10 pl-2.5 hidden sm:inline">
+                  OFFLINE DEV GATHERING
+                </span>
+                <div className="flex items-center gap-1.5">
+                  <LegoStud color="yellow" size="sm" />
+                  <LegoStud color="green" size="sm" />
+                </div>
+              </div>
+            </div>
+
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#141924] border border-[#2b3548] border-b-2 border-b-[#090d14] text-xs font-mono text-slate-300 font-semibold shadow-sm">
               <span className="w-2 h-2 rounded-full bg-[#ffd500] animate-pulse" />
               <span>Madan Mohan Malaviya University of Technology, Gorakhpur</span>

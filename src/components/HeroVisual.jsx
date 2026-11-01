@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Terminal, Code, Cpu, Wifi, Sparkles, CheckCircle2, Play, Circle, Layers } from 'lucide-react';
-import { LegoStud, LegoGoogleBrickBar, FloatingLegoBrick } from './LegoElements';
+import { LegoStud, LegoGoogleBrickBar, FloatingLegoBrick, LegoMinifigDeveloperGraphic } from './LegoElements';
 
 export default function HeroVisual() {
   const [activeTab, setActiveTab] = useState('config');
@@ -183,6 +183,14 @@ export default function HeroVisual() {
           <div className="text-xs font-bold font-display text-white">100% In-Person</div>
           <div className="text-[10px] font-mono text-slate-400">Zero Virtual Streaming</div>
         </div>
+      </div>
+
+      {/* 3D LEGO Minifigure Developer Mascot */}
+      <div 
+        className="hidden lg:block absolute -bottom-8 -right-8 z-30 transition-transform duration-300 hover:scale-110 hover:-rotate-3"
+        title="DevSync '26 LEGO Developer Mascot"
+      >
+        <LegoMinifigDeveloperGraphic width={78} height={98} />
       </div>
     </div>
   );

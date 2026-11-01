@@ -92,3 +92,4 @@ export default function WelcomeModal({ isOpen, onClose, onRegisterClick }) {
     </div>
   );
 }
+
