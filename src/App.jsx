@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import TicketModal from './components/TicketModal';
+import WelcomeModal from './components/WelcomeModal';
+import LoadingScreen from './components/LoadingScreen';
 import BackToTop from './components/BackToTop';
 import Hero from './sections/Hero';
 import About from './sections/About';
@@ -110,6 +112,8 @@ function HomePage({
 }
 
 export default function App() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [isWelcomeModalOpen, setIsWelcomeModalOpen] = useState(false);
   const [registeredAttendee, setRegisteredAttendee] = useState(null);
   const [registeredCount, setRegisteredCount] = useState(EVENT_DETAILS.initialRegistered);
   const [selectedTrackPref, setSelectedTrackPref] = useState(null);
@@ -127,10 +131,25 @@ export default function App() {
       if (allRegs.length > 0) {
         setRegisteredCount(Math.min(EVENT_DETAILS.capacity, EVENT_DETAILS.initialRegistered + allRegs.length));
       }
+
+      const hasWelcomed = sessionStorage.getItem('devsync_26_welcomed');
+      if (!hasWelcomed && !savedTicket) {
+        const timer = setTimeout(() => {
+          setIsWelcomeModalOpen(true);
+        }, 1200);
+        return () => clearTimeout(timer);
+      }
     } catch (e) {
       console.warn('LocalStorage access warning:', e);
     }
   }, []);
+
+  const handleCloseWelcome = () => {
+    setIsWelcomeModalOpen(false);
+    try {
+      sessionStorage.setItem('devsync_26_welcomed', 'true');
+    } catch (e) {}
+  };
 
   const handleRegisterSuccess = (newAttendee) => {
     setRegisteredAttendee(newAttendee);
@@ -210,6 +229,25 @@ export default function App() {
           } 
         />
       </Routes>
+
+      {/* Initial LEGO Brick Loading Screen */}
+      {isLoading && (
+        <LoadingScreen onFinish={() => setIsLoading(false)} />
+      )}
+
+      {/* Global Welcome Modal */}
+      <WelcomeModal
+        isOpen={isWelcomeModalOpen}
+        onClose={handleCloseWelcome}
+        onRegisterClick={() => {
+          handleCloseWelcome();
+          const el = document.getElementById('register');
+          if (el) {
+            const top = el.getBoundingClientRect().top + window.scrollY - 80;
+            window.scrollTo({ top, behavior: 'smooth' });
+          }
+        }}
+      />
 
       {/* Global Ticket Pass Modal */}
       <TicketModal 
