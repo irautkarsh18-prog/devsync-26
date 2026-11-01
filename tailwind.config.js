@@ -26,6 +26,20 @@ export default {
           cyan: '#06b6d4',
           violet: '#8b5cf6',
           purple: '#a855f7',
+        },
+        lego: {
+          red: '#e3000b',
+          'red-dark': '#8f0007',
+          blue: '#0055bf',
+          'blue-dark': '#003373',
+          yellow: '#ffd500',
+          'yellow-dark': '#a38200',
+          green: '#00852b',
+          'green-dark': '#004d19',
+          orange: '#ff7e14',
+          dark: '#0b0e14',
+          card: '#111520',
+          plate: '#181e2b',
         }
       },
       backgroundImage: {

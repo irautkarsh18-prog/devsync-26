@@ -12,60 +12,187 @@
   }
   
   body {
-    background-color: #090b10;
+    background-color: #0b0e14;
     color: #f1f5f9;
     font-family: 'Inter', system-ui, sans-serif;
   }
 }
 
-/* Custom scrollbar */
+/* Custom LEGO brick scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #090b10;
+  background: #090c12;
 }
 ::-webkit-scrollbar-thumb {
   background: #1e293b;
   border-radius: 4px;
+  border: 2px solid #090c12;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: #0055bf;
 }
 
-/* Glassmorphism utility */
-.glass-panel {
-  background: rgba(13, 17, 26, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+/* LEGO Baseplate Background Texture */
+.lego-baseplate-pattern {
+  background-color: #0b0e14;
+  background-image: 
+    radial-gradient(circle at 12px 12px, rgba(255, 255, 255, 0.06) 3px, transparent 3.5px),
+    radial-gradient(circle at 12px 13px, rgba(0, 0, 0, 0.5) 3.5px, transparent 4px);
+  background-size: 24px 24px;
 }
 
-.glass-panel-glow {
-  background: rgba(15, 23, 42, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(59, 130, 246, 0.2);
-  box-shadow: 0 0 25px -5px rgba(59, 130, 246, 0.15);
+/* LEGO Brick Tactile 3D Buttons */
+.lego-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.15s ease-in-out;
+}
+
+.lego-btn-blue {
+  background: linear-gradient(180deg, #2b7fff 0%, #0055bf 100%);
+  border: 1px solid #4d94ff;
+  border-bottom: 4px solid #003373;
+  box-shadow: 0 4px 12px rgba(0, 85, 191, 0.35);
+  transition: all 0.15s ease-in-out;
+}
+.lego-btn-blue:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 85, 191, 0.5);
+}
+.lego-btn-blue:active {
+  transform: translateY(2px);
+  border-bottom-width: 2px;
+  box-shadow: 0 2px 6px rgba(0, 85, 191, 0.3);
+}
+
+.lego-btn-red {
+  background: linear-gradient(180deg, #ff4d55 0%, #e3000b 100%);
+  border: 1px solid #ff7077;
+  border-bottom: 4px solid #8f0007;
+  box-shadow: 0 4px 12px rgba(227, 0, 11, 0.35);
+  transition: all 0.15s ease-in-out;
+}
+.lego-btn-red:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(227, 0, 11, 0.5);
+}
+.lego-btn-red:active {
+  transform: translateY(2px);
+  border-bottom-width: 2px;
+  box-shadow: 0 2px 6px rgba(227, 0, 11, 0.3);
+}
+
+.lego-btn-yellow {
+  background: linear-gradient(180deg, #ffe566 0%, #ffd500 100%);
+  border: 1px solid #ffeb80;
+  border-bottom: 4px solid #a38200;
+  color: #1a1600;
+  box-shadow: 0 4px 12px rgba(255, 213, 0, 0.35);
+  transition: all 0.15s ease-in-out;
+}
+.lego-btn-yellow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 213, 0, 0.5);
+}
+.lego-btn-yellow:active {
+  transform: translateY(2px);
+  border-bottom-width: 2px;
+  box-shadow: 0 2px 6px rgba(255, 213, 0, 0.3);
+}
+
+.lego-btn-green {
+  background: linear-gradient(180deg, #10b542 0%, #00852b 100%);
+  border: 1px solid #28c959;
+  border-bottom: 4px solid #004d19;
+  box-shadow: 0 4px 12px rgba(0, 133, 43, 0.35);
+  transition: all 0.15s ease-in-out;
+}
+.lego-btn-green:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 133, 43, 0.5);
+}
+.lego-btn-green:active {
+  transform: translateY(2px);
+  border-bottom-width: 2px;
+  box-shadow: 0 2px 6px rgba(0, 133, 43, 0.3);
+}
+
+.lego-btn-dark {
+  background: linear-gradient(180deg, #1e2636 0%, #121722 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 4px solid #090c12;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: all 0.15s ease-in-out;
+}
+.lego-btn-dark:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(180deg, #273145 0%, #171d2b 100%);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.lego-btn-dark:active {
+  transform: translateY(2px);
+  border-bottom-width: 2px;
+}
+
+/* LEGO Card with 3D Depth & Plastic Lip */
+.lego-card {
+  background: #111520;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 4px solid rgba(0, 0, 0, 0.6);
+  border-radius: 1.25rem;
+  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.5);
+  transition: all 0.25s ease-in-out;
+}
+.lego-card:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 30px -4px rgba(0, 0, 0, 0.6);
+}
+
+/* LEGO Form Input */
+.lego-input {
+  background-color: #0c0f17;
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 3px solid rgba(0, 0, 0, 0.5);
+  border-radius: 0.75rem;
+  transition: all 0.15s ease-in-out;
+}
+.lego-input:focus {
+  outline: none;
+  border-color: #0055bf;
+  border-bottom-color: #003882;
+  box-shadow: 0 0 0 3px rgba(0, 85, 191, 0.25);
+}
+
+/* LEGO Colored Glow Utility */
+.lego-glow-red {
+  box-shadow: 0 0 25px -4px rgba(227, 0, 11, 0.3);
+}
+.lego-glow-blue {
+  box-shadow: 0 0 25px -4px rgba(0, 85, 191, 0.3);
+}
+.lego-glow-yellow {
+  box-shadow: 0 0 25px -4px rgba(255, 213, 0, 0.25);
+}
+.lego-glow-green {
+  box-shadow: 0 0 25px -4px rgba(0, 133, 43, 0.3);
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #ffffff 20%, #93c5fd 60%, #c084fc 100%);
+  background: linear-gradient(135deg, #ffffff 20%, #ffd500 60%, #ff7e14 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .gradient-text-blue {
-  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #8b5cf6 100%);
+  background: linear-gradient(135deg, #60a5fa 0%, #0055bf 50%, #e3000b 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
-.mesh-glow {
-  position: absolute;
-  border-radius: 9999px;
-  filter: blur(80px);
-  opacity: 0.25;
-  pointer-events: none;
-}
-

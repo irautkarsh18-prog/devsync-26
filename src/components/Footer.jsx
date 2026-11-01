@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Mail, MapPin, ArrowRight, ArrowUpRight, ShieldAlert } from 'lucide-react';
 import { GithubIcon, LinkedinIcon, InstagramIcon } from './SocialIcons';
 import { EVENT_DETAILS, OFFICIAL_CONTACT } from '../data/eventData';
+import { LegoGoogleBrickBar, LegoStud } from './LegoElements';
 
 export default function Footer() {
   const quickLinks = [
@@ -29,38 +30,34 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative bg-[#06080d] border-t border-white/10 text-slate-400 font-sans pt-16 pb-12 overflow-hidden">
+    <footer className="relative bg-[#06070b] border-t-4 border-white/10 text-slate-400 font-sans pt-16 pb-12 overflow-hidden">
       
-      {/* Google Colored Ambient Line */}
-      <div className="absolute top-0 inset-x-0 h-[2px] flex">
-        <div className="flex-1 bg-[#4285F4]" />
-        <div className="flex-1 bg-[#EA4335]" />
-        <div className="flex-1 bg-[#FBBC05]" />
-        <div className="flex-1 bg-[#34A853]" />
+      {/* 4-Color Interlocking LEGO Brick Top Border */}
+      <div className="absolute top-0 inset-x-0">
+        <LegoGoogleBrickBar />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-2">
         
         {/* Main Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b border-white/5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b border-white/10">
           
           {/* Col 1: Identity & Description (4 cols) */}
           <div className="lg:col-span-4 space-y-4">
             
             {/* Logo */}
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 via-indigo-600 to-emerald-600 p-[1.5px] shadow-lg shadow-blue-500/20">
-                <div className="w-full h-full bg-[#090b10] rounded-[10px] flex items-center justify-center">
-                  <svg className="w-4 h-4 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="m16 18 6-6-6-6" />
-                    <path d="M8 6 2 12l6 6" />
-                    <path d="m14 4-4 16" />
-                  </svg>
+              <div className="w-10 h-10 rounded-xl bg-[#0e121e] border-2 border-lego-blue flex flex-col items-center justify-center p-1 shadow-md">
+                <div className="grid grid-cols-2 gap-1">
+                  <div className="w-2.5 h-2.5 rounded-full bg-lego-blue" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-lego-red" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-lego-yellow" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-lego-green" />
                 </div>
               </div>
               <div>
                 <span className="font-display font-extrabold text-xl text-white tracking-tight">
-                  DevSync <span className="text-blue-400 font-mono">'26</span>
+                  DevSync <span className="text-lego-blue font-mono">'26</span>
                 </span>
                 <div className="text-[11px] font-mono text-emerald-400 flex items-center gap-1 font-semibold">
                   <span>Organised by GDG MMMUT</span>
@@ -73,7 +70,7 @@ export default function Footer() {
             </p>
 
             <div className="space-y-1 text-xs font-mono text-slate-400 pt-1">
-              <div className="flex items-center gap-2 text-cyan-400">
+              <div className="flex items-center gap-2 text-lego-yellow">
                 <MapPin className="w-3.5 h-3.5 shrink-0" />
                 <span>Seminar Hall Complex, MMMUT Gorakhpur, UP</span>
               </div>
@@ -85,7 +82,7 @@ export default function Footer() {
             <div className="pt-2">
               <Link
                 to="/about-gdg"
-                className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-blue-400 hover:text-blue-300 transition-colors"
+                className="inline-flex items-center gap-1.5 text-xs font-mono font-semibold text-lego-blue hover:text-blue-300 transition-colors"
               >
                 <span>Read more about GDG MMMUT</span>
                 <ArrowRight className="w-3 h-3" />
@@ -96,8 +93,9 @@ export default function Footer() {
 
           {/* Col 2: Quick Navigation (4 cols) */}
           <div className="lg:col-span-4 space-y-3">
-            <div className="text-xs font-mono uppercase tracking-wider text-slate-200 font-semibold">
-              Event Navigation
+            <div className="text-xs font-mono uppercase tracking-wider text-slate-200 font-bold flex items-center gap-2">
+              <LegoStud color="blue" size="sm" />
+              <span>Event Navigation</span>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
               {quickLinks.map((item) => (
@@ -112,27 +110,29 @@ export default function Footer() {
               ))}
               <Link
                 to="/about-gdg"
-                className="text-cyan-300 hover:text-cyan-200 transition-colors py-1 font-medium truncate"
+                className="text-amber-400 hover:text-amber-300 transition-colors py-1 font-semibold truncate flex items-center gap-1"
               >
-                About GDG MMMUT →
+                <span>About GDG MMMUT</span>
+                <ArrowRight className="w-3 h-3" />
               </Link>
             </div>
           </div>
 
           {/* Col 3: Official Contact & Social Media Profiles (4 cols) */}
           <div className="lg:col-span-4 space-y-4">
-            <div className="text-xs font-mono uppercase tracking-wider text-slate-200 font-semibold">
-              Official Contact & Socials
+            <div className="text-xs font-mono uppercase tracking-wider text-slate-200 font-bold flex items-center gap-2">
+              <LegoStud color="yellow" size="sm" />
+              <span>Official Contact & Socials</span>
             </div>
 
             {/* Clickable Email */}
             <div className="space-y-1.5">
-              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block font-semibold">
                 Official Contact Email:
               </span>
               <a
                 href={OFFICIAL_CONTACT.emailMailto}
-                className="inline-flex items-center gap-2 text-xs font-mono text-blue-400 hover:text-blue-300 hover:underline transition-colors break-all"
+                className="inline-flex items-center gap-2 text-xs font-mono text-red-400 hover:text-red-300 hover:underline transition-colors break-all"
                 title="Compose an email to DevSync '26"
               >
                 <Mail className="w-3.5 h-3.5 shrink-0" />
@@ -142,14 +142,14 @@ export default function Footer() {
 
             {/* Official Instagram */}
             <div className="pt-1 space-y-1">
-              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block font-semibold">
                 Official Instagram:
               </span>
               <a
                 href={OFFICIAL_CONTACT.instagram.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-pink-500/10 hover:bg-pink-500/20 text-pink-300 border border-pink-500/30 text-xs font-mono font-medium transition-colors"
+                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-mono font-medium transition-colors"
                 title="Follow us on Instagram (@devsync2026)"
               >
                 <InstagramIcon className="w-3.5 h-3.5" />
@@ -160,7 +160,7 @@ export default function Footer() {
 
             {/* LinkedIn Profiles */}
             <div className="pt-1 space-y-1.5">
-              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block font-semibold">
                 LinkedIn Profiles:
               </span>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono">
@@ -170,7 +170,7 @@ export default function Footer() {
                     href={p.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between p-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white transition-colors"
+                    className="flex items-center justify-between p-2 rounded-xl bg-[#111420] hover:bg-[#161a29] border border-blue-500/20 text-slate-300 hover:text-white transition-colors"
                     title={`Connect with ${p.name} on LinkedIn`}
                   >
                     <div className="flex items-center gap-1.5 min-w-0">
@@ -185,7 +185,7 @@ export default function Footer() {
 
             {/* GitHub Profiles */}
             <div className="pt-1 space-y-1.5">
-              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block font-semibold">
                 GitHub Profiles:
               </span>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono">
@@ -195,11 +195,11 @@ export default function Footer() {
                     href={p.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between p-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white transition-colors"
+                    className="flex items-center justify-between p-2 rounded-xl bg-[#111420] hover:bg-[#161a29] border border-emerald-500/20 text-slate-300 hover:text-white transition-colors"
                     title={`View @${p.handle} on GitHub`}
                   >
                     <div className="flex items-center gap-1.5 min-w-0">
-                      <GithubIcon className="w-3.5 h-3.5 text-slate-300 shrink-0" />
+                      <GithubIcon className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
                       <span className="truncate">{p.label}</span>
                     </div>
                     <ArrowUpRight className="w-3 h-3 text-slate-500 shrink-0 ml-1" />

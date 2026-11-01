@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Terminal, Code, Cpu, Wifi, Sparkles, CheckCircle2, Play, Circle, Layers } from 'lucide-react';
+import { LegoStud, LegoGoogleBrickBar, FloatingLegoBrick } from './LegoElements';
 
 export default function HeroVisual() {
   const [activeTab, setActiveTab] = useState('config');
@@ -24,44 +25,56 @@ export default function HeroVisual() {
   return (
     <div className="relative w-full max-w-2xl mx-auto lg:max-w-none">
       {/* Background ambient lighting */}
-      <div className="absolute -inset-4 bg-gradient-to-r from-blue-600/20 via-violet-600/15 to-cyan-500/20 rounded-3xl blur-2xl opacity-75 -z-10 animate-pulse-subtle" />
+      <div className="absolute -inset-4 bg-gradient-to-r from-blue-600/20 via-yellow-500/15 to-red-500/20 rounded-3xl blur-2xl opacity-75 -z-10 animate-pulse-subtle" />
 
-      {/* Terminal / Code Editor Window */}
-      <div className="relative rounded-2xl bg-[#0b0f19] border border-white/15 shadow-2xl shadow-blue-950/40 overflow-hidden backdrop-blur-xl">
+      {/* Floating Decorative 3D LEGO Bricks */}
+      <div className="absolute -top-8 -right-6 hidden sm:block z-20">
+        <FloatingLegoBrick color="yellow" size={54} rotation={18} />
+      </div>
+      <div className="absolute -bottom-8 -left-6 hidden sm:block z-20">
+        <FloatingLegoBrick color="red" size={50} rotation={-14} />
+      </div>
+
+      {/* LEGO Workstation Terminal / Code Editor Window */}
+      <div className="relative rounded-2xl bg-[#0b0e16] border-2 border-[#2b3548] border-b-4 border-b-[#07090f] shadow-2xl overflow-hidden backdrop-blur-xl">
         
+        {/* Top 4-Color LEGO Brick Interlocking Header */}
+        <LegoGoogleBrickBar />
+
         {/* Window Titlebar */}
         <div className="flex items-center justify-between px-4 py-3 bg-[#0e1424] border-b border-white/10">
           <div className="flex items-center gap-2">
+            {/* Realistic 3D LEGO Window Studs */}
             <div className="flex items-center gap-1.5">
-              <span className="w-3 h-3 rounded-full bg-rose-500/80 inline-block"></span>
-              <span className="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
-              <span className="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+              <LegoStud color="red" size="xs" />
+              <LegoStud color="yellow" size="xs" />
+              <LegoStud color="green" size="xs" />
             </div>
-            <span className="ml-2 text-xs font-mono text-slate-400 flex items-center gap-1.5">
-              <Terminal className="w-3.5 h-3.5 text-blue-400" />
+            <span className="ml-2 text-xs font-mono text-slate-300 flex items-center gap-1.5 font-bold">
+              <Terminal className="w-3.5 h-3.5 text-[#3b8bff]" />
               devsync-core-workspace
             </span>
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-mono font-medium bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-[10px] font-mono font-bold bg-[#00852b] text-white border-b-2 border-[#004d19] shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse"></span>
               100% OFFLINE MESH
             </span>
           </div>
         </div>
 
-        {/* Tab Bar */}
-        <div className="flex items-center justify-between px-3 pt-2 bg-[#0d1220] border-b border-white/5">
-          <div className="flex items-center gap-1 overflow-x-auto no-scrollbar">
+        {/* Tab Bar styled like LEGO Building Plates */}
+        <div className="flex items-center justify-between px-3 pt-2 bg-[#0c101c] border-b border-white/5">
+          <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-2 px-3 py-1.5 text-xs font-mono rounded-t-lg transition-all ${
+                className={`flex items-center gap-2 px-3 py-1.5 text-xs font-mono rounded-t-lg transition-all border-t-2 ${
                   activeTab === tab.id
-                    ? 'bg-[#0b0f19] text-blue-400 border-t-2 border-t-blue-500 border-x border-white/10 font-semibold'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-white/5'
+                    ? 'bg-[#090d16] text-[#ffd500] border-t-[#ffd500] border-x border-white/10 font-bold shadow-md'
+                    : 'text-slate-400 hover:text-slate-200 hover:bg-white/5 border-t-transparent'
                 }`}
               >
                 <Code className="w-3.5 h-3.5" />
@@ -70,10 +83,11 @@ export default function HeroVisual() {
             ))}
           </div>
 
+          {/* 3D LEGO Brick Run/Simulate Button */}
           <button
             onClick={handleRunCompile}
             disabled={isCompiling}
-            className="flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-mono text-cyan-300 bg-cyan-950/40 hover:bg-cyan-900/50 border border-cyan-800/50 rounded transition-all active:scale-95 disabled:opacity-60"
+            className="lego-btn-blue flex items-center gap-1.5 px-3 py-1 text-[11px] font-mono font-bold text-white rounded-lg active:scale-95 disabled:opacity-60 uppercase tracking-wider"
             title="Execute dry-run simulation"
           >
             <Play className={`w-3 h-3 fill-current ${isCompiling ? 'animate-spin' : ''}`} />

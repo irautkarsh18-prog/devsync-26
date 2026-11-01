@@ -49,7 +49,7 @@ function HomePage({
   scrollToSchedule
 }) {
   return (
-    <div className="relative min-h-screen bg-[#090b10] text-slate-100 font-sans selection:bg-blue-600/30 selection:text-white">
+    <div className="relative min-h-screen bg-[#08090d] text-slate-100 font-sans selection:bg-lego-blue/30 selection:text-white lego-baseplate-pattern">
       {/* Sticky Navigation */}
       <Navbar 
         onOpenPass={() => setIsPassModalOpen(true)} 
@@ -102,13 +102,6 @@ function HomePage({
 
       {/* Footer */}
       <Footer />
-
-      {/* Ticket Pass Modal */}
-      <TicketModal 
-        isOpen={false} // controlled from App wrapper
-        onClose={() => {}}
-        attendee={registeredAttendee}
-      />
 
       {/* Back to top smooth button */}
       <BackToTop />

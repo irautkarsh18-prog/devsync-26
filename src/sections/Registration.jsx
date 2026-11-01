@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { UserCheck, AlertCircle, CheckCircle2, MapPin, Sparkles, Send, ShieldCheck, GraduationCap, Building2, ArrowRight } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { EVENT_DETAILS, TRACKS_DATA } from '../data/eventData';
+import { LegoGoogleBrickBar, LegoStudRow, LegoStud } from '../components/LegoElements';
 
 export default function Registration({ 
   registeredCount, 
@@ -216,7 +217,7 @@ export default function Registration({
   };
 
   return (
-    <section id="register" className="relative py-24 sm:py-32 bg-[#090b10] border-t border-white/5">
+    <section id="register" className="relative py-24 sm:py-32 bg-[#0b0e14] border-t-2 border-[#1c2333] lego-baseplate-pattern">
       
       {/* Background ambient lighting */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[650px] h-[400px] bg-gradient-to-r from-blue-600/15 via-emerald-600/10 to-amber-500/10 blur-[150px] rounded-full pointer-events-none" />
@@ -225,8 +226,8 @@ export default function Registration({
         
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-blue-500/10 text-blue-300 border border-blue-500/20 mb-4">
-            <UserCheck className="w-3.5 h-3.5 text-blue-400" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold bg-[#141924] text-[#ffd500] border border-[#2b3548] border-b-2 border-b-black mb-4 shadow-sm">
+            <UserCheck className="w-3.5 h-3.5 text-[#ffd500]" />
             <span>CONFIRM IN-PERSON ATTENDANCE • OFFLINE DELEGATE PASS</span>
           </div>
 
@@ -238,35 +239,40 @@ export default function Registration({
             150 seats. One incredible day. Open to both MMMUT students and outside university builders.
           </p>
 
-          <div className="mt-6 inline-flex flex-wrap items-center justify-center gap-2 px-4 py-2 rounded-xl bg-blue-500/10 border border-blue-500/20 text-xs font-mono text-blue-300">
+          <div className="mt-6 inline-flex flex-wrap items-center justify-center gap-2 px-4 py-2 rounded-xl bg-[#151b29] border border-[#2b3548] border-b-2 border-b-black text-xs font-mono text-slate-200 font-semibold shadow-sm">
             <span>November 28, 2026</span>
             <span>•</span>
             <span>MMMUT Campus, Gorakhpur</span>
             <span>•</span>
-            <span className="font-semibold text-cyan-300">Total Combined Cap: 150 Seats</span>
+            <span className="font-bold text-[#ffd500]">Total Combined Cap: 150 Seats</span>
           </div>
         </div>
 
-        {/* TWO SEPARATE REGISTRATION CARDS (Equal Visual Importance) */}
+        {/* TWO SEPARATE REGISTRATION CARDS (Equal Visual Importance) styled as LEGO Brick Plates */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
           
           {/* Card 1: MMMUT Students */}
           <div 
             onClick={() => { setCategory('MMMUT Student'); setDuplicateWarning(''); }}
-            className={`cursor-pointer rounded-3xl p-6 sm:p-8 border transition-all duration-300 relative flex flex-col justify-between ${
+            className={`cursor-pointer rounded-3xl p-6 sm:p-8 transition-all duration-300 relative flex flex-col justify-between overflow-hidden shadow-2xl ${
               category === 'MMMUT Student'
-                ? 'bg-gradient-to-b from-blue-950/50 via-surface-lighter to-surface border-blue-500 shadow-2xl shadow-blue-950/40 ring-2 ring-blue-500/30'
-                : 'bg-surface-lighter/50 border-white/10 hover:border-white/20 hover:bg-surface-lighter/70'
+                ? 'bg-[#111522] border-2 border-[#0055bf] border-b-4 border-b-[#003373] ring-2 ring-[#0055bf]/40'
+                : 'bg-[#111520] border-2 border-[#2b3548] border-b-4 border-b-[#070910] hover:border-[#0055bf]/40'
             }`}
           >
+            {/* Top Studs */}
+            <div className="absolute top-2 left-6">
+              <LegoStudRow count={4} color="blue" size="xs" />
+            </div>
+
             {category === 'MMMUT Student' && (
-              <span className="absolute -top-3 left-6 px-3 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-blue-600 text-white shadow-md">
+              <span className="absolute -top-3 left-6 px-3 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-[#0055bf] text-white shadow-md border-b border-[#003373]">
                 Active Selection
               </span>
             )}
 
-            <div>
-              <div className="w-12 h-12 rounded-2xl bg-blue-500/15 text-blue-400 border border-blue-500/20 flex items-center justify-center mb-5">
+            <div className="pt-2">
+              <div className="w-12 h-12 rounded-2xl bg-[#0055bf]/15 text-[#3b8bff] border border-[#0055bf]/30 flex items-center justify-center mb-5 shadow-sm">
                 <GraduationCap className="w-6 h-6" />
               </div>
 
@@ -278,13 +284,13 @@ export default function Registration({
                 For currently enrolled undergraduate, postgraduate, and MCA students of <strong>Madan Mohan Malaviya University of Technology, Gorakhpur</strong>.
               </p>
 
-              <div className="space-y-1.5 text-xs font-mono text-slate-400 mb-6">
+              <div className="space-y-1.5 text-xs font-mono text-slate-300 mb-6 font-semibold">
                 <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                  <span className="w-2 h-2 rounded-full bg-[#0055bf]" />
                   <span>Campus ID / Roll Number validation</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                  <span className="w-2 h-2 rounded-full bg-[#0055bf]" />
                   <span>Free delegate kit & high-tea access</span>
                 </div>
               </div>
@@ -293,10 +299,10 @@ export default function Registration({
             <button
               type="button"
               onClick={() => { setCategory('MMMUT Student'); setDuplicateWarning(''); }}
-              className={`w-full py-3 px-4 rounded-xl font-display font-semibold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 ${
+              className={`w-full py-3 px-4 rounded-xl font-display font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 ${
                 category === 'MMMUT Student'
-                  ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/30'
-                  : 'bg-white/5 text-slate-300 hover:bg-white/10'
+                  ? 'lego-btn-blue text-white shadow-lg'
+                  : 'bg-[#151b29] text-slate-300 border border-[#2b3548] border-b-2 border-b-black hover:bg-[#1f283d]'
               }`}
             >
               <span>{category === 'MMMUT Student' ? 'Editing MMMUT Application' : 'Register as MMMUT Student'}</span>
@@ -307,20 +313,25 @@ export default function Registration({
           {/* Card 2: Outside College Students */}
           <div 
             onClick={() => { setCategory('Outside College Student'); setDuplicateWarning(''); }}
-            className={`cursor-pointer rounded-3xl p-6 sm:p-8 border transition-all duration-300 relative flex flex-col justify-between ${
+            className={`cursor-pointer rounded-3xl p-6 sm:p-8 transition-all duration-300 relative flex flex-col justify-between overflow-hidden shadow-2xl ${
               category === 'Outside College Student'
-                ? 'bg-gradient-to-b from-emerald-950/40 via-surface-lighter to-surface border-emerald-500 shadow-2xl shadow-emerald-950/40 ring-2 ring-emerald-500/30'
-                : 'bg-surface-lighter/50 border-white/10 hover:border-white/20 hover:bg-surface-lighter/70'
+                ? 'bg-[#11171f] border-2 border-[#00852b] border-b-4 border-b-[#004d19] ring-2 ring-[#00852b]/40'
+                : 'bg-[#111520] border-2 border-[#2b3548] border-b-4 border-b-[#070910] hover:border-[#00852b]/40'
             }`}
           >
+            {/* Top Studs */}
+            <div className="absolute top-2 left-6">
+              <LegoStudRow count={4} color="green" size="xs" />
+            </div>
+
             {category === 'Outside College Student' && (
-              <span className="absolute -top-3 left-6 px-3 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-emerald-600 text-white shadow-md">
+              <span className="absolute -top-3 left-6 px-3 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-[#00852b] text-white shadow-md border-b border-[#004d19]">
                 Active Selection
               </span>
             )}
 
-            <div>
-              <div className="w-12 h-12 rounded-2xl bg-emerald-500/15 text-emerald-400 border border-emerald-500/20 flex items-center justify-center mb-5">
+            <div className="pt-2">
+              <div className="w-12 h-12 rounded-2xl bg-[#00852b]/15 text-[#22c55e] border border-[#00852b]/30 flex items-center justify-center mb-5 shadow-sm">
                 <Building2 className="w-6 h-6" />
               </div>
 
@@ -332,13 +343,13 @@ export default function Registration({
                 Warmly welcoming developers, builders, and competitive coders from <strong>other colleges, universities, and technical institutes</strong>.
               </p>
 
-              <div className="space-y-1.5 text-xs font-mono text-slate-400 mb-6">
+              <div className="space-y-1.5 text-xs font-mono text-slate-300 mb-6 font-semibold">
                 <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                  <span className="w-2 h-2 rounded-full bg-[#00852b]" />
                   <span>Open to all external colleges & universities</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                  <span className="w-2 h-2 rounded-full bg-[#00852b]" />
                   <span>Full delegate swag & networking perks included</span>
                 </div>
               </div>
@@ -347,10 +358,10 @@ export default function Registration({
             <button
               type="button"
               onClick={() => { setCategory('Outside College Student'); setDuplicateWarning(''); }}
-              className={`w-full py-3 px-4 rounded-xl font-display font-semibold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 ${
+              className={`w-full py-3 px-4 rounded-xl font-display font-bold text-xs uppercase tracking-wider transition-all flex items-center justify-center gap-2 ${
                 category === 'Outside College Student'
-                  ? 'bg-emerald-600 text-white shadow-lg shadow-emerald-600/30'
-                  : 'bg-white/5 text-slate-300 hover:bg-white/10'
+                  ? 'lego-btn-green text-white shadow-lg'
+                  : 'bg-[#151b29] text-slate-300 border border-[#2b3548] border-b-2 border-b-black hover:bg-[#1f283d]'
               }`}
             >
               <span>{category === 'Outside College Student' ? 'Editing Outside Application' : 'Register as Outside Student'}</span>
@@ -360,18 +371,23 @@ export default function Registration({
 
         </div>
 
-        {/* UNIFIED REGISTRATION FORM CONTAINER */}
-        <div className="relative rounded-3xl bg-surface-lighter/85 border border-white/10 p-6 sm:p-10 shadow-2xl backdrop-blur-xl">
+        {/* UNIFIED REGISTRATION FORM CONTAINER styled as LEGO Baseplate Module */}
+        <div className="relative rounded-3xl bg-[#111520] border-2 border-[#2b3548] border-b-4 border-b-[#070910] p-6 sm:p-10 shadow-2xl overflow-hidden">
           
+          {/* Top 4-Color LEGO Brick Interlocking Bar */}
+          <div className="absolute top-0 inset-x-0">
+            <LegoGoogleBrickBar />
+          </div>
+
           {/* Active Category Indicator Banner */}
-          <div className="flex items-center justify-between mb-8 pb-4 border-b border-white/10">
+          <div className="flex items-center justify-between mb-8 pb-4 border-b border-white/10 pt-3">
             <div className="flex items-center gap-2.5">
-              <span className={`w-3 h-3 rounded-full ${category === 'MMMUT Student' ? 'bg-blue-400' : 'bg-emerald-400'}`} />
+              <span className={`w-3 h-3 rounded-full ${category === 'MMMUT Student' ? 'bg-[#0055bf]' : 'bg-[#00852b]'} shadow-sm`} />
               <span className="font-display font-bold text-white text-base sm:text-lg">
-                Registration Category: <span className={category === 'MMMUT Student' ? 'text-blue-400' : 'text-emerald-400'}>{category}</span>
+                Registration Category: <span className={category === 'MMMUT Student' ? 'text-[#3b8bff]' : 'text-[#22c55e]'}>{category}</span>
               </span>
             </div>
-            <span className="text-xs font-mono text-slate-400 hidden sm:inline">
+            <span className="text-xs font-mono text-slate-400 font-semibold hidden sm:inline">
               Step 2: Fill Details & Verify
             </span>
           </div>
@@ -698,15 +714,15 @@ export default function Registration({
               )}
             </div>
 
-            {/* Submit Button */}
+            {/* Tactile 3D LEGO Brick Submit Button */}
             <div className="pt-4">
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl font-display font-semibold text-white shadow-xl transition-all duration-300 disabled:opacity-60 text-base ${
+                className={`w-full flex items-center justify-center gap-2.5 px-6 py-4 rounded-xl font-display font-extrabold uppercase tracking-wider text-white shadow-xl transition-all duration-200 disabled:opacity-60 text-base ${
                   category === 'MMMUT Student'
-                    ? 'bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 shadow-blue-600/30 border border-blue-400/30'
-                    : 'bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-500 hover:from-emerald-500 hover:to-teal-400 shadow-emerald-600/30 border border-emerald-400/30'
+                    ? 'lego-btn-blue'
+                    : 'lego-btn-green'
                 }`}
               >
                 {isSubmitting ? (

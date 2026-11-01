@@ -1,6 +1,7 @@
 import React from 'react';
 import { BookOpen, Code2, Users, CheckCircle, Sparkles, Terminal, Layers, ArrowUpRight } from 'lucide-react';
 import { EVENT_DETAILS, ABOUT_FEATURES, TARGET_AUDIENCE } from '../data/eventData';
+import { LegoStudRow, LegoStud } from '../components/LegoElements';
 
 export default function About() {
   const iconMap = {
@@ -9,19 +10,40 @@ export default function About() {
     Users: Users
   };
 
+  const featureBrickStyles = [
+    {
+      cardBorder: 'border-[#0055bf]/40 border-b-4 border-b-[#003882]',
+      studColor: 'blue',
+      numColor: 'text-[#3b8bff]',
+      iconBg: 'bg-[#0055bf]/15 text-[#3b8bff] border-[#0055bf]/30',
+    },
+    {
+      cardBorder: 'border-[#e3000b]/40 border-b-4 border-b-[#8f0007]',
+      studColor: 'red',
+      numColor: 'text-[#ff5a62]',
+      iconBg: 'bg-[#e3000b]/15 text-[#ff5a62] border-[#e3000b]/30',
+    },
+    {
+      cardBorder: 'border-[#00852b]/40 border-b-4 border-b-[#004d19]',
+      studColor: 'green',
+      numColor: 'text-[#22c55e]',
+      iconBg: 'bg-[#00852b]/15 text-[#22c55e] border-[#00852b]/30',
+    },
+  ];
+
   return (
-    <section id="about" className="relative py-24 sm:py-32 bg-[#090b10] border-t border-white/5 overflow-hidden">
+    <section id="about" className="relative py-24 sm:py-32 bg-[#0b0e14] border-t-2 border-[#1c2333] overflow-hidden lego-baseplate-pattern">
       
       {/* Subtle ambient lighting */}
       <div className="absolute top-1/2 left-0 -translate-y-1/2 w-96 h-96 bg-blue-600/10 blur-[130px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-10 right-0 w-96 h-96 bg-violet-600/10 blur-[130px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-10 right-0 w-96 h-96 bg-red-600/10 blur-[130px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-16 sm:mb-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-blue-500/10 text-blue-300 border border-blue-500/20 mb-4">
-            <Terminal className="w-3.5 h-3.5 text-blue-400" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold bg-[#141924] text-[#ffd500] border border-[#2b3548] border-b-2 border-b-[#090d14] mb-4 shadow-sm">
+            <Terminal className="w-3.5 h-3.5 text-[#ffd500]" />
             <span>COMMUNITY IDENTITY & PURPOSE</span>
           </div>
           
@@ -34,29 +56,33 @@ export default function About() {
           </p>
         </div>
 
-        {/* 3 Premium Feature Cards */}
+        {/* 3 Premium LEGO Brick Feature Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-20">
-          {ABOUT_FEATURES.map((feature) => {
+          {ABOUT_FEATURES.map((feature, idx) => {
             const Icon = iconMap[feature.icon] || Code2;
+            const style = featureBrickStyles[idx] || featureBrickStyles[0];
+
             return (
               <div
                 key={feature.number}
-                className="group relative rounded-2xl bg-gradient-to-b from-surface-lighter/70 to-surface/90 border border-white/10 p-8 hover:border-blue-500/40 transition-all duration-300 hover:-translate-y-1 shadow-xl hover:shadow-blue-900/20 flex flex-col justify-between"
+                className={`group relative rounded-2xl bg-[#111520] border p-8 transition-all duration-300 hover:-translate-y-1.5 shadow-2xl flex flex-col justify-between overflow-hidden ${style.cardBorder}`}
               >
-                {/* Top glow indicator */}
-                <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-transparent via-blue-400/40 to-transparent group-hover:via-cyan-400 transition-colors" />
+                {/* Top Row of 5 Studs */}
+                <div className="absolute top-2 left-6">
+                  <LegoStudRow count={4} color={style.studColor} size="xs" />
+                </div>
 
-                <div>
+                <div className="pt-4">
                   <div className="flex items-center justify-between mb-8">
-                    <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-blue-400 group-hover:text-cyan-300 group-hover:bg-blue-500/10 transition-all duration-300">
+                    <div className={`w-12 h-12 rounded-xl border flex items-center justify-center transition-all duration-300 ${style.iconBg}`}>
                       <Icon className="w-6 h-6" />
                     </div>
-                    <span className="font-mono text-2xl font-bold text-slate-600 group-hover:text-blue-400/60 transition-colors">
+                    <span className={`font-mono text-3xl font-extrabold ${style.numColor}`}>
                       {feature.number}
                     </span>
                   </div>
 
-                  <h3 className="text-xl font-bold font-display text-white mb-3 group-hover:text-cyan-300 transition-colors">
+                  <h3 className="text-xl font-bold font-display text-white mb-3 group-hover:text-[#ffd500] transition-colors">
                     {feature.title}
                   </h3>
 
@@ -65,21 +91,21 @@ export default function About() {
                   </p>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-slate-400">
+                <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-slate-400 font-bold">
                   <span>IN-PERSON HUDDLE</span>
-                  <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-blue-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                  <ArrowUpRight className="w-4 h-4 text-slate-500 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                 </div>
               </div>
             );
           })}
         </div>
 
-        {/* Target Audience Interactive Section */}
-        <div className="rounded-3xl bg-surface-lighter/40 border border-white/10 p-8 sm:p-10 backdrop-blur-md">
+        {/* Target Audience Interactive Section with LEGO Baseplate Styling */}
+        <div className="rounded-3xl bg-[#111520] border-2 border-[#2b3548] border-b-4 border-b-[#070910] p-8 sm:p-10 shadow-2xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
             <div className="lg:col-span-5 space-y-3">
-              <span className="text-xs font-mono uppercase tracking-wider text-cyan-400 font-semibold block">
+              <span className="text-xs font-mono uppercase tracking-wider text-[#ffd500] font-bold block">
                 Who Is This For?
               </span>
               <h3 className="text-2xl sm:text-3xl font-bold font-display text-white">
@@ -95,11 +121,11 @@ export default function About() {
                 {TARGET_AUDIENCE.map((audience, idx) => (
                   <div
                     key={audience.label}
-                    className="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-surface/90 border border-white/10 hover:border-blue-500/40 text-slate-200 text-sm font-medium transition-all group"
+                    className="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-[#151b29] border border-[#2e394d] border-b-2 border-b-[#0c1018] hover:border-[#ffd500]/50 text-slate-200 text-sm font-semibold transition-all group shadow-sm hover:translate-y-[-1px]"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-400 group-hover:scale-125 transition-transform" />
+                    <span className="w-2 h-2 rounded-full bg-[#ffd500] group-hover:scale-125 transition-transform shadow-[0_1px_2px_rgba(0,0,0,0.5)]" />
                     <span>{audience.label}</span>
-                    <span className="text-[10px] font-mono text-slate-500 uppercase px-1.5 py-0.5 rounded bg-white/5">
+                    <span className="text-[10px] font-mono text-slate-400 uppercase px-1.5 py-0.5 rounded bg-black/40">
                       {audience.category}
                     </span>
                   </div>

@@ -62,47 +62,71 @@ export default function CountdownTimer() {
   }
 
   const units = [
-    { label: 'Days', value: formatNumber(timeLeft.days) },
-    { label: 'Hours', value: formatNumber(timeLeft.hours) },
-    { label: 'Minutes', value: formatNumber(timeLeft.minutes) },
-    { label: 'Seconds', value: formatNumber(timeLeft.seconds) },
+    { 
+      label: 'Days', 
+      value: formatNumber(timeLeft.days),
+      brickClass: 'bg-gradient-to-b from-[#ff4d55] to-[#e3000b] border-[#ff7077] border-b-4 border-b-[#8f0007] text-white shadow-[0_6px_14px_rgba(227,0,11,0.3)]',
+      studColor: 'red',
+      labelClass: 'text-white/80 font-bold'
+    },
+    { 
+      label: 'Hours', 
+      value: formatNumber(timeLeft.hours),
+      brickClass: 'bg-gradient-to-b from-[#2b7fff] to-[#0055bf] border-[#4d94ff] border-b-4 border-b-[#003373] text-white shadow-[0_6px_14px_rgba(0,85,191,0.3)]',
+      studColor: 'blue',
+      labelClass: 'text-white/80 font-bold'
+    },
+    { 
+      label: 'Minutes', 
+      value: formatNumber(timeLeft.minutes),
+      brickClass: 'bg-gradient-to-b from-[#ffe566] to-[#ffd500] border-[#ffeb80] border-b-4 border-b-[#a38200] text-[#11141c] shadow-[0_6px_14px_rgba(255,213,0,0.3)]',
+      studColor: 'yellow',
+      labelClass: 'text-black/80 font-bold'
+    },
+    { 
+      label: 'Seconds', 
+      value: formatNumber(timeLeft.seconds),
+      brickClass: 'bg-gradient-to-b from-[#10b542] to-[#00852b] border-[#28c959] border-b-4 border-b-[#004d19] text-white shadow-[0_6px_14px_rgba(0,133,43,0.3)]',
+      studColor: 'green',
+      labelClass: 'text-white/80 font-bold'
+    },
   ];
 
   return (
     <div className="w-full max-w-2xl mx-auto">
       {/* Sub-header info badge */}
       <div className="flex items-center justify-between mb-3 px-2">
-        <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-slate-400">
-          <Clock className="w-3.5 h-3.5 text-blue-400 animate-pulse" />
+        <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-slate-300 font-bold">
+          <Clock className="w-3.5 h-3.5 text-[#ffd500] animate-pulse" />
           <span>Registration Window Closes</span>
         </div>
-        <div className="text-[11px] font-mono text-cyan-400/90 bg-cyan-950/40 px-2 py-0.5 rounded border border-cyan-800/40">
+        <div className="text-[11px] font-mono font-bold text-white bg-[#0e1424] px-2.5 py-1 rounded-md border border-white/10 border-b-2 border-b-black shadow-sm">
           Nov 27, 2026 • 11:59 PM IST
         </div>
       </div>
 
-      {/* Counter Grid */}
+      {/* 4 Colored LEGO Brick Modules Grid */}
       <div className="grid grid-cols-4 gap-2.5 sm:gap-4">
-        {units.map((unit, index) => (
+        {units.map((unit) => (
           <div 
             key={unit.label}
-            className="group relative flex flex-col items-center justify-center p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-surface-lighter/80 backdrop-blur-md border border-white/10 hover:border-blue-500/40 transition-all duration-300 shadow-xl shadow-black/40 overflow-hidden"
+            className={`group relative flex flex-col items-center justify-center pt-3 pb-3 sm:pb-4 rounded-xl sm:rounded-2xl border transition-all duration-200 hover:-translate-y-1 ${unit.brickClass}`}
           >
-            {/* Top ambient highlight line */}
-            <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-blue-500/40 to-transparent group-hover:via-cyan-400 transition-colors" />
+            {/* Top 2 Studs */}
+            <div className="flex items-center gap-2 mb-1.5 opacity-90">
+              <div className="w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full bg-white/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8),0_1px_2px_rgba(0,0,0,0.3)]" />
+              <div className="w-3 h-3 sm:w-3.5 sm:h-3.5 rounded-full bg-white/40 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8),0_1px_2px_rgba(0,0,0,0.3)]" />
+            </div>
             
             {/* Value */}
-            <div className="font-mono font-bold text-2xl sm:text-4xl lg:text-5xl tracking-tight text-white group-hover:text-cyan-300 transition-colors duration-200">
+            <div className="font-mono font-extrabold text-2xl sm:text-4xl lg:text-5xl tracking-tight leading-none drop-shadow-md">
               {unit.value}
             </div>
             
             {/* Label */}
-            <div className="mt-1 text-[10px] sm:text-xs font-mono uppercase tracking-widest text-slate-400 group-hover:text-slate-300">
+            <div className={`mt-1.5 text-[10px] sm:text-xs font-mono uppercase tracking-widest ${unit.labelClass}`}>
               {unit.label}
             </div>
-
-            {/* Subtle glow orb */}
-            <div className="absolute -bottom-6 -right-6 w-12 h-12 bg-blue-500/10 rounded-full blur-xl pointer-events-none group-hover:bg-blue-500/20 transition-all" />
           </div>
         ))}
       </div>

@@ -2,10 +2,11 @@ import React from 'react';
 import { ArrowRight, Sparkles, Terminal, Code2, Users, Lightbulb, MapPin, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { EVENT_DETAILS, GDG_COLORS } from '../data/eventData';
+import { LegoGoogleBrickBar, LegoStud } from '../components/LegoElements';
 
 export default function Organiser() {
   return (
-    <section id="organiser" className="relative py-24 sm:py-32 bg-[#090b10] border-t border-white/5 overflow-hidden">
+    <section id="organiser" className="relative py-24 sm:py-32 bg-[#0b0e14] border-t-2 border-[#1c2333] overflow-hidden lego-baseplate-pattern">
       
       {/* Google Colored Ambient Glows */}
       <div className="absolute top-1/4 left-10 w-80 h-80 bg-blue-500/10 blur-[130px] rounded-full pointer-events-none" />
@@ -13,32 +14,29 @@ export default function Organiser() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        <div className="relative rounded-3xl bg-gradient-to-b from-[#0f1422] to-[#0a0d16] border border-white/10 p-8 sm:p-12 lg:p-16 shadow-2xl overflow-hidden">
+        <div className="relative rounded-3xl bg-[#111520] border-2 border-[#2b3548] border-b-4 border-b-[#070910] p-8 sm:p-12 lg:p-16 shadow-2xl overflow-hidden">
           
-          {/* Top Google Quad-color stripe */}
-          <div className="absolute top-0 inset-x-0 h-1 flex">
-            <div className="flex-1 bg-[#4285F4]" />
-            <div className="flex-1 bg-[#EA4335]" />
-            <div className="flex-1 bg-[#FBBC05]" />
-            <div className="flex-1 bg-[#34A853]" />
+          {/* Top 4-Color LEGO Interlocking Brick Bar */}
+          <div className="absolute top-0 inset-x-0">
+            <LegoGoogleBrickBar />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center pt-3">
             
             {/* Left Column: Context & Overview */}
             <div className="lg:col-span-7 space-y-6">
               
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-white/5 border border-white/10 text-slate-300">
-                <span className="flex h-2 w-2 rounded-full bg-[#4285F4]" />
-                <span className="flex h-2 w-2 rounded-full bg-[#EA4335]" />
-                <span className="flex h-2 w-2 rounded-full bg-[#FBBC05]" />
-                <span className="flex h-2 w-2 rounded-full bg-[#34A853]" />
-                <span className="font-semibold text-white ml-1">OFFICIAL HOST CHAPTER</span>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-mono font-bold bg-[#151b29] border border-[#2b3548] border-b-2 border-b-black text-slate-200 shadow-sm">
+                <span className="flex h-2 w-2 rounded-full bg-[#0055bf]" />
+                <span className="flex h-2 w-2 rounded-full bg-[#e3000b]" />
+                <span className="flex h-2 w-2 rounded-full bg-[#ffd500]" />
+                <span className="flex h-2 w-2 rounded-full bg-[#00852b]" />
+                <span className="font-bold text-white ml-1">OFFICIAL HOST CHAPTER</span>
               </div>
 
               <h2 className="text-3xl sm:text-5xl font-extrabold font-display tracking-tight text-white leading-tight">
                 Organised by <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-emerald-400 to-amber-300">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-[#ffd500] to-[#ff5a62]">
                   Google Developer Groups MMMUT
                 </span>
               </h2>
@@ -48,14 +46,20 @@ export default function Organiser() {
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                <div className="p-4 rounded-2xl bg-surface/80 border border-white/5 space-y-1">
-                  <div className="text-xs font-mono text-blue-400 uppercase font-semibold">Campus Rooted</div>
+                <div className="p-4 rounded-2xl bg-[#151b29] border border-[#2b3548] border-b-2 border-b-black space-y-1 shadow-sm">
+                  <div className="text-xs font-mono text-[#3b8bff] uppercase font-bold flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#0055bf]" />
+                    <span>Campus Rooted</span>
+                  </div>
                   <div className="text-sm font-bold text-white">MMMUT Gorakhpur</div>
                   <div className="text-xs text-slate-400">Hub for university coders and regional engineering minds.</div>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-surface/80 border border-white/5 space-y-1">
-                  <div className="text-xs font-mono text-emerald-400 uppercase font-semibold">Inclusive Access</div>
+                <div className="p-4 rounded-2xl bg-[#151b29] border border-[#2b3548] border-b-2 border-b-black space-y-1 shadow-sm">
+                  <div className="text-xs font-mono text-[#22c55e] uppercase font-bold flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#00852b]" />
+                    <span>Inclusive Access</span>
+                  </div>
                   <div className="text-sm font-bold text-white">MMMUT + Outside Campuses</div>
                   <div className="text-xs text-slate-400">Welcoming delegates across institutions to DevSync '26.</div>
                 </div>
@@ -64,7 +68,7 @@ export default function Organiser() {
               <div className="pt-2 flex flex-wrap items-center gap-4">
                 <Link
                   to="/about-gdg"
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-display font-semibold text-white bg-blue-600 hover:bg-blue-500 shadow-lg shadow-blue-600/30 transition-all text-sm group"
+                  className="lego-btn-blue inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-display font-bold text-white shadow-lg text-sm group uppercase tracking-wider"
                 >
                   <span>About GDG MMMUT</span>
                   <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -72,7 +76,7 @@ export default function Organiser() {
 
                 <a
                   href="#register"
-                  className="inline-flex items-center gap-2 px-5 py-3.5 rounded-xl font-display font-semibold text-slate-200 bg-white/5 hover:bg-white/10 border border-white/10 transition-colors text-sm"
+                  className="lego-btn-dark inline-flex items-center gap-2 px-5 py-3.5 rounded-xl font-display font-bold text-slate-200 text-sm uppercase tracking-wider"
                 >
                   <span>Reserve In-Person Seat</span>
                 </a>
@@ -82,22 +86,22 @@ export default function Organiser() {
 
             {/* Right Column: Visual Community Showcase Card */}
             <div className="lg:col-span-5">
-              <div className="relative rounded-2xl bg-[#080c14] border border-white/10 p-6 sm:p-8 space-y-6 shadow-xl">
+              <div className="relative rounded-2xl bg-[#090d15] border-2 border-[#2b3548] border-b-4 border-b-black p-6 sm:p-8 space-y-6 shadow-xl">
                 
                 {/* Header Badge */}
                 <div className="flex items-center justify-between border-b border-white/10 pb-4">
                   <div className="flex items-center gap-2.5">
-                    {/* Multi-color GDG brackets */}
-                    <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center font-mono font-black text-lg">
-                      <span className="text-[#4285F4]">&lt;</span>
-                      <span className="text-[#EA4335]">&gt;</span>
+                    {/* Multi-color GDG brackets with LEGO Studs */}
+                    <div className="w-10 h-10 rounded-xl bg-[#141924] border border-[#2b3548] flex items-center justify-center font-mono font-black text-lg shadow-inner">
+                      <span className="text-[#3b8bff]">&lt;</span>
+                      <span className="text-[#ff5a62]">&gt;</span>
                     </div>
                     <div>
                       <div className="text-sm font-bold text-white">GDG MMMUT</div>
                       <div className="text-[11px] font-mono text-slate-400">Gorakhpur Chapter</div>
                     </div>
                   </div>
-                  <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-blue-500/10 text-blue-300 border border-blue-500/20">
+                  <span className="px-2.5 py-0.5 rounded-md text-[10px] font-mono font-bold bg-[#0055bf] text-white border-b border-[#003882] shadow-sm">
                     Official Organiser
                   </span>
                 </div>

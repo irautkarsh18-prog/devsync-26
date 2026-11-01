@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { HelpCircle, ChevronDown, Sparkles, MessageSquare, Mail, ArrowUpRight } from 'lucide-react';
 import { GithubIcon, LinkedinIcon, InstagramIcon } from '../components/SocialIcons';
 import { FAQ_DATA, EVENT_DETAILS, OFFICIAL_CONTACT } from '../data/eventData';
+import { LegoStud } from '../components/LegoElements';
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState(0); // First item open by default
@@ -10,18 +11,20 @@ export default function FAQ() {
     setOpenIndex(openIndex === index ? null : index);
   };
 
+  const studColors = ['blue', 'yellow', 'red', 'green'];
+
   return (
-    <section id="faq" className="relative py-24 sm:py-32 bg-[#090b10] border-t border-white/5">
+    <section id="faq" className="relative py-24 sm:py-32 bg-[#0b0e14] border-t-2 border-[#1c2333] lego-baseplate-pattern">
       
       {/* Background radial glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gradient-to-r from-blue-600/10 via-red-500/5 to-amber-500/10 blur-[140px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gradient-to-r from-blue-600/10 via-yellow-500/10 to-red-500/10 blur-[140px] rounded-full pointer-events-none" />
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-blue-500/10 text-blue-300 border border-blue-500/20 mb-4">
-            <HelpCircle className="w-3.5 h-3.5 text-blue-400" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold bg-[#141924] text-[#ffd500] border border-[#2b3548] border-b-2 border-b-black mb-4 shadow-sm">
+            <HelpCircle className="w-3.5 h-3.5 text-[#ffd500]" />
             <span>COMMUNITY KNOWLEDGE BASE</span>
           </div>
 
@@ -34,34 +37,38 @@ export default function FAQ() {
           </p>
         </div>
 
-        {/* FAQ Accordion List */}
+        {/* FAQ Accordion List styled as LEGO Brick Containers */}
         <div className="space-y-3.5">
           {FAQ_DATA.map((item, idx) => {
             const isOpen = openIndex === idx;
             const isContactQuestion = item.q.toLowerCase().includes('contact');
+            const color = studColors[idx % studColors.length];
 
             return (
               <div
                 key={idx}
-                className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
+                className={`rounded-2xl border-2 transition-all duration-300 overflow-hidden shadow-lg ${
                   isOpen
-                    ? 'bg-surface-lighter/90 border-blue-500/40 shadow-xl shadow-blue-950/20'
-                    : 'bg-surface-lighter/50 border-white/10 hover:border-white/20'
+                    ? 'bg-[#121622] border-[#0055bf] border-b-4 border-b-[#003882] shadow-blue-950/30'
+                    : 'bg-[#111520] border-[#2b3548] border-b-4 border-b-[#070910] hover:border-[#ffd500]/40'
                 }`}
               >
                 <button
                   type="button"
                   onClick={() => toggleAccordion(idx)}
-                  className="w-full flex items-center justify-between p-5 sm:p-6 text-left focus:outline-none focus:ring-2 focus:ring-blue-500/40"
+                  className="w-full flex items-center justify-between p-5 sm:p-6 text-left focus:outline-none"
                   aria-expanded={isOpen}
                 >
-                  <span className="font-display font-bold text-base sm:text-lg text-white pr-4">
-                    {item.q}
-                  </span>
+                  <div className="flex items-center gap-3.5 pr-4">
+                    <LegoStud color={color} size="sm" />
+                    <span className="font-display font-bold text-base sm:text-lg text-white">
+                      {item.q}
+                    </span>
+                  </div>
                   <div className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 transition-transform duration-300 ${
-                    isOpen ? 'bg-blue-500/20 text-blue-400 rotate-180' : 'bg-white/5 text-slate-400'
+                    isOpen ? 'bg-[#ffd500] text-black rotate-180 font-bold shadow-md' : 'bg-white/5 text-slate-400'
                   }`}>
-                    <ChevronDown className="w-4 h-4" />
+                    <ChevronDown className="w-4 h-4 stroke-[2.5]" />
                   </div>
                 </button>
 

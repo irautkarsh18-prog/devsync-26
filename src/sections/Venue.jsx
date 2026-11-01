@@ -1,10 +1,11 @@
 import React from 'react';
 import { MapPin, Navigation, Calendar, Clock, AlertCircle, Compass, ShieldAlert, ArrowRight } from 'lucide-react';
 import { VENUE_DATA } from '../data/eventData';
+import { LegoStudRow, LegoStud } from '../components/LegoElements';
 
 export default function Venue() {
   return (
-    <section id="venue" className="relative py-24 sm:py-32 bg-[#090b10] border-t border-white/5">
+    <section id="venue" className="relative py-24 sm:py-32 bg-[#0b0e14] border-t-2 border-[#1c2333] lego-baseplate-pattern">
       
       {/* Background glow orb */}
       <div className="absolute top-1/2 left-10 w-96 h-96 bg-blue-600/10 blur-[140px] rounded-full pointer-events-none" />
@@ -13,8 +14,8 @@ export default function Venue() {
         
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-16 sm:mb-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-blue-500/10 text-blue-300 border border-blue-500/20 mb-4">
-            <Compass className="w-3.5 h-3.5 text-blue-400" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold bg-[#141924] text-[#ffd500] border border-[#2b3548] border-b-2 border-b-black mb-4 shadow-sm">
+            <Compass className="w-3.5 h-3.5 text-[#ffd500]" />
             <span>PHYSICAL CAMPUS LOGISTICS</span>
           </div>
 
@@ -27,8 +28,8 @@ export default function Venue() {
           </p>
 
           {/* Provisional Venue Disclaimer */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-surface-lighter/80 border border-white/10 text-slate-400 text-xs font-mono">
-            <AlertCircle className="w-4 h-4 text-amber-400 shrink-0" />
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#151b29] border border-[#2b3548] border-b-2 border-b-black text-slate-300 text-xs font-mono font-semibold shadow-sm">
+            <AlertCircle className="w-4 h-4 text-[#ffd500] shrink-0" />
             <span>PROVISIONAL PLACEHOLDER: Campus venue rooms and gate landmarks will be finalized in your registration confirmation email.</span>
           </div>
         </div>
@@ -37,13 +38,18 @@ export default function Venue() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
           {/* Left Column: Venue Details Card */}
-          <div className="lg:col-span-5 rounded-3xl bg-surface-lighter/70 border border-white/10 p-8 flex flex-col justify-between shadow-2xl backdrop-blur-md">
-            <div>
+          <div className="lg:col-span-5 rounded-3xl bg-[#111520] border-2 border-[#2b3548] border-b-4 border-b-[#070910] p-8 flex flex-col justify-between shadow-2xl relative overflow-hidden">
+            {/* Top Studs */}
+            <div className="absolute top-2 left-6">
+              <LegoStudRow count={4} color="blue" size="xs" />
+            </div>
+
+            <div className="pt-3">
               <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
-                <div className="text-xs font-mono uppercase tracking-wider text-slate-400">
+                <div className="text-xs font-mono uppercase tracking-wider text-slate-400 font-bold">
                   Event Location
                 </div>
-                <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-bold uppercase bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
+                <span className="px-3 py-0.5 rounded-md text-[11px] font-mono font-bold uppercase bg-[#00852b] text-white border-b border-[#004d19] shadow-sm">
                   {VENUE_DATA.format}
                 </span>
               </div>
@@ -101,23 +107,28 @@ export default function Venue() {
           </div>
 
           {/* Right Column: Campus Blueprint Schematic Map */}
-          <div className="lg:col-span-7 rounded-3xl bg-surface-lighter/50 border border-white/10 p-8 flex flex-col justify-between shadow-2xl relative overflow-hidden backdrop-blur-md">
-            
-            {/* Top Bar */}
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center gap-2">
-                <Navigation className="w-4 h-4 text-blue-400" />
-                <span className="text-xs font-mono uppercase tracking-wider text-slate-300 font-semibold">
-                  Interactive Campus Schematic
-                </span>
-              </div>
-              <span className="text-[11px] font-mono text-slate-400">
-                PROVISIONAL MAP GUIDE
-              </span>
+          <div className="lg:col-span-7 rounded-3xl bg-[#111520] border-2 border-[#2b3548] border-b-4 border-b-[#070910] p-8 flex flex-col justify-between shadow-2xl relative overflow-hidden">
+            {/* Top Studs */}
+            <div className="absolute top-2 left-6">
+              <LegoStudRow count={4} color="yellow" size="xs" />
             </div>
 
-            {/* Custom SVG Blueprint Illustration */}
-            <div className="relative w-full h-64 sm:h-72 rounded-2xl bg-[#080c14] border border-white/10 p-4 flex items-center justify-center overflow-hidden group">
+            <div className="pt-3">
+              {/* Top Bar */}
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-2">
+                  <Navigation className="w-4 h-4 text-[#ffd500]" />
+                  <span className="text-xs font-mono uppercase tracking-wider text-slate-200 font-bold">
+                    Interactive Campus Schematic
+                  </span>
+                </div>
+                <span className="text-[11px] font-mono text-slate-400 font-semibold">
+                  PROVISIONAL MAP GUIDE
+                </span>
+              </div>
+
+              {/* Custom SVG Blueprint Illustration */}
+              <div className="relative w-full h-64 sm:h-72 rounded-2xl bg-[#080c14] border-2 border-[#1c2333] border-b-4 border-b-black p-4 flex items-center justify-center overflow-hidden group shadow-inner">
               
               {/* Grid Lines */}
               <div 
@@ -156,6 +167,7 @@ export default function Venue() {
               <div className="absolute bottom-3 left-3 px-2.5 py-1 rounded bg-[#090b10]/90 border border-blue-500/30 text-[10px] font-mono text-cyan-300">
                 On-campus signage will guide delegates from Main Gate
               </div>
+            </div>
             </div>
 
             {/* Checkpoint list */}

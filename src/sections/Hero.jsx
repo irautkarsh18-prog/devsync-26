@@ -3,6 +3,7 @@ import { Calendar, Users, MapPin, Ticket, ArrowRight, Sparkles, Terminal, Shield
 import { EVENT_DETAILS, GDG_COLORS } from '../data/eventData';
 import CountdownTimer from '../components/CountdownTimer';
 import HeroVisual from '../components/HeroVisual';
+import { FloatingLegoBrick, LegoStud } from '../components/LegoElements';
 
 export default function Hero({ registeredCount, onRegisterClick, onScheduleClick }) {
   const seatsRemaining = Math.max(0, EVENT_DETAILS.capacity - registeredCount);
@@ -11,52 +12,55 @@ export default function Hero({ registeredCount, onRegisterClick, onScheduleClick
   return (
     <section 
       id="hero" 
-      className="relative min-h-screen pt-28 pb-20 sm:pt-36 sm:pb-28 overflow-hidden flex flex-col justify-center"
+      className="relative min-h-screen pt-28 pb-20 sm:pt-36 sm:pb-28 overflow-hidden flex flex-col justify-center lego-baseplate-pattern"
     >
-      {/* Background Ambience & Grid Pattern */}
-      <div className="absolute inset-0 bg-radial-glow opacity-80 pointer-events-none" />
-      <div 
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
-        style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, #ffffff 1px, transparent 0)`,
-          backgroundSize: '36px 36px'
-        }}
-      />
+      {/* Background Ambience with LEGO Accent Tints */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-gradient-to-r from-red-600/15 via-yellow-500/10 to-blue-600/15 blur-[150px] rounded-full pointer-events-none -z-10" />
 
-      {/* Decorative gradient orbs with subtle Google accents */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[320px] bg-gradient-to-r from-blue-600/15 via-emerald-600/10 to-amber-500/10 blur-[130px] rounded-full pointer-events-none -z-10" />
+      {/* Floating Background 3D LEGO Bricks */}
+      <div className="absolute top-28 left-8 hidden lg:block opacity-75 pointer-events-none">
+        <FloatingLegoBrick color="blue" size={60} rotation={-16} />
+      </div>
+      <div className="absolute top-44 right-12 hidden lg:block opacity-75 pointer-events-none">
+        <FloatingLegoBrick color="green" size={54} rotation={22} />
+      </div>
+      <div className="absolute bottom-32 left-16 hidden lg:block opacity-60 pointer-events-none">
+        <FloatingLegoBrick color="orange" size={48} rotation={12} />
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
         
-        {/* Top Badges Row */}
+        {/* Top Badges Row styled as LEGO Building Bricks */}
         <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-6 animate-in fade-in slide-in-from-bottom-3 duration-500">
           
-          {/* ORGANISED BY GDG MMMUT BADGE */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-mono font-bold bg-white/10 text-white border border-white/20 shadow-lg shadow-blue-950/40">
-            <span className="flex h-2 w-2 rounded-full bg-[#4285F4]" />
-            <span className="flex h-2 w-2 rounded-full bg-[#EA4335]" />
-            <span className="flex h-2 w-2 rounded-full bg-[#FBBC05]" />
-            <span className="flex h-2 w-2 rounded-full bg-[#34A853]" />
+          {/* ORGANISED BY GDG MMMUT BADGE with 4 LEGO Studs */}
+          <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-xl text-xs font-mono font-bold bg-[#141924] text-white border border-[#2b3548] border-b-2 border-b-[#0b0e15] shadow-md">
+            <div className="flex items-center gap-1">
+              <span className="w-2 h-2 rounded-full bg-[#0055bf] shadow-[0_1px_2px_rgba(0,0,0,0.5)]" />
+              <span className="w-2 h-2 rounded-full bg-[#e3000b] shadow-[0_1px_2px_rgba(0,0,0,0.5)]" />
+              <span className="w-2 h-2 rounded-full bg-[#ffd500] shadow-[0_1px_2px_rgba(0,0,0,0.5)]" />
+              <span className="w-2 h-2 rounded-full bg-[#00852b] shadow-[0_1px_2px_rgba(0,0,0,0.5)]" />
+            </div>
             <span>ORGANISED BY GDG MMMUT</span>
           </div>
 
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium bg-blue-500/10 text-blue-300 border border-blue-500/25">
-            <Calendar className="w-3.5 h-3.5 text-blue-400" />
+          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-bold bg-[#0055bf]/15 text-[#3b8bff] border border-[#0055bf]/30 border-b-2 border-b-[#003882] shadow-sm">
+            <Calendar className="w-3.5 h-3.5 text-[#3b8bff]" />
             <span>NOVEMBER 28, 2026</span>
           </div>
 
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium bg-emerald-500/10 text-emerald-300 border border-emerald-500/25">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-bold bg-[#00852b]/15 text-[#22c55e] border border-[#00852b]/30 border-b-2 border-b-[#00521b] shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-[#22c55e] animate-pulse" />
             <span>100% IN-PERSON</span>
           </div>
 
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium bg-amber-500/10 text-amber-300 border border-amber-500/25">
-            <Users className="w-3.5 h-3.5 text-amber-400" />
+          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-bold bg-[#ffd500]/15 text-[#ffd500] border border-[#ffd500]/30 border-b-2 border-b-[#b89900] shadow-sm">
+            <Users className="w-3.5 h-3.5 text-[#ffd500]" />
             <span>LIMITED TO 150 SEATS</span>
           </div>
 
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium bg-purple-500/10 text-purple-300 border border-purple-500/25">
-            <Ticket className="w-3.5 h-3.5 text-purple-400" />
+          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-bold bg-[#e3000b]/15 text-[#ff5a62] border border-[#e3000b]/30 border-b-2 border-b-[#a80007] shadow-sm">
+            <Ticket className="w-3.5 h-3.5 text-[#ff5a62]" />
             <span>FREE ENTRY</span>
           </div>
         </div>
@@ -67,8 +71,8 @@ export default function Hero({ registeredCount, onRegisterClick, onScheduleClick
           {/* Left / Top Text Column */}
           <div className="lg:col-span-7 text-center lg:text-left space-y-6">
             
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-slate-300">
-              <Sparkles className="w-3.5 h-3.5 text-blue-400" />
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#141924] border border-[#2b3548] border-b-2 border-b-[#090d14] text-xs font-mono text-slate-300 font-semibold shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-[#ffd500] animate-pulse" />
               <span>Madan Mohan Malaviya University of Technology, Gorakhpur</span>
             </div>
 
@@ -82,12 +86,12 @@ export default function Hero({ registeredCount, onRegisterClick, onScheduleClick
               {EVENT_DETAILS.heroSupportingText}
             </p>
 
-            {/* Action Buttons */}
+            {/* Tactile 3D LEGO Brick Action Buttons */}
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
               <a
                 href="#register"
                 onClick={onRegisterClick}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-xl font-display font-semibold text-white bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 shadow-xl shadow-blue-600/30 border border-blue-400/40 transition-all duration-300 transform hover:-translate-y-0.5 active:scale-95 text-base"
+                className="lego-btn-red w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl font-display font-extrabold text-white uppercase tracking-wider text-base"
               >
                 <span>Reserve Your Seat</span>
                 <ArrowRight className="w-5 h-5" />
@@ -96,32 +100,35 @@ export default function Hero({ registeredCount, onRegisterClick, onScheduleClick
               <a
                 href="#schedule"
                 onClick={onScheduleClick}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-xl font-display font-semibold text-slate-200 bg-surface-lighter/80 hover:bg-white/10 border border-white/10 hover:border-white/20 transition-all duration-200 text-base"
+                className="lego-btn-dark w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl font-display font-bold text-slate-200 uppercase tracking-wider text-base"
               >
                 <span>Explore Schedule</span>
               </a>
             </div>
 
-            {/* In-Person Venue & Combined Seat Availability Gauge */}
-            <div className="pt-4 max-w-md mx-auto lg:mx-0 p-3.5 rounded-xl bg-surface-lighter/50 border border-white/5 backdrop-blur-sm space-y-2">
+            {/* In-Person Venue & Combined Seat Availability Gauge styled as LEGO Brick Bar */}
+            <div className="pt-4 max-w-md mx-auto lg:mx-0 p-4 rounded-2xl bg-[#111520] border border-[#2b3548] border-b-4 border-b-[#070910] shadow-xl space-y-2.5">
               <div className="flex items-center justify-between text-xs">
-                <span className="font-mono text-slate-400 flex items-center gap-1.5 truncate">
-                  <MapPin className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                <span className="font-mono text-slate-300 font-semibold flex items-center gap-1.5 truncate">
+                  <MapPin className="w-3.5 h-3.5 text-[#3b8bff] shrink-0" />
                   <span className="truncate">MMMUT Campus, Gorakhpur</span>
                 </span>
-                <span className="font-mono font-bold text-cyan-300 shrink-0">
+                <span className="font-mono font-bold text-[#ffd500] shrink-0">
                   {seatsRemaining} Seats Left
                 </span>
               </div>
-              <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+
+              {/* Segmented LEGO Brick Gauge */}
+              <div className="w-full h-3 bg-[#0a0d14] rounded-full overflow-hidden p-0.5 border border-white/10">
                 <div 
-                  className="h-full bg-gradient-to-r from-blue-500 via-emerald-400 to-cyan-400 transition-all duration-500 rounded-full"
+                  className="h-full bg-gradient-to-r from-[#0055bf] via-[#ffd500] to-[#e3000b] transition-all duration-500 rounded-full shadow-[inset_0_1px_1px_rgba(255,255,255,0.7)]"
                   style={{ width: `${percentClaimed}%` }}
                 />
               </div>
-              <div className="flex justify-between text-[11px] font-mono text-slate-500">
+
+              <div className="flex justify-between text-[11px] font-mono text-slate-400">
                 <span>{registeredCount} / {EVENT_DETAILS.capacity} Claimed</span>
-                <span>Combined MMMUT + Outside Cap</span>
+                <span className="text-[#3b8bff] font-semibold">Combined MMMUT + Outside Cap</span>
               </div>
             </div>
 

@@ -76,14 +76,23 @@ export default function Navbar({ onOpenPass, registeredUser }) {
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
-          ? 'bg-[#090b10]/90 backdrop-blur-md border-b border-white/10 shadow-2xl shadow-blue-950/20 py-2.5' 
+          ? 'bg-[#0b0e14]/95 backdrop-blur-md border-b-2 border-[#1c2333] shadow-2xl py-2.5' 
           : 'bg-transparent py-4'
       }`}
     >
+      {/* Top 4-Color LEGO Brick Interlocking Stripe */}
+      {isScrolled && (
+        <div className="absolute top-0 inset-x-0 h-1.5 flex">
+          <div className="flex-1 bg-[#0055bf]" />
+          <div className="flex-1 bg-[#e3000b]" />
+          <div className="flex-1 bg-[#ffd500]" />
+          <div className="flex-1 bg-[#00852b]" />
+        </div>
+      )}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           
-          {/* Logo & GDG MMMUT Subtitle */}
+          {/* Logo & GDG MMMUT Subtitle with LEGO Brick Icon */}
           <Link 
             to="/" 
             onClick={() => {
@@ -91,31 +100,34 @@ export default function Navbar({ onOpenPass, registeredUser }) {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }
             }}
-            className="group flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 rounded-lg p-1 transition-transform"
+            className="group flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 rounded-xl p-1 transition-transform"
             aria-label="DevSync '26 Homepage by GDG MMMUT"
           >
-            {/* Custom SVG Logo */}
-            <div className="relative w-10 h-10 flex items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 via-indigo-600 to-emerald-600 p-[1.5px] shadow-lg shadow-blue-500/25 group-hover:scale-105 transition-transform duration-300">
-              <div className="w-full h-full bg-[#090b10] rounded-[10px] flex items-center justify-center">
-                <svg className="w-5 h-5 text-blue-400 group-hover:text-blue-300 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="m16 18 6-6-6-6" />
-                  <path d="M8 6 2 12l6 6" />
-                  <path d="m14 4-4 16" />
-                </svg>
+            {/* Custom 3D LEGO-style Stacked Brick Logo */}
+            <div className="relative w-10 h-10 flex items-center justify-center rounded-xl bg-[#0e131d] border-2 border-[#2b3548] p-1 shadow-[0_4px_0_#070a10] group-hover:translate-y-[-1px] group-hover:shadow-[0_5px_0_#070a10] transition-all duration-200">
+              <div className="grid grid-cols-2 gap-1 w-full h-full p-0.5">
+                {/* 4 Colored LEGO Studs in Logo */}
+                <div className="rounded-full bg-gradient-to-br from-[#3b8bff] to-[#0055bf] shadow-[inset_0_1px_1px_rgba(255,255,255,0.7)] flex items-center justify-center">
+                  <div className="w-1 h-1 rounded-full bg-white/40" />
+                </div>
+                <div className="rounded-full bg-gradient-to-br from-[#ff5a62] to-[#e3000b] shadow-[inset_0_1px_1px_rgba(255,255,255,0.7)] flex items-center justify-center">
+                  <div className="w-1 h-1 rounded-full bg-white/40" />
+                </div>
+                <div className="rounded-full bg-gradient-to-br from-[#ffe566] to-[#ffd500] shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)] flex items-center justify-center">
+                  <div className="w-1 h-1 rounded-full bg-white/50" />
+                </div>
+                <div className="rounded-full bg-gradient-to-br from-[#22c55e] to-[#00852b] shadow-[inset_0_1px_1px_rgba(255,255,255,0.7)] flex items-center justify-center">
+                  <div className="w-1 h-1 rounded-full bg-white/40" />
+                </div>
               </div>
-              {/* Google quad-color pulse pip */}
-              <span className="absolute -top-1 -right-1 flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-              </span>
             </div>
 
             <div>
               <div className="flex items-center gap-2">
-                <span className="font-display font-extrabold text-xl tracking-tight text-white group-hover:text-blue-400 transition-colors">
-                  DevSync <span className="text-blue-400 text-lg font-mono tracking-normal">'26</span>
+                <span className="font-display font-extrabold text-xl tracking-tight text-white group-hover:text-[#ffd500] transition-colors">
+                  DevSync <span className="text-[#ffd500] text-lg font-mono tracking-normal">'26</span>
                 </span>
-                <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-mono font-semibold bg-blue-500/10 text-blue-300 border border-blue-500/20">
+                <span className="inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-mono font-bold bg-[#e3000b] text-white border-b-2 border-[#990007] shadow-sm">
                   GDG MMMUT
                 </span>
               </div>
@@ -126,7 +138,7 @@ export default function Navbar({ onOpenPass, registeredUser }) {
           </Link>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden xl:flex items-center gap-1 bg-surface-lighter/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/5">
+          <nav className="hidden xl:flex items-center gap-1 bg-[#10141e]/80 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 shadow-inner">
             {navLinks.map((link) => {
               const isActive = !isAboutPage && activeSection === link.id;
               return (
@@ -134,16 +146,16 @@ export default function Navbar({ onOpenPass, registeredUser }) {
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link)}
-                  className={`relative px-3.5 py-1.5 text-sm font-medium rounded-full transition-all duration-200 ${
+                  className={`relative px-3.5 py-1.5 text-sm font-medium rounded-full transition-all duration-200 flex items-center gap-1.5 ${
                     isActive 
-                      ? 'text-white bg-white/10 shadow-sm' 
+                      ? 'text-white bg-white/15 shadow-sm font-semibold' 
                       : 'text-slate-300 hover:text-white hover:bg-white/5'
                   }`}
                 >
-                  {link.name}
                   {isActive && (
-                    <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-blue-400" />
+                    <span className="w-2 h-2 rounded-full bg-[#ffd500] shadow-[0_1px_2px_rgba(0,0,0,0.6)] shrink-0" />
                   )}
+                  <span>{link.name}</span>
                 </a>
               );
             })}
@@ -162,13 +174,13 @@ export default function Navbar({ onOpenPass, registeredUser }) {
             </Link>
           </nav>
 
-          {/* Right CTA and Badges */}
+          {/* Right CTA and Badges with 3D Brick Depth */}
           <div className="hidden sm:flex items-center gap-3">
             {/* View My Pass (if registered) */}
             {registeredUser && (
               <button
                 onClick={onOpenPass}
-                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/25 transition-all shadow-sm"
+                className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-[#00852b] text-white border-b-2 border-[#004d19] hover:brightness-110 active:translate-y-0.5 transition-all shadow-md"
                 title="View your confirmed ticket pass"
               >
                 <Sparkles className="w-3.5 h-3.5" />
@@ -179,7 +191,7 @@ export default function Navbar({ onOpenPass, registeredUser }) {
             <a
               href="/#register"
               onClick={(e) => handleNavClick(e, { href: '/#register', id: 'register' })}
-              className="group relative inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-blue-600 via-blue-500 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 shadow-lg shadow-blue-600/30 transition-all duration-300 transform active:scale-95 border border-blue-400/30"
+              className="lego-btn-red inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-display font-bold text-white uppercase tracking-wider"
             >
               <span>Register CTA</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
@@ -260,7 +272,7 @@ export default function Navbar({ onOpenPass, registeredUser }) {
               <a
                 href="/#register"
                 onClick={(e) => handleNavClick(e, { href: '/#register', id: 'register' })}
-                className="w-full flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl font-semibold text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 shadow-xl shadow-blue-600/30 border border-blue-400/30"
+                className="lego-btn-red w-full flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl font-display font-bold text-white uppercase tracking-wider"
               >
                 <span>Reserve In-Person Seat (Free)</span>
                 <ArrowRight className="w-4 h-4" />
