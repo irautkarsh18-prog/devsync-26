@@ -171,3 +171,4 @@ export function FloatingLegoBrick({ color = 'blue', size = 52, rotation = 12, cl
     </div>
   );
 }
+

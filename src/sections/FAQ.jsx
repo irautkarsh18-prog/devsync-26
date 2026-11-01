@@ -149,22 +149,22 @@ export default function FAQ() {
           })}
         </div>
 
-        {/* Bottom Help Prompt */}
-        <div className="mt-12 text-center p-6 rounded-2xl bg-surface-lighter/40 border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        {/* Bottom Help Prompt styled as LEGO Plate */}
+        <div className="mt-12 text-center p-6 rounded-2xl bg-[#111520] border-2 border-[#2b3548] border-b-4 border-b-[#070910] shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3 text-left">
-            <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 shrink-0">
+            <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 shrink-0">
               <MessageSquare className="w-5 h-5" />
             </div>
             <div>
               <div className="text-sm font-bold text-white">Have a specific question not listed here?</div>
-              <div className="text-xs text-slate-400 font-mono">
+              <div className="text-xs text-slate-300 font-mono mt-0.5">
                 Email us directly at <a href={OFFICIAL_CONTACT.emailMailto} className="text-blue-400 hover:underline">{OFFICIAL_CONTACT.email}</a>
               </div>
             </div>
           </div>
           <a
             href="#contact"
-            className="px-4 py-2 rounded-xl text-xs font-mono font-semibold bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 transition-colors whitespace-nowrap"
+            className="lego-btn-dark px-4 py-2.5 rounded-xl text-xs font-mono font-bold text-slate-200 uppercase tracking-wider whitespace-nowrap shadow-md"
           >
             Contact & Connect Section
           </a>

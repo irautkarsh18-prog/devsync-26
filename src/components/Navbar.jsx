@@ -193,7 +193,7 @@ export default function Navbar({ onOpenPass, registeredUser }) {
               onClick={(e) => handleNavClick(e, { href: '/#register', id: 'register' })}
               className="lego-btn-red inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-display font-bold text-white uppercase tracking-wider"
             >
-              <span>Register CTA</span>
+              <span>Reserve Seat</span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
             </a>
           </div>

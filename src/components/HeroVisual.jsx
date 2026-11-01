@@ -162,24 +162,26 @@ export default function HeroVisual() {
 
       </div>
 
-      {/* Floating Decorative Cards */}
-      <div className="hidden sm:flex items-center gap-3 absolute -bottom-5 -left-4 px-4 py-3 rounded-xl bg-surface-lighter/90 border border-blue-500/30 backdrop-blur-md shadow-xl shadow-black/50">
-        <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center text-blue-400">
+      {/* Floating Decorative LEGO Brick Badges */}
+      <div className="hidden sm:flex items-center gap-3 absolute -bottom-5 -left-4 px-4 py-2.5 rounded-xl bg-[#121626] border-2 border-blue-500/40 border-b-4 border-b-blue-900/80 shadow-2xl z-20">
+        <LegoStud color="blue" size="sm" />
+        <div className="w-7 h-7 rounded-lg bg-blue-500/20 border border-blue-500/30 flex items-center justify-center text-blue-400">
           <Cpu className="w-4 h-4" />
         </div>
         <div>
-          <div className="text-xs font-semibold text-white">MMMUT Gorakhpur</div>
-          <div className="text-[10px] text-slate-400">Seminar Hall Complex</div>
+          <div className="text-xs font-bold font-display text-white">MMMUT Gorakhpur</div>
+          <div className="text-[10px] font-mono text-slate-400">Seminar Hall Complex</div>
         </div>
       </div>
 
-      <div className="hidden sm:flex items-center gap-3 absolute -top-4 -right-4 px-4 py-2.5 rounded-xl bg-surface-lighter/90 border border-violet-500/30 backdrop-blur-md shadow-xl shadow-black/50">
-        <div className="w-7 h-7 rounded-lg bg-violet-500/20 flex items-center justify-center text-violet-400">
+      <div className="hidden sm:flex items-center gap-3 absolute -top-4 -right-4 px-4 py-2.5 rounded-xl bg-[#121626] border-2 border-emerald-500/40 border-b-4 border-b-emerald-900/80 shadow-2xl z-20">
+        <LegoStud color="green" size="sm" />
+        <div className="w-7 h-7 rounded-lg bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
           <CheckCircle2 className="w-4 h-4" />
         </div>
         <div>
-          <div className="text-xs font-semibold text-white">100% In-Person</div>
-          <div className="text-[10px] text-slate-400">Zero Virtual Streaming</div>
+          <div className="text-xs font-bold font-display text-white">100% In-Person</div>
+          <div className="text-[10px] font-mono text-slate-400">Zero Virtual Streaming</div>
         </div>
       </div>
     </div>
